@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>電子契約書 ｜ Belle douce</title>
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Noto+Serif+JP:wght@300;400&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet" />
+<style>
+:root{--ivory:#faf4f1;--pinkbeige:#f1ddd5;--ink:#5b4843;--ink-soft:#8a7670;--gold:#c2a879;--gold-deep:#a98c5f;--line:#eddcd5}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans JP",sans-serif;color:var(--ink);font-weight:300;line-height:2;letter-spacing:.03em;background:var(--ivory);-webkit-font-smoothing:antialiased}
+.doc{max-width:760px;margin:0 auto;padding:64px 20px 100px}
+.brand{display:block;text-align:center;font-family:"Cormorant Garamond",serif;font-size:26px;letter-spacing:.24em;color:var(--ink);text-decoration:none}
+.brand small{display:block;font-size:9px;letter-spacing:.5em;color:var(--gold-deep);margin-top:4px}
+.eyebrow{display:block;text-align:center;font-family:"Cormorant Garamond",serif;font-size:12px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold-deep);margin:40px 0 8px}
+h1{text-align:center;font-family:"Noto Serif JP",serif;font-weight:300;font-size:24px;letter-spacing:.1em;margin-bottom:36px}
+h2{font-family:"Noto Serif JP",serif;font-weight:400;font-size:16px;letter-spacing:.06em;color:var(--ink);margin:32px 0 8px;padding-left:14px;border-left:2px solid var(--gold)}
+p,li{font-size:14px;color:var(--ink-soft)}
+ul{margin:6px 0 6px 22px}
+.intro{font-size:14px;color:var(--ink-soft);margin-bottom:6px}
+.ver{text-align:right;font-size:11px;color:var(--ink-soft);margin-top:28px}
+form{margin-top:44px;padding:26px 20px;background:#fff;border:1px solid var(--line);border-radius:14px}
+form h2{margin-top:0}
+label.f{display:block;font-size:13px;color:var(--ink);margin:16px 0 4px}
+input[type=text],input[type=email]{width:100%;font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--ivory);color:var(--ink)}
+.chk{display:flex;gap:10px;align-items:flex-start;margin:14px 0;font-size:14px;color:var(--ink)}
+.chk input{width:20px;height:20px;margin-top:5px;flex:none;accent-color:var(--gold-deep)}
+.chk small{display:block;color:var(--ink-soft);font-size:12px;line-height:1.7}
+button{display:block;width:100%;margin-top:22px;padding:14px;font:inherit;font-size:15px;letter-spacing:.12em;color:#fff;background:var(--gold-deep);border:0;border-radius:40px;cursor:pointer}
+button:disabled{opacity:.45;cursor:default}
+.done{display:none;text-align:center;padding:30px 10px}
+.done p{color:var(--ink);font-size:15px}
+.done .when{font-size:13px;color:var(--ink-soft);margin-top:6px}
+.err{color:#b4574b;font-size:13px;margin-top:10px;display:none}
+.back{display:inline-block;margin-top:48px;font-size:12px;letter-spacing:.15em;color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+.center{text-align:center}
+
+.box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 18px;margin:14px 0}
+.kv{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed var(--line);padding:6px 0;font-size:14px}
+.kv b{font-weight:400;color:var(--ink)}.kv span{color:var(--ink-soft);flex:none}
+.total{font-size:18px;color:var(--ink);text-align:right;margin-top:8px}
+.red{border:2px solid #c0392b;color:#a93226;border-radius:10px;padding:12px 14px;margin:16px 0;font-size:13px;line-height:1.8}
+details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 16px;margin:12px 0}
+summary{cursor:pointer;font-size:14px;color:var(--ink)}
+.yk p{font-size:12.5px;line-height:1.8;margin:6px 0;color:var(--ink-soft)}.yk .red p{color:#a93226}
+select,input[type=date],input[type=tel]{width:100%;font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--ivory);color:var(--ink)}
+#pad{width:100%;height:170px;border:1px dashed var(--gold);border-radius:10px;background:var(--ivory);touch-action:none;display:block}
+.clr{display:inline-block;margin-top:6px;font-size:12px;color:var(--gold-deep);background:none;border:0;padding:0;width:auto;letter-spacing:.05em}
+.msg{text-align:center;padding:40px 10px;color:var(--ink)}
+</style>
+</head>
+<body>
+  <div class="doc">
+    <a href="index.html" class="brand">Belle douce<small>NAKAMEGURO</small></a>
+    <span class="eyebrow">Contract</span>
+    <h1>エステティックサービス契約書</h1>
+    <div id="ld" class="msg">読み込んでいます…</div>
+
+    <div id="main" style="display:none">
+      <p class="intro">この書面をよくお読みください。ご契約の内容を確認のうえ、下の欄にご記入・ご署名ください。</p>
+      <h2>ご契約の内容</h2>
+      <div class="box" id="sumbox"></div>
+      <div class="red"><b>クーリング・オフについて</b><br>契約書面を受け取った日から8日以内であれば、書面または電子メールで契約を解除できます。解除の際、違約金やご利用分のお支払いは不要で、お支払い済みの金額は全額お返しします（約款 第6条）。<br>宛先：<span id="cm"></span></div>
+      <details><summary>エステティックサービス契約約款（全文）を読む</summary><div class="yk" id="yk"></div></details>
+      <details><summary>ご契約時の大切なご案内（キャンセル・期限など）</summary><p style="font-size:13px;margin:8px 0"><a href="terms.html" target="_blank" style="color:var(--gold-deep)">別のページで開く</a></p></details>
+
+      <form id="f" novalidate>
+        <h2>お客様のご記入</h2>
+        <label class="f">お名前</label><input type="text" id="nm" disabled />
+        <label class="f" for="fu">フリガナ</label><input type="text" id="fu" autocomplete="off" />
+        <label class="f" for="bd">生年月日</label><input type="date" id="bd" />
+        <label class="f" for="zp">郵便番号（数字のみ）</label><input type="tel" id="zp" inputmode="numeric" autocomplete="postal-code" />
+        <label class="f" for="ad">ご住所</label><input type="text" id="ad" autocomplete="street-address" />
+        <label class="f" for="tl">携帯電話（数字のみ）</label><input type="tel" id="tl" inputmode="numeric" autocomplete="tel" />
+        <label class="f" for="jb">ご職業</label>
+        <select id="jb"><option value="">選んでください</option><option>会社員</option><option>学生</option><option>主婦</option><option>自営</option><option>無職</option><option>その他</option></select>
+        <label class="f" for="em">メールアドレス（契約書PDFのお受け取り用）</label><input type="email" id="em" autocomplete="email" />
+
+        <label class="chk"><input type="checkbox" id="c1" /><span>上記の契約内容・約款・大切なご案内を読み、内容に同意して契約します。（必須）</span></label>
+        <label class="chk"><input type="checkbox" id="c2" /><span>契約書面を、紙ではなく電子（PDFファイル・上記メールアドレス宛て）で受け取ることに同意します。<small>PDFを開けるスマホまたはパソコンをお持ちの方のみチェックしてください。同意されない場合は紙の書面をお渡しします。</small></span></label>
+
+        <label class="f">ご署名（指で枠の中にお名前を書いてください）</label>
+        <canvas id="pad"></canvas><button type="button" class="clr" id="clr">書き直す</button>
+
+        <button type="submit" id="sb" disabled>署名して契約する</button>
+        <p class="err" id="er"></p>
+      </form>
+      <p class="ver" id="vr"></p>
+    </div>
+
+    <div class="done" id="dn"><p id="dt"></p><p class="when" id="wh"></p><p class="when">この画面をスタッフにお見せください。</p></div>
+  </div>
+<script>
+(function(){
+  var URL='https://script.google.com/macros/s/AKfycbyHoqfYiID1jEjSLQBVY25cQDnwjZwW3xjp0KWQdxMEom3uCghswPBgUX9DpbLTpOXcCw/exec';
+  var $=function(i){return document.getElementById(i)};
+  var q=new URLSearchParams(location.search), T=q.get('t')||'';
+  function post(o){return fetch(URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(o)}).then(function(r){return r.json()})}
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function yen(n){return '¥'+Number(n||0).toLocaleString('ja-JP')}
+  function done(t,w){$('ld').style.display='none';$('main').style.display='none';$('dt').textContent=t;$('wh').textContent=w||'';$('dn').style.display='block'}
+  if(!T){ $('ld').textContent='URLが正しくありません。スタッフにお知らせください。'; return; }
+  if(q.get('ack')){
+    post({type:'econtract_ack',t:T}).then(function(r){ done(r.ok?'受け取りのご確認、ありがとうございました。':'確認できませんでした。お手数ですがスタッフにお知らせください。'); })
+      .catch(function(){ $('ld').textContent='通信できませんでした。電波の良い所でもう一度開いてください。'; });
+    $('dn').querySelectorAll('.when')[1].style.display='none';
+    return;
+  }
+  post({type:'econtract_get',t:T}).then(function(d){
+    if(!d.ok){ $('ld').textContent=d.msg||'このURLは無効です。'; return; }
+    if(d.status!=='未署名'){ done('この契約書は送信済みです。','送信日時：'+(d.signedAt||'')); return; }
+    BANK=d.bank||'';DUE=d.payDue;TOTAL=d.total;var kv=function(k,v){return '<div class="kv"><span>'+k+'</span><b>'+v+'</b></div>'};
+    $('sumbox').innerHTML=kv('お名前',esc(d.name)+' 様')+kv('コース名',esc(d.course))+kv('単価（税込）',yen(d.tan))+kv('回数',d.kai+'回')+
+      kv('役務提供期間',esc(d.start)+' 〜 '+esc(d.end))+kv('入会金・関連商品','なし')+kv('お支払い方法',esc(d.payMethod))+kv('お支払い期日',esc(d.payDue)+'まで')+kv('お振込先',esc(d.bank||'').replace(/\n/g,'<br>'))+
+      kv('前受金の保全措置','行っていません')+kv('事業者',esc(d.seller.company)+'（代表 '+esc(d.seller.rep)+'）')+kv('所在地',esc(d.seller.addr))+kv('電話',esc(d.seller.tel))+
+      '<div class="total">お支払総額 '+yen(d.total)+'（税込）</div>';
+    $('cm').textContent=d.seller.mail; $('yk').innerHTML=d.yakkan||''; $('nm').value=d.name+' 様'; $('vr').textContent=esc(d.seller.company)+'　'+esc(d.version);
+    $('ld').style.display='none'; $('main').style.display='block'; pad(); ok();
+  }).catch(function(){ $('ld').textContent='読み込めませんでした。電波の良い所でもう一度開いてください。'; });
+
+  var drawn=false, cv, cx, BANK='', DUE='', TOTAL=0;
+  function pad(){
+    cv=$('pad'); var r=window.devicePixelRatio||1; cv.width=cv.clientWidth*r; cv.height=cv.clientHeight*r; cx=cv.getContext('2d'); cx.scale(r,r);
+    cx.lineWidth=2.4; cx.lineCap='round'; cx.lineJoin='round'; cx.strokeStyle='#2b2220';
+    var on=false; function p(e){var b=cv.getBoundingClientRect(),t=e.touches?e.touches[0]:e;return[t.clientX-b.left,t.clientY-b.top]}
+    function s(e){e.preventDefault();on=true;var a=p(e);cx.beginPath();cx.moveTo(a[0],a[1])}
+    function m(e){if(!on)return;e.preventDefault();var a=p(e);cx.lineTo(a[0],a[1]);cx.stroke();drawn=true;ok()}
+    function u(){on=false}
+    cv.addEventListener('pointerdown',s);cv.addEventListener('pointermove',m);window.addEventListener('pointerup',u);
+    $('clr').onclick=function(){cx.clearRect(0,0,cv.width,cv.height);drawn=false;ok()};
+  }
+  function ok(){
+    var mailOk=!$('c2').checked||/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($('em').value.trim());
+    $('sb').disabled=!($('fu').value.trim()&&$('bd').value&&$('ad').value.trim()&&$('tl').value.replace(/\D/g,'').length>=10&&$('c1').checked&&mailOk&&drawn);
+  }
+  ['fu','bd','zp','ad','tl','jb','em','c1','c2'].forEach(function(i){$(i).addEventListener('input',ok);$(i).addEventListener('change',ok)});
+  $('f').addEventListener('submit',function(e){
+    e.preventDefault(); if($('sb').disabled) return;
+    $('sb').disabled=true; $('sb').textContent='送信しています…'; $('er').style.display='none';
+    var b=$('bd').value.split('-');
+    post({type:'econtract_sign',t:T,furigana:$('fu').value.trim(),birth:b[0]+'年'+Number(b[1])+'月'+Number(b[2])+'日',zip:$('zp').value,addr:$('ad').value.trim(),
+      tel:$('tl').value,job:$('jb').value,email:$('em').value.trim(),agreeTerms:$('c1').checked,agreeElectronic:$('c2').checked,signature:cv.toDataURL('image/png')})
+    .then(function(r){
+      if(!r.ok){ $('er').textContent=r.msg||'送信できませんでした。'; $('er').style.display='block'; $('sb').textContent='署名して契約する'; ok(); return; }
+      var d=new Date(),z=function(n){return(n<10?'0':'')+n};
+      done('ご契約ありがとうございました。',(r.electronic?(r.mailed?'契約書（PDF）をメールでお送りしました。届いたメールのリンクを押して、受け取りのご確認をお願いします。':'メールの送信に失敗しました。スタッフにお知らせください。'):'契約書は紙でお渡しします。')+'　'+d.getFullYear()+'/'+z(d.getMonth()+1)+'/'+z(d.getDate())+' '+z(d.getHours())+':'+z(d.getMinutes()));
+      if(BANK){var bk=document.createElement('p');bk.className='when';bk.style.whiteSpace='pre-line';bk.textContent='【お振込先】'+DUE+'までに '+yen(TOTAL)+'\n'+BANK;$('dn').insertBefore(bk,$('dn').lastElementChild);}
+      window.scrollTo(0,0);
+    }).catch(function(){ $('er').textContent='送信できませんでした。電波の良い所でもう一度お試しください。'; $('er').style.display='block'; $('sb').textContent='署名して契約する'; ok(); });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ご予約 ｜ Belle douce</title>
+<meta name="description" content="Belle douce（中目黒）のご予約は公式LINEから。友だち追加後、ご希望の日時と肌のお悩みをお送りください。" />
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Noto+Serif+JP:wght@200;300;400&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --ivory:#faf4f1;--pinkbeige:#f1ddd5;--blush:#f3e0da;--dustypink:#cf9c8f;
+  --brown:#8a6a64;--ink:#5b4843;--ink-soft:#8a7670;--gold:#c2a879;--gold-deep:#a98c5f;--line:#eddcd5;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans JP",sans-serif;color:var(--ink);font-weight:300;letter-spacing:.04em;line-height:1.9;-webkit-font-smoothing:antialiased;
+  min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px;
+  background:radial-gradient(120% 80% at 80% 0%,rgba(207,156,143,.22),transparent 55%),linear-gradient(180deg,var(--blush),var(--ivory) 60%);}
+.card{width:100%;max-width:460px;background:rgba(255,255,255,.72);backdrop-filter:blur(6px);border:1px solid var(--line);
+  border-radius:14px;padding:48px 38px 40px;text-align:center;box-shadow:0 40px 80px -40px rgba(120,84,78,.35)}
+.brand{font-family:"Cormorant Garamond",serif;font-size:30px;letter-spacing:.24em;color:var(--ink)}
+.brand small{display:block;font-family:"Noto Sans JP";font-size:9px;letter-spacing:.5em;color:var(--gold-deep);margin-top:4px;font-weight:400}
+.eyebrow{font-family:"Cormorant Garamond",serif;font-size:13px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold-deep);margin:28px 0 10px;display:block}
+h1{font-family:"Noto Serif JP",serif;font-weight:300;font-size:24px;letter-spacing:.08em;margin-bottom:16px}
+p.lead{font-size:14px;color:var(--ink-soft);margin-bottom:28px}
+.qr{width:210px;height:210px;margin:0 auto 12px;padding:14px;background:#fff;border-radius:10px;border:1px solid var(--line)}
+.qr img{width:100%;height:100%;display:block}
+.qr-note{font-size:12px;color:var(--ink-soft);margin-bottom:26px}
+.divider{display:flex;align-items:center;gap:14px;color:var(--gold-deep);font-family:"Cormorant Garamond",serif;letter-spacing:.2em;font-size:13px;margin:6px 0 22px}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:16px;border-radius:44px;
+  font-size:14px;letter-spacing:.14em;text-decoration:none;transition:.3s ease;margin-bottom:14px}
+.btn-line{background:#06c755;color:#fff}
+.btn-line:hover{filter:brightness(.96);transform:translateY(-2px)}
+.btn-ig{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff}
+.btn-ig:hover{transform:translateY(-2px)}
+.back{display:inline-block;margin-top:22px;font-size:12px;letter-spacing:.15em;color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+.back:hover{color:var(--gold-deep)}
+.hours{font-size:12px;color:var(--ink-soft);margin-top:26px;line-height:1.9}
+</style>
+</head>
+<body>
+  <div class="card">
+    <a href="index.html" style="text-decoration:none"><span class="brand">Belle douce<small>NAKAMEGURO</small></span></a>
+    <span class="eyebrow">Reservation</span>
+    <h1>ご予約は公式LINEから</h1>
+    <p class="lead">友だち追加後、ご希望の日時と肌のお悩みを<br>お気軽にお送りください。おひとりずつ丁寧にご案内いたします。</p>
+    <p style="font-size:12px;color:var(--gold-deep);letter-spacing:.06em;margin:-16px 0 28px">※ 新規のお客様は、ご紹介制とさせていただいております。</p>
+
+    <div class="qr" id="qrBlock"><img src="assets/line_qr.png" alt="Belle douce 公式LINE QRコード" /></div>
+    <p class="qr-note" id="qrNote">スマートフォンのカメラで<br>QRコードを読み取ってください。</p>
+
+    <a href="https://lin.ee/UpixasR" class="btn btn-line" id="lineFriendBtn" style="display:none">LINEで友だち追加する</a>
+    <a href="aki.html" class="btn" style="background:#cf9c8f;color:#fff">最新の空き状況を見る</a>
+    <a href="https://www.instagram.com/belledouce_fa" class="btn btn-ig" target="_blank" rel="noopener">Instagram を見る</a>
+
+    <div class="hours">営業時間　11:00 − 21:00 ／ 完全予約制<br>東京都目黒区・中目黒</div>
+    <a href="index.html" class="back">← サロン紹介へ戻る</a>
+  </div>
+  <script>
+    (function(){
+      var isMobile=/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)||('ontouchstart' in window && window.innerWidth<820);
+      if(isMobile){
+        // スマホ：アプリが開くボタンを表示し、自分の画面のQRは隠す
+        document.getElementById('qrBlock').style.display='none';
+        document.getElementById('qrNote').style.display='none';
+        document.getElementById('lineFriendBtn').style.display='flex';
+      }
+      // PC：QRのみ（素っ気ないLINEページへ飛ぶボタンは非表示のまま）
+    })();
+  </script>
+</body>
+</html>
