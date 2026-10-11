@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>マイ肌カルテ ｜ Belle douce</title>
+<meta name="robots" content="noindex, nofollow" />
+<meta name="referrer" content="no-referrer" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+/* マイ肌カルテ（お客様専用）：一枚の便箋のような縦長ページ。見本v3（2026-10-05 由佳さんOK）と同じ構成 */
+:root{
+  --bg:#f8f3ef;--paper:#fffdfb;--ink:#4a3a35;--muted:#8c7a73;--rose:#c99a98;--rose-soft:#f1e2df;--gold:#b89a62;--line:#e7d9d3;--ok:#7f9a84;--warn:#c4876d;
+  --sc:#f3d9cf;--sc-edge:#d9b3a5;--epi:#f7e6dc;--basal:#e8b9a9;--derm:#f4dcd6;--fiber:#d79b93;--fat:#fbf1d9;--fat-edge:#e8d6a8;--m-red:#d9626a;--m-pig:#9a6a4f;--m-plug:#d8b878;--m-water:#7fa7c4;
+  --f-display:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#2a2120;--paper:#342927;--ink:#f1e4de;--muted:#bba79f;--rose:#d9a9a6;--rose-soft:#463533;--gold:#d4b97f;--line:#4d3d3a;--ok:#9fbaa3;--warn:#e0a389;
+  --sc:#6b4f48;--sc-edge:#8e6a60;--epi:#4e3c38;--basal:#7d5a51;--derm:#4a3634;--fiber:#a8706a;--fat:#5a4e3a;--fat-edge:#7a6a48;--m-red:#f08a8f;--m-pig:#c79a7c;--m-plug:#c9a964;--m-water:#9cc3de;color-scheme:dark}}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.85;margin:0;-webkit-font-smoothing:antialiased}
+.wrap{max-width:560px;margin:0 auto;padding-inline:16px;padding-block:calc(20px + env(safe-area-inset-top,0px)) calc(48px + env(safe-area-inset-bottom,0px))}
+header{text-align:center;padding-block:18px 8px}
+.brand{font-family:var(--f-display);letter-spacing:.3em;font-size:12px;color:var(--gold)}
+h1{font-family:var(--f-display);font-weight:600;font-size:26px;margin:6px 0 2px;letter-spacing:.06em;text-wrap:balance}
+.sub{font-size:12px;color:var(--muted);letter-spacing:.08em}
+.goal{margin-top:20px;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px 20px;text-align:center}
+.goal .eyebrow{font-size:11px;letter-spacing:.2em;color:var(--rose)}
+.goal p.g{font-family:var(--f-display);font-size:19px;line-height:1.7;margin:8px 0 14px;text-wrap:balance}
+.count{display:flex;justify-content:center;align-items:baseline;gap:6px;font-variant-numeric:tabular-nums}
+.count b{font-family:var(--f-display);font-size:44px;font-weight:600;color:var(--rose);line-height:1}
+.count span{font-size:13px;color:var(--muted)}
+.away{margin-top:16px;background:var(--rose-soft);border-radius:18px;padding:20px;text-align:center}
+.away .eyebrow{font-size:11px;letter-spacing:.2em;color:var(--rose)}
+.away p{margin:6px 0 14px;text-wrap:pretty}
+.away a{display:inline-block;background:var(--rose);color:#fff;text-decoration:none;border-radius:999px;padding:10px 22px;font-size:14px}
+.reached{font-family:var(--f-display);font-size:17px;color:var(--rose)}
+.prog{margin-top:14px;font-size:12px;color:var(--muted)}
+.bar{height:6px;background:var(--rose-soft);border-radius:6px;overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;background:var(--rose);border-radius:6px}
+section{margin-top:40px}
+.sh{display:flex;align-items:baseline;gap:10px;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:16px}
+.sh .no{font-family:var(--f-display);color:var(--gold);font-size:14px;font-variant-numeric:tabular-nums}
+h2{font-family:var(--f-display);font-weight:600;font-size:20px;margin:0;letter-spacing:.04em}
+p{margin:0 0 12px}
+.small{font-size:12px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.chip{font-size:13px;padding:4px 12px;border-radius:999px;background:var(--rose-soft)}
+.chip.body{background:transparent;border:1px solid var(--line);color:var(--muted)}
+.tl{list-style:none;margin:0;padding:0;position:relative}
+.tl:before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:1px;background:var(--line)}
+.tl li{position:relative;padding:0 0 18px 28px}
+.tl li:before{content:"";position:absolute;left:0;top:6px;width:15px;height:15px;border-radius:50%;background:var(--paper);border:2px solid var(--line)}
+.tl li.done:before{background:var(--rose);border-color:var(--rose)}
+.tl li.goal:before{background:var(--gold);border-color:var(--gold)}
+.tl .d{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.tl .t{font-weight:700;font-size:17px;line-height:1.4}
+.tl .op{display:flex;flex-wrap:wrap;gap:4px;margin:4px 0 2px}
+.tl .op span{font-size:11.5px;padding:1px 8px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
+.tl .by{font-size:12.5px;margin:4px 0 2px}
+.tl .by .tag{display:inline-block;font-size:10.5px;font-weight:700;color:var(--paper);background:var(--gold);border-radius:4px;padding:0 6px;margin-right:6px}
+.tl .m{font-size:13px}
+.pill{display:inline-block;font-size:11px;padding:0 8px;border-radius:999px;margin-left:6px;vertical-align:2px;font-weight:500}
+.pill.ok{background:color-mix(in srgb,var(--ok) 20%,transparent);color:var(--ok)}
+.pill.next{background:var(--rose-soft);color:var(--rose)}
+.voice{margin:0 0 16px;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px 20px}
+.voice p{font-family:var(--f-display);font-size:18px;line-height:1.75;margin:0 0 8px;text-wrap:balance}
+.voice p:before{content:"「";color:var(--rose)}.voice p:after{content:"」";color:var(--rose)}
+.voice cite{font-style:normal;font-size:12px;color:var(--muted)}
+.promise{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.promise li{padding-left:22px;position:relative}
+.promise li:before{content:"";position:absolute;left:4px;top:.75em;width:8px;height:8px;border-radius:50%;border:1.5px solid var(--gold)}
+.self{display:grid;gap:12px;margin:8px 0}
+.sv{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.sl{font-size:13px;font-weight:700}
+.nums{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.nums b{font-family:var(--f-display);font-size:20px;color:var(--ink)}
+.nums b.now{font-size:28px;color:var(--rose)}
+.nums .to{color:var(--gold)}
+.track{position:relative;height:8px;background:var(--rose-soft);border-radius:8px;margin-top:6px;overflow:hidden}
+.track i{position:absolute;left:0;top:0;bottom:0;border-radius:8px}
+.track .cur{background:var(--rose)}
+.track .was{background:var(--muted);opacity:.35;z-index:1}
+.key{color:var(--rose)}
+.five{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.five .f{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 12px;min-width:0;opacity:.6}
+.five .f.on{opacity:1;border-color:var(--rose)}
+.five .f.main{grid-column:1/-1;background:var(--rose-soft)}
+.fh{font-weight:700;font-size:14px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.fh .dot{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--muted)}
+.f.on .fh .dot{background:var(--rose);border-color:var(--rose)}
+.fh .tag{font-size:11px;font-weight:500;background:var(--rose);color:var(--paper);border-radius:999px;padding:0 8px}
+.fb{font-size:12.5px;color:var(--muted);line-height:1.7;margin-top:2px}
+.f.on .fb{color:var(--ink)}
+.arrow{text-align:center;color:var(--gold);font-size:13px;margin:8px 0}
+.issue{background:var(--paper);border:2px solid var(--rose);border-radius:18px;padding:16px 18px;margin-bottom:10px}
+.ih{font-family:var(--f-display);font-weight:700;font-size:18px;color:var(--rose);margin-bottom:10px}
+.ic{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.ic span{font-weight:700;font-size:16px;padding:6px 14px;border-radius:10px;background:var(--rose);color:var(--paper)}
+.issue p{margin:0;font-size:14px}
+.result{background:var(--rose-soft);border-radius:14px;padding:12px 14px;font-size:14px}
+.toggle{display:flex;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:3px;margin-bottom:12px}
+.toggle button{flex:1;border:0;background:transparent;font:inherit;font-size:13px;color:var(--muted);padding:7px 8px;border-radius:999px;cursor:pointer}
+.toggle button[aria-pressed="true"]{background:var(--rose);color:var(--paper)}
+.toggle button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.diagram{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:12px}
+.diagram svg{display:block;width:100%;height:auto}
+.diagram svg text{font-family:var(--f-body)}
+.cap{font-size:13px;margin-top:10px;min-height:3.6em}
+.marks{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.marks li{display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:start;font-size:13px;line-height:1.55}
+.marks li i{width:20px;height:20px;border-radius:50%;color:#fff;font-style:normal;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.marks li b{font-weight:700}
+.reach{margin-top:16px;display:grid;gap:10px}
+.reach .r{border-left:3px solid var(--line);padding:2px 0 2px 12px}
+.reach .r.salon{border-color:var(--rose)}
+.reach .r b{font-family:var(--f-display);font-weight:600}
+.kit{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}.kit th{font-weight:400;color:var(--muted);font-size:12px;text-align:left;padding:0 6px 6px;border-bottom:1px solid var(--line)}.kit td{padding:9px 6px;border-bottom:1px solid var(--line);vertical-align:top}.kit td em{display:block;font-style:normal;font-size:12px;color:var(--muted)}.kitnote{font-size:12px;color:var(--muted);margin:10px 0 0}
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.checks label{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px 12px;cursor:pointer}
+.checks input{width:18px;height:18px;margin:4px 0 0;accent-color:var(--rose)}
+.checks span{min-width:0}
+.checks em{font-style:normal;display:block;font-size:12px;color:var(--muted)}
+.alert{margin-top:10px;font-size:12px;color:var(--warn)}
+.rec{background:var(--paper);border:1px solid var(--gold);border-radius:18px;padding:18px}
+.rec .when{font-size:11px;letter-spacing:.15em;color:var(--gold)}
+.rec h3{font-family:var(--f-display);font-weight:600;font-size:19px;margin:4px 0 10px}
+.basis{width:100%;border-collapse:collapse;font-size:13px;margin:6px 0 12px}
+.basis th{text-align:left;font-weight:500;color:var(--muted);white-space:nowrap;padding:7px 10px 7px 0;vertical-align:top;border-top:1px solid var(--line)}
+.basis td{padding:7px 0;border-top:1px solid var(--line)}
+.notnow{font-size:13px;background:var(--bg);border-radius:12px;padding:10px 12px}
+.letter p{white-space:pre-line}
+.letter{margin-top:40px;background:var(--paper);border-radius:18px;padding:20px;border:1px solid var(--line)}
+.letter .from{font-family:var(--f-display);text-align:right;margin:8px 0 0}
+.cta{display:block;width:100%;margin-top:22px;text-align:center;background:var(--rose);color:#fff;text-decoration:none;border-radius:999px;padding:14px;font-weight:700;letter-spacing:.08em}
+.foot{text-align:center;font-size:11px;color:var(--muted);margin-top:22px}
+.state{text-align:center;color:var(--muted);padding:80px 0;font-family:var(--f-display)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:4px 0 14px}.photos.one{grid-template-columns:1fr;max-width:260px;margin-left:auto;margin-right:auto}
+.ph{margin:0;border-radius:14px;overflow:hidden;background:var(--line,#eee)}.ph img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover}
+.ph figcaption{display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;letter-spacing:.05em}.ph figcaption span{opacity:.7}
+</style>
+</head>
+<body>
+<div class="wrap" id="app">
+  <header><div class="brand">BELLE DOUCE</div><h1>マイ肌カルテ</h1></header>
+  <p class="state" id="state">読み込んでいます…</p>
+</div>
+<script>
+(function(){
+  var API='https://script.google.com/macros/s/AKfycbyHoqfYiID1jEjSLQBVY25cQDnwjZwW3xjp0KWQdxMEom3uCghswPBgUX9DpbLTpOXcCw/exec';
+  var Q=new URLSearchParams(location.search),t=Q.get('t')||'';
+  function ymd(x){var m=/^(\d{4})-(\d{2})-(\d{2})/.exec(String(x||''));return m?new Date(+m[1],+m[2]-1,+m[3]):null}
+  var TODAY=ymd(Q.get('now'))||new Date();TODAY.setHours(0,0,0,0);   // ?now=YYYY-MM-DD は見え方の確認用
+  function days(a,b){return Math.round((b-a)/86400000)}
+  var app=document.getElementById('app');
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  function rich(s){return esc(s).replace(/&lt;b&gt;/g,'<b>').replace(/&lt;\/b&gt;/g,'</b>')}   // <b>だけ許可
+  function fail(m){document.getElementById('state').textContent=m}
+  if(!/^[0-9a-f]{24}$/.test(t)){fail('このページを開くには、サロンからお送りしたURLが必要です。');return;}
+  // GASはときどき結果のJSONをHTMLに包んで返すので、中身の文字だけ取り出して読む
+  function parseResp(tx){tx=String(tx||'').trim();if(tx.charAt(0)==='{')return JSON.parse(tx);var d=new DOMParser().parseFromString(tx,'text/html');d.querySelectorAll('script,style').forEach(function(e){e.remove()});var b=(d.body&&d.body.textContent||'').trim(),i=b.indexOf('{"ok"');if(i<0)throw new Error('bad');return JSON.parse(b.slice(i));}
+  function post(body,tries){return fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)}).then(function(r){return r.text()}).then(parseResp).catch(function(e){if(tries>1)return post(body,tries-1);throw e;});}
+  // まず暗号化された静的ファイル（速い）を読み、無ければGASに取りに行く（2026-10-05）
+  function sha(s){return crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)).then(function(b){return new Uint8Array(b)})}
+  function hex(u){return Array.prototype.map.call(u,function(x){return ('0'+x.toString(16)).slice(-2)}).join('')}
+  function loadStatic(){
+    if(!(window.crypto&&crypto.subtle))return Promise.reject();
+    return sha('mk-id|'+t).then(function(h){return fetch('mk/'+hex(h).slice(0,32)+'.bin?v='+Math.floor(Date.now()/60000))})
+      .then(function(r){if(!r.ok)throw 0;return r.json()})
+      .then(function(o){
+        var bin=atob(o.d),n=bin.length,data=new Uint8Array(n),jobs=[];
+        for(var i=0;i<n;i++)data[i]=bin.charCodeAt(i);
+        for(var b=0;b*32<n;b++)jobs.push(sha(t+'|'+o.n+'|'+b));
+        return Promise.all(jobs).then(function(ks){for(var i=0;i<n;i++)data[i]^=ks[i>>5][i&31];return JSON.parse(new TextDecoder().decode(data));});
+      });
+  }
+  var PAGE_NAME='';
+  function showPhotos(PH){
+    var box=document.getElementById('phx'); if(!box||!PH||!PH.length)return;
+    // 写真の持ち主がこのページの方と一致しない時は1枚も出さない（2026-10-05 事故の再発防止）
+    if(!PAGE_NAME||PH.some(function(x){return x.owner!==PAGE_NAME}))return;
+    box.className='photos'+(PH.length<2?' one':'');
+    box.innerHTML=PH.map(function(x){return '<figure class="ph"><img src="'+x.src+'" alt=""><figcaption>'+esc(x.label)+'<span>'+esc(x.date)+'</span></figcaption></figure>'}).join('');
+    var sc=document.getElementById('recsec'); if(sc)sc.style.display='';
+  }
+  loadStatic().then(function(j){ if(!j||!j.ok||!j.page)throw 0; render(j.page); })
+  .catch(function(){
+    post({type:'mykarte_get',t:t},3)
+      .then(function(j){ if(!j.ok){fail(j.msg||'読み込めませんでした。');return;} render(j.page); })
+      .catch(function(){fail('読み込めませんでした。電波の良いところで、もう一度開いてください。')});
+  });
+  // 写真は本体のあとで読み込む（本体の表示を遅らせない）
+  function loadPhotos(){
+    var box=document.getElementById('phx'); if(!box)return;
+    post({type:'mykarte_photos',t:t},2).then(function(j){ showPhotos((j&&j.ok&&j.photos)||[]); }).catch(function(){});
+  }
+
+  function render(P){
+    PAGE_NAME=String(P.name||'');
+    document.title=P.name+'様のマイ肌カルテ ｜ Belle douce';
+    var lv=ymd(P.lastVisit),due=ymd(P.goal.dueDate),ex=ymd(P.expiry);
+    var gap=lv?days(lv,TODAY):0,away=gap>=42;                       // 前回来店から6週間以上
+    var reached=due&&TODAY>due;                                      // 目標の日を過ぎた
+    var expired=ex&&days(ex,TODAY)>60;                               // 回数券の期限＋60日を過ぎた
+    var noTicket=Q.get('nt')==='1'||!P.course||!P.course.total||P.course.done>=P.course.total||expired;   // nt=1 は見え方の確認用
+    var wedding=/挙式|結婚式|ウェディング|花嫁/.test(String(P.goal.dueLabel)+String(P.goal.text));
+    var after=reached&&wedding&&noTicket;                            // 挙式後・回数券なし→アフターメンテナンスのご案内
+    var h='';
+    h+='<header><div class="brand">BELLE DOUCE</div><h1>'+esc(P.name)+'様のマイ肌カルテ</h1><div class="sub">最終更新 '+esc(P.updated)+' ／ 担当 '+esc(P.staff)+'</div></header>';
+    // ゴール
+    h+='<div class="goal"><div class="eyebrow">GOAL</div><p class="g">'+esc(P.goal.text||'一緒に、理想の素肌を目指しましょう')+'</p>';
+    if(reached){h+='<div class="reached">'+esc(String(P.goal.dueLabel||'目標').replace(/まで$/,''))+'の日（'+(due.getMonth()+1)+'/'+due.getDate()+'）を迎えました</div>';}
+    else if(P.goal.dueDate){h+='<div class="count"><span>'+esc(P.goal.dueLabel||'目標の日')+' あと</span><b id="days">–</b><span>日</span></div>';}
+    if(P.course&&P.course.total&&!expired&&Q.get('nt')!=='1'){var pc=Math.round(P.course.done/P.course.total*100);h+='<div class="prog">'+esc(P.course.label)+'　'+P.course.done+'回終了（残り'+(P.course.total-P.course.done)+'回）<div class="bar"><i style="width:'+pc+'%"></i></div></div>';}
+    h+='</div>';
+    if(after){var am=new Date(due.getTime()+30*86400000);h+='<div class="away"><div class="eyebrow">AFTER MAINTENANCE</div><p>ご結婚おめでとうございます。<br>式のあとは、お肌が荒れてしまう方がとても多いです。そのため、<b>式から1ヶ月後を目安に</b>アフターメンテナンスにいらっしゃる方がほとんどです。<br><span class="small">目安：'+(am.getMonth()+1)+'/'+am.getDate()+'ごろ</span></p><a href="'+esc(P.line)+'" target="_blank" rel="noopener">LINEでご予約・ご相談</a></div>';}
+    else if(away){var lm=(lv.getMonth()+1)+'/'+lv.getDate();h+='<div class="away"><div class="eyebrow">WELCOME BACK</div><p>お久しぶりです。前回のご来店（'+lm+'）から'+Math.floor(gap/7)+'週間がたちました。<br>お肌の様子を見せにいらしてくださいね。</p><a href="'+esc(P.line)+'" target="_blank" rel="noopener">LINEでご予約・ご相談</a></div>';}
+    // ロードマップ
+    if(P.roadmap&&P.roadmap.length){
+      h+='<section><div class="sh"><h2>'+esc(P.roadmapTitle)+'</h2></div><ol class="tl">';
+      P.roadmap.forEach(function(x){var c=x.s==='done'?'done':x.s==='goal'?'goal':'';var pill=x.s==='done'?'<span class="pill ok">完了</span>':(x.s==='next'&&!away&&!reached)?'<span class="pill next">次回</span>':'';
+        var op=(x.o&&x.o.length)?'<div class="op">'+x.o.map(function(o){return '<span>'+esc(o)+'</span>'}).join('')+'</div>':'';
+        var by=(x.b&&x.b.length)?'<div class="by">'+x.b.map(function(b){return '<span class="tag">'+esc(b.tag)+'</span>'+esc(b.n)}).join('<br>')+'</div>':'';
+        h+='<li class="'+c+'"><div class="d">'+esc(x.d)+'</div><div class="t">'+esc(x.t)+' '+pill+'</div>'+op+by+(x.m?'<div class="m">'+esc(x.m)+'</div>':'')+'</li>';});
+      h+='</ol>'+((away||reached)?'<p class="small">これからの予定は、次のご来店のときに一緒に立て直しましょう。</p>':'')+'</section>';
+    }
+    var n=0; function sec(title){n++;return '<section><div class="sh"><span class="no">'+String(n).padStart(2,'0')+'</span><h2>'+title+'</h2></div>';}
+    // 01 目標と宿題（ロードマップのすぐ下 2026-10-11 由佳さん指示）
+    if(P.voice||(P.todos&&P.todos.length)||(P.self&&P.self.length)){
+      h+=sec('目標と宿題');
+      if(P.voice)h+='<p class="small">目標（'+esc(P.name)+'様ご自身の言葉）</p><blockquote class="voice"><p>'+esc(P.voice.text)+'</p><cite>'+esc(P.voice.when)+'</cite></blockquote>';
+      if(P.todos&&P.todos.length)h+='<p class="small">宿題</p><ul class="promise">'+P.todos.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>';
+      if(P.self&&P.self.length){
+        h+='<p class="small" style="margin-top:18px">自己評価（100点中）</p><div class="self">';
+        P.self.forEach(function(s){var now=s.now!=null;h+='<div class="sv"><div class="sl">'+esc(s.label)+'</div><div class="nums"><span>入会時'+(s.firstDate?'（'+esc(s.firstDate)+'）':'')+' <b'+(now?'':' class="now"')+'>'+s.first+'</b></span>'+(now?'<span class="to">→</span><span>'+esc(s.nowDate)+'時点 <b class="now">'+s.now+'</b></span>':'')+'</div><div class="track">'+(now?'<i class="was" style="width:'+s.first+'%"></i><i class="cur" style="width:'+s.now+'%"></i>':'<i class="cur" style="width:'+s.first+'%"></i>')+'</div></div>';});
+        h+='</div><p class="small">入会時にお聞きした点数を基準に、改めてお聞きしたときに更新します。</p>';
+      }
+      h+='</section>';
+    }
+    // 02 課題と原因
+    h+=sec('お肌の課題と原因');
+    h+='<p class="small">肌荒れの5大要因　<span class="key">●＝'+esc(P.name)+'様にあてはまる</span></p><div class="five">';
+    var F=(P.factors||[]).slice().sort(function(a,b){return (a.main?1:0)-(b.main?1:0)});
+    F.forEach(function(f){h+='<div class="f'+(f.on?' on':'')+(f.main?' main':'')+'"><div class="fh"><span class="dot"></span>'+esc(f.k)+(f.main?'<span class="tag">いちばんの原因</span>':'')+'</div>'+(f.text&&!/未記入|未記録|記録なし|要確認|不明/.test(f.text)?'<div class="fb">'+esc(f.text)+'</div>':'')+'</div>';});
+    h+='</div>';
+    if(P.issues&&P.issues.length){h+='<div class="arrow">▼</div><div class="issue"><div class="ih">いまの'+esc(P.name)+'様のお肌の課題</div><div class="ic">'+P.issues.map(function(x){return '<span>'+esc(x)+'</span>'}).join('')+'</div>'+(P.issueText?'<p>'+rich(P.issueText)+'</p>':'')+'</div>';}
+    if(P.resultText)h+='<div class="result">'+rich(P.resultText)+'</div>';
+    h+='</section>';
+    // 03 お肌記録
+    var R=P.record||{};
+    {
+      var hasRec=(R.worries&&R.worries.length)||R.text;
+      h+=sec('お肌記録').replace('<section>','<section id="recsec"'+(hasRec?'':' style="display:none"')+'>');
+      h+='<div id="phx"></div>';
+      if(R.worries&&R.worries.length){h+='<p class="small">'+(R.firstDate?'入会時（'+esc(R.firstDate)+'）':'入会時')+'のお悩み</p><div class="chips">'+R.worries.map(function(w){return '<span class="chip">'+esc(w)+'</span>'}).join('')+(R.body||[]).map(function(w){return '<span class="chip body">'+esc(w)+'</span>'}).join('')+'</div>';}
+      if(R.text)h+='<p>'+esc(R.text)+'</p>';
+      h+='</section>';
+    }
+    // 04 断面図
+    var derm=P.layer==='derm';
+    h+=sec('お肌の断面図で見てみましょう');
+    h+='<div class="toggle" role="group" aria-label="お肌の状態を切り替え"><button type="button" id="bH" aria-pressed="false">整ったお肌</button><button type="button" id="bN" aria-pressed="true">いまの'+esc(P.name)+'様のお肌</button></div>';
+    h+='<div class="diagram"><svg id="skin" viewBox="0 0 360 300" role="img" aria-label="皮膚の断面図"></svg><p class="cap" id="cap"></p><ul class="marks" id="marks"></ul></div>';
+    h+='<div class="reach"><p><b>化粧品が働くのは「角層」まで</b>です。だからこそ大事なのは、角層に<b>何を・どれだけ・どの順番で</b>届けるかと、その下で肌が生まれ変わるリズムを整えることです。</p>'
+      +'<div class="r"><b>一般的な市販品</b><br>誰が使っても大きなトラブルが出にくいよう、平均的なお肌に合わせて作られています。お肌の状態が揺らいでいるときは、「合うものを選び、状態に合わせて切り替える」ことが自分では難しくなります。</div>'
+      +'<div class="r salon"><b>Belle douceのお手入れ</b><br>来店のたびにお肌を見て、施術で生まれ変わりのリズム（ターンオーバー）を整えます。おうちでは、その日のお肌に合わせたケアを組み立てます。<b>施術とホームケアをセットで設計する</b>のが、いちばんの違いです。</div></div>';
+    h+='</section>';
+    // 05 おうちでやること
+    if(P.homecare&&P.homecare.length){
+      h+=sec('おうちでやること')+'<ul class="checks">'+P.homecare.map(function(x,i){return '<li><label><input type="checkbox" id="hc'+i+'"><span>'+esc(x.t)+(x.why?'<em>'+esc(x.why)+'</em>':'')+'</span></label></li>'}).join('')+'</ul>';
+      h+='</section>';
+    }
+    // お手持ちのスキンケア（最後にご購入いただいた日）2026-10-11
+    if(P.kit&&P.kit.length){
+      var ago=function(iso){var m=Math.floor(days(ymd(iso),TODAY)/30.4);return m<1?'1ヶ月以内':m+'ヶ月前'};
+      var jpd=function(iso){return Number(iso.slice(0,4))+'年'+Number(iso.slice(5,7))+'月'+Number(iso.slice(8,10))+'日'};
+      h+=sec('お手持ちのスキンケア')+'<table class="kit"><thead><tr><th>種類</th><th>ライン</th><th>最後のご購入</th></tr></thead><tbody>'
+        +P.kit.map(function(x){return '<tr><td>'+esc(x.c)+'</td><td>'+esc(x.l)+'</td><td>'+jpd(x.d)+'<em>'+ago(x.d)+'</em></td></tr>'}).join('')
+        +'</tbody></table><p class="kitnote">使い切りの目安は約2ヶ月（日焼け止めは約4ヶ月）です。残りが少なくなったら、LINEでお気軽にどうぞ。</p></section>';
+    }
+    // 06 おすすめ
+    if(P.rec){
+      h+=sec('これからのおすすめ')+'<div class="rec"><div class="when">'+esc(P.rec.when)+'</div><h3>'+esc(P.rec.name)+'</h3>'+(P.rec.text?'<p>'+esc(P.rec.text)+'</p>':'');
+      if(P.rec.basis&&P.rec.basis.length)h+='<table class="basis">'+P.rec.basis.map(function(b){return '<tr><th>'+esc(b[0])+'</th><td>'+esc(b[1])+'</td></tr>'}).join('')+'</table>';
+      if(P.rec.notnow)h+='<div class="notnow">'+esc(P.rec.notnow)+'</div>';
+      h+='</div></section>';
+    }
+    if(P.letter&&!away&&!reached)h+='<div class="letter"><p>'+esc(P.letter)+'</p><p class="from">Belle douce　三枝由佳</p></div>';
+    h+='<a class="cta" href="'+esc(P.line)+'" target="_blank" rel="noopener">LINEで次回のご予約・ご相談</a>';
+    h+='<p class="foot">このページは'+esc(P.name)+'様専用です。URLはほかの方に教えないでください。<br>施術の効果には個人差があります。</p>';
+    app.innerHTML=h;
+
+    if(due&&!reached){var el=document.getElementById('days');if(el)el.textContent=Math.max(0,days(TODAY,due));}
+    document.querySelectorAll('.checks input').forEach(function(cb){var k='mk_'+t+'_'+cb.id;try{cb.checked=localStorage.getItem(k)==='1'}catch(e){}cb.addEventListener('change',function(){try{localStorage.setItem(k,cb.checked?'1':'0')}catch(e){}})});
+    drawDiagram(derm,P);
+  }
+
+  // 断面図：その方の課題（課題・説明文・入会時のお悩み）の言葉から、絵に描く変化を選ぶ（2026-10-05）
+  var MARKS=[
+    {k:'pore',  re:/毛穴|角栓|黒ずみ|詰まり|つまり/,           nm:'毛穴の詰まり', tx:'角栓（皮脂と古い角質）が毛穴の出口をふさいでいます。', c:'m-plug'},
+    {k:'acne',  re:/ニキビ|にきび|吹き出物|ざ瘡/,              nm:'ニキビ',       tx:'詰まった毛穴の奥で炎症が起きています。', c:'m-red'},
+    {k:'red',   re:/赤み|炎症|湿疹|ほてり|アトピー/,           nm:'赤み',         tx:'真皮の浅いところで血管が広がり、赤く見えています。', c:'m-red'},
+    {k:'pig',   re:/シミ|しみ|くすみ|色素|そばかす|色ムラ|トーン/, nm:'シミ・くすみ', tx:'基底層でメラニンがたまり、表面に色として出ています。', c:'m-pig'},
+    {k:'dry',   re:/乾燥|つっぱ|水分|皮むけ|ガサ|カサ/,         nm:'乾燥',         tx:'角層にすき間ができ、水分が逃げやすくなっています。', c:'m-water'},
+    {k:'irrit', re:/敏感|刺激|ヒリ|アトピー|ゆらぎ|バリア/,     nm:'刺激の入りやすさ', tx:'すき間から外の刺激が入り、荒れやすくなっています。', c:'warn'},
+    {k:'thick', re:/ターンオーバー|ごわ|ゴワ|角質|厚/,           nm:'ターンオーバーの乱れ', tx:'古い角質がはがれずに重なり、ごわつきやくすみの原因になっています。', c:'muted'},
+    {k:'sag',   re:/シワ|しわ|ハリ|たるみ|弾力|ほうれい/,       nm:'ハリの低下',   tx:'真皮のハリのもと（線維）がまばらになっています。', c:'rose'}
+  ];
+  function pickMarks(derm,P){
+    // 「課題」に書いた順を最優先し、足りなければ説明文・入会時のお悩みから足す
+    var srcs=(P.issues||[]).concat([P.issueText||'',P.diagramCaption||'',((P.record||{}).worries||[]).join(' ')]), got=[];
+    srcs.forEach(function(tx){
+      MARKS.map(function(m){var r=String(tx).search(m.re);return {m:m,r:r}}).filter(function(o){return o.r>=0}).sort(function(a,b){return a.r-b.r})
+        .forEach(function(o){if(got.indexOf(o.m)<0)got.push(o.m)});
+    });
+    if(got.some(function(m){return m.k==='acne'})&&!got.some(function(m){return m.k==='pore'}))got.unshift(MARKS[0]);
+    if(!got.length)got=derm?[MARKS[7]]:[MARKS[4],MARKS[5]];
+    return got.slice(0,4);
+  }
+  function drawDiagram(derm,P){
+    var svg=document.getElementById('skin'),NS='http://www.w3.org/2000/svg';
+    function el(t,a,txt){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);if(txt)e.textContent=txt;svg.appendChild(e);return e;}
+    function v(n){return 'var(--'+n+')';}
+    var W=250,LX=262, marks=pickMarks(derm,P), has={}; marks.forEach(function(m,i){has[m.k]=i+1});
+    function badge(x,y,n,col){el('circle',{cx:x,cy:y,r:8,fill:v(col),stroke:v('paper'),'stroke-width':1.5});el('text',{x:x,y:y+3.5,'font-size':10,'font-weight':700,'text-anchor':'middle',fill:'#fff'},String(n));}
+    function draw(healthy){
+      while(svg.firstChild)svg.removeChild(svg.firstChild);
+      var sag=!healthy&&has.sag, gaps=!healthy&&(has.dry||has.irrit), thick=!healthy&&has.thick;
+      // 皮下組織
+      el('rect',{x:0,y:222,width:W,height:74,fill:v('fat'),rx:6});
+      for(var i=0;i<6;i++)el('ellipse',{cx:22+i*42,cy:258,rx:18,ry:22,fill:v('fat'),stroke:v('fat-edge'),'stroke-width':1.5});
+      // 真皮
+      el('rect',{x:0,y:124,width:W,height:98,fill:v('derm')});
+      var fibers=sag?2:4;
+      for(var j=0;j<fibers;j++){var y=140+j*(sag?40:22),p='M0 '+y;for(var x=0;x<=W;x+=25)p+=' Q'+(x+12)+' '+(y+(j%2?-7:7))+' '+(x+25)+' '+y;el('path',{d:p,fill:'none',stroke:v('fiber'),'stroke-width':2,opacity:sag?.35:.7,'stroke-dasharray':sag?'14 10':'none'});}
+      if(!healthy&&has.red){ // 広がった毛細血管
+        [[150,132],[205,136]].forEach(function(a){el('path',{d:'M'+(a[0]-28)+' '+a[1]+' q14 -9 28 0 q14 9 28 0',fill:'none',stroke:v('m-red'),'stroke-width':3,'stroke-linecap':'round',opacity:.85});});
+        el('rect',{x:0,y:52,width:W,height:72,fill:v('m-red'),opacity:.08});
+      }
+      // 表皮
+      el('rect',{x:0,y:52,width:W,height:72,fill:v('epi')});
+      if(!healthy&&has.red)el('rect',{x:110,y:52,width:140,height:72,fill:v('m-red'),opacity:.1});
+      for(var r=0;r<3;r++)for(var c=0;c<11;c++)el('circle',{cx:12+c*23+(r%2?11:0),cy:66+r*18,r:8,fill:v('paper'),stroke:v('sc-edge'),'stroke-width':1,opacity:.85});
+      for(var b=0;b<16;b++){var pg=!healthy&&has.pig&&b>=9&&b<=13;el('ellipse',{cx:8+b*15.5,cy:118,rx:7,ry:5,fill:pg?v('m-pig'):v('basal')});}
+      if(!healthy&&has.pig){[[160,100],[178,86],[196,96],[186,72],[170,62]].forEach(function(d){el('circle',{cx:d[0],cy:d[1],r:2.6,fill:v('m-pig'),opacity:.8})});}
+      // 角層（レンガ）
+      var rows=thick?5:3;
+      for(var rr=0;rr<rows;rr++){for(var k=-1;k<9;k++){var x0=k*30+(rr%2?15:0)+2,y0=(thick?6:20)+rr*(thick?9.2:11);var miss=gaps&&((rr*7+k*3)%5===0);if(miss)continue;var gap=gaps?6:2;var xx=Math.max(0,x0),ww=Math.min(30-gap,W-xx);if(ww<=2)continue;if((has.pore||has.acne)&&!healthy&&xx<70&&xx+ww>40)continue;el('rect',{x:xx,y:y0,width:ww,height:thick?8:9,rx:2,fill:v('sc'),stroke:v('sc-edge'),'stroke-width':1,opacity:thick&&rr<2?.75:1});}}
+      // 毛穴とニキビ
+      if(!healthy&&(has.pore||has.acne)){
+        el('path',{d:'M40 17 L50 116 L60 116 L70 17 Z',fill:v('epi'),stroke:v('sc-edge'),'stroke-width':1.2});
+        el('path',{d:'M50 116 Q55 150 55 176',stroke:v('sc-edge'),'stroke-width':1.5,fill:'none'});
+        el('ellipse',{cx:55,cy:122,rx:12,ry:8,fill:v('fat'),stroke:v('fat-edge'),'stroke-width':1}); // 皮脂腺
+        if(has.pore)el('path',{d:'M41 17 L69 17 L63 62 L47 62 Z',fill:v('m-plug'),opacity:.95});
+        if(has.acne){el('ellipse',{cx:55,cy:96,rx:24,ry:22,fill:v('m-red'),opacity:.22});el('ellipse',{cx:55,cy:96,rx:13,ry:12,fill:v('m-red'),opacity:.35});}
+      }
+      // 水分と刺激の矢印
+      if(!healthy&&has.dry){[110,215].forEach(function(x){el('path',{d:'M'+x+' 22 L'+x+' 2 M'+(x-5)+' 8 L'+x+' 1 L'+(x+5)+' 8',stroke:v('m-water'),'stroke-width':2,fill:'none'});});}
+      if(!healthy&&has.irrit){[160].forEach(function(x){el('path',{d:'M'+x+' 0 L'+x+' 24 M'+(x-5)+' 18 L'+x+' 25 L'+(x+5)+' 18',stroke:v('warn'),'stroke-width':2,fill:'none'});});}
+      if(healthy)el('text',{x:8,y:12,'font-size':10,fill:v('muted')},'すき間なく並び、うるおいを抱える');
+      // 層のラベル
+      var focusDerm=!healthy&&(has.sag||has.red)&&!(has.dry||has.irrit||has.pore||has.acne);
+      var L=[[30,'角層','バリアの役目'],[86,'表皮','生まれ変わる層'],[118,'基底層','新しい細胞が生まれる'],[172,'真皮','ハリのもと'],[258,'皮下組織','クッション']];
+      L.forEach(function(l){el('line',{x1:W,y1:l[0],x2:LX-4,y2:l[0],stroke:v('line'),'stroke-width':1});el('text',{x:LX,y:l[0]-1,'font-size':12,'font-weight':700,fill:v('ink')},l[1]);el('text',{x:LX,y:l[0]+13,'font-size':9.5,fill:v('muted')},l[2]);});
+      // 番号（下の説明と対応）
+      if(!healthy){
+        var pos={pore:[30,40],acne:[82,100],red:[230,128],pig:[214,108],dry:[124,10],irrit:[176,10],thick:[236,14],sag:[236,196]};
+        marks.forEach(function(m,i){var q=pos[m.k];badge(q[0],q[1],i+1,m.c);});
+      }
+      var capEl=document.getElementById('cap'), ml=document.getElementById('marks');
+      if(healthy){
+        capEl.textContent='角層の細胞がレンガのようにすき間なく並び、毛穴の出口もすっきり。基底層では新しい細胞が一定のリズムで生まれ、真皮のハリのもとがお肌を内側から支えている状態です。';
+        ml.innerHTML='';
+      }else{
+        capEl.innerHTML=rich(P.diagramCaption||'いまのお肌で起きていることを、番号で示しています。');
+        ml.innerHTML=marks.map(function(m,i){return '<li><i style="background:var(--'+m.c+')">'+(i+1)+'</i><span><b>'+m.nm+'</b>　'+m.tx+'</span></li>'}).join('');
+      }
+    }
+    var bH=document.getElementById('bH'),bN=document.getElementById('bN');
+    function set(hh){bH.setAttribute('aria-pressed',hh);bN.setAttribute('aria-pressed',!hh);draw(hh);}
+    bH.onclick=function(){set(true)};bN.onclick=function(){set(false)};set(false);
+  }
+})();
+</script>
+</body>
+</html>

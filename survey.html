@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>お肌のアンケート ｜ Belle douce</title>
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Noto+Serif+JP:wght@300;400&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+:root{--ivory:#faf4f1;--pinkbeige:#f1ddd5;--ink:#5b4843;--ink-soft:#8a7670;--gold:#c2a879;--gold-deep:#a98c5f;--line:#eddcd5;--rose:#c99a98}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans JP",sans-serif;color:var(--ink);font-weight:300;line-height:1.9;letter-spacing:.03em;background:var(--ivory);-webkit-font-smoothing:antialiased}
+.doc{max-width:600px;margin:0 auto;padding:48px 16px 80px}
+.brand{display:block;text-align:center;font-family:"Cormorant Garamond",serif;font-size:26px;letter-spacing:.24em;color:var(--ink);text-decoration:none}
+.brand small{display:block;font-size:9px;letter-spacing:.5em;color:var(--gold-deep);margin-top:4px}
+.eyebrow{display:block;text-align:center;font-family:"Cormorant Garamond",serif;font-size:12px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold-deep);margin:32px 0 6px}
+h1{text-align:center;font-family:"Noto Serif JP",serif;font-weight:300;font-size:22px;letter-spacing:.1em;margin-bottom:14px}
+.intro{font-size:14px;color:var(--ink-soft);text-align:center;margin-bottom:26px}
+.q{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 18px;margin:14px 0}
+.qn{font-family:"Cormorant Garamond",serif;color:var(--gold-deep);font-size:15px;letter-spacing:.1em}
+.qt{font-family:"Noto Serif JP",serif;font-weight:400;font-size:16px;line-height:1.7;margin:2px 0 4px}
+.req{font-size:11px;color:#fff;background:var(--rose);border-radius:20px;padding:0 8px;margin-left:6px;vertical-align:2px;font-family:"Noto Sans JP",sans-serif}
+.hint{font-size:12px;color:var(--ink-soft);margin-bottom:10px}
+textarea,input[type=date]{width:100%;font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--ivory);color:var(--ink)}
+textarea{min-height:92px;resize:vertical}
+textarea:focus,input:focus{outline:2px solid var(--gold);outline-offset:1px}
+.opts{display:grid;gap:8px}
+.opt{display:flex;gap:10px;align-items:center;font-size:14px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--ivory);cursor:pointer}
+.opt input{width:18px;height:18px;flex:none;accent-color:var(--gold-deep)}
+.opt small{display:block;color:var(--ink-soft);font-size:11.5px;line-height:1.5}
+#dateWrap{margin-top:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{cursor:pointer}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips span{display:inline-block;font-size:13.5px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:var(--ivory)}
+.chips input:checked+span{background:var(--rose);border-color:var(--rose);color:#fff}
+.chips input:focus-visible+span{outline:2px solid var(--gold)}
+.score{display:flex;align-items:baseline;justify-content:center;gap:6px;margin:6px 0 2px}
+.score b{font-family:"Noto Serif JP",serif;font-weight:400;font-size:44px;line-height:1;color:var(--rose);min-width:2.2em;text-align:center;font-variant-numeric:tabular-nums}
+.score span{font-size:13px;color:var(--ink-soft)}
+input[type=range]{width:100%;accent-color:var(--rose);height:32px}
+.ends{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-soft)}
+button{display:block;width:100%;margin-top:24px;padding:15px;font:inherit;font-size:15px;letter-spacing:.12em;color:#fff;background:var(--gold-deep);border:0;border-radius:40px;cursor:pointer}
+button:disabled{opacity:.45;cursor:default}
+.err{color:#b4574b;font-size:13px;margin-top:10px;text-align:center;min-height:1em}
+.msg{text-align:center;padding:40px 10px;color:var(--ink)}
+.done{text-align:center;padding:40px 10px}
+.done p{font-size:15px;color:var(--ink)}
+.done .sub{font-size:13px;color:var(--ink-soft);margin-top:8px}
+.mkbtn{display:inline-block;margin-top:22px;background:var(--rose);color:#fff;text-decoration:none;border-radius:999px;padding:14px 34px;font-size:15px;letter-spacing:.12em}
+.mkbtn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="doc">
+  <a href="index.html" class="brand">Belle douce<small>NAKAMEGURO</small></a>
+  <span class="eyebrow">My skin goal</span>
+  <h1>お肌のアンケート</h1>
+
+  <div id="loading" class="msg">読み込んでいます…</div>
+  <div id="bad" class="msg" hidden></div>
+
+  <form id="f" hidden>
+    <p class="intro"><span id="hello"></span><br>これからのお手入れの目標を、一緒に決めるためのアンケートです。<br>答えていただいた内容は、あなた専用の「マイ肌カルテ」に載ります。<br>（3分ほどで終わります）</p>
+
+    <div class="q">
+      <div class="qn">Q1</div>
+      <div class="qt">いま気になっているお肌のお悩みは？（いくつでも）</div>
+      <div class="chips" id="worry">
+        <label><input type="checkbox" value="乾燥・つっぱり"><span>乾燥・つっぱり</span></label>
+        <label><input type="checkbox" value="毛穴"><span>毛穴</span></label>
+        <label><input type="checkbox" value="シミ・そばかす"><span>シミ・そばかす</span></label>
+        <label><input type="checkbox" value="くすみ"><span>くすみ</span></label>
+        <label><input type="checkbox" value="ニキビ・吹き出物"><span>ニキビ・吹き出物</span></label>
+        <label><input type="checkbox" value="赤み・敏感"><span>赤み・敏感</span></label>
+        <label><input type="checkbox" value="しわ・たるみ"><span>しわ・たるみ</span></label>
+        <label><input type="checkbox" value="ハリ不足"><span>ハリ不足</span></label>
+        <label><input type="checkbox" value="ごわつき・ざらつき"><span>ごわつき・ざらつき</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="qn">Q2</div>
+      <div class="qt">どんな目標で、お肌のケアをしていますか？<span class="req">必須</span></div>
+      <div class="hint">例：今の肌荒れを治して、すっぴんで出かけられるようになりたい／きれいなお母さんでいたい／毎日鏡を見て気分を上げたい／結婚式の日に、自信を持てる素肌でいたい　など<br>「なぜきれいになりたいか」も一緒に書いてください</div>
+      <textarea id="goal" maxlength="300"></textarea>
+    </div>
+
+    <div class="q">
+      <div class="qn">Q3</div>
+      <div class="qt">いつまでに叶えたいですか？<span class="req">必須</span></div>
+      <div class="opts" id="due">
+        <label class="opt"><input type="radio" name="due" value="日付"><span>決めている日がある<small>結婚式・旅行・誕生日など</small></span></label>
+        <label class="opt"><input type="radio" name="due" value="コース終了まで"><span>今のコースが終わるまでに</span></label>
+        <label class="opt"><input type="radio" name="due" value="未定"><span>特に決めていない</span></label>
+      </div>
+      <div id="dateWrap" hidden><input type="date" id="dueDate" aria-label="叶えたい日"></div>
+    </div>
+
+    <div class="q">
+      <div class="qn">Q4</div>
+      <div class="qt">いまのお肌の満足度は、100点中何点ですか？<span class="req">必須</span></div>
+      <div class="score"><b id="skinV">–</b><span>点</span></div>
+      <input type="range" id="skin" min="0" max="100" step="5" value="50" aria-label="お肌の満足度">
+      <div class="ends"><span>0点</span><span>100点</span></div>
+    </div>
+
+    <div class="q">
+      <div class="qn">Q5</div>
+      <div class="qt">いまのおうちでのお手入れは、100点中何点ですか？<span class="req">必須</span></div>
+      <div class="score"><b id="careV">–</b><span>点</span></div>
+      <input type="range" id="care" min="0" max="100" step="5" value="50" aria-label="おうちのお手入れの点数">
+      <div class="ends"><span>0点</span><span>100点</span></div>
+    </div>
+
+    <div class="q">
+      <div class="qn">Q6</div>
+      <div class="qt">最近のご自身にあてはまるものは？（いくつでも）</div>
+      <div class="opts" id="factor">
+        <label class="opt"><input type="checkbox" value="自然環境"><span>季節の変わり目や、冷暖房・紫外線で荒れやすい</span></label>
+        <label class="opt"><input type="checkbox" value="生活習慣"><span>睡眠不足・忙しい・ストレスが多い</span></label>
+        <label class="opt"><input type="checkbox" value="ホルモン"><span>生理の前後に荒れやすい</span></label>
+        <label class="opt"><input type="checkbox" value="食生活"><span>食事が偏りがち・甘いものや外食が多い</span></label>
+        <label class="opt"><input type="checkbox" value="スキンケア"><span>日頃のスキンケアに自信がない・ついサボってしまう</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="qn">Q7</div>
+      <div class="qt">もっと理想の自分になるために、自分がやるべきことは何だと思いますか？<span class="req">必須</span></div>
+      <div class="hint">例：お風呂上がりにすぐ保湿する／夜12時までに寝る／お水を1日1.5L飲む</div>
+      <textarea id="todo" maxlength="300"></textarea>
+    </div>
+
+    <div class="q">
+      <div class="qn">Q8</div>
+      <div class="qt">お体で気になっていることは？（いくつでも）</div>
+      <div class="hint">お肌のきれいは、お体の状態とつながっています</div>
+      <div class="chips" id="bodyw">
+        <label><input type="checkbox" value="肩こり"><span>肩こり</span></label>
+        <label><input type="checkbox" value="むくみ"><span>むくみ</span></label>
+        <label><input type="checkbox" value="冷え"><span>冷え</span></label>
+        <label><input type="checkbox" value="寝不足"><span>寝不足</span></label>
+        <label><input type="checkbox" value="食生活の乱れ"><span>食生活の乱れ</span></label>
+        <label><input type="checkbox" value="便秘"><span>便秘</span></label>
+        <label><input type="checkbox" value="疲れやすい"><span>疲れやすい</span></label>
+        <label><input type="checkbox" value="ストレス"><span>ストレス</span></label>
+        <label><input type="checkbox" value="生理痛・PMS"><span>生理痛・PMS</span></label>
+        <label><input type="checkbox" value="腰痛"><span>腰痛</span></label>
+        <label><input type="checkbox" value="体重・ボディライン"><span>体重・ボディライン</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="qn">Q9</div>
+      <div class="qt">三枝へのご要望を、自由に教えてください</div>
+      <div class="hint">例：施術中は寝てゆっくりしたい／いろいろアドバイスがほしい／オプションや商品の提案をしてほしい／お肌の状態を細かく教えてほしい／栄養や食事について聞きたい　など</div>
+      <textarea id="note" maxlength="300"></textarea>
+    </div>
+
+    <button type="submit" id="send">送信する</button>
+    <p class="err" id="err" role="alert"></p>
+  </form>
+
+  <div id="done" class="done" hidden>
+    <p>ありがとうございました。</p>
+    <p class="sub" id="doneSub">いただいた内容をもとに、あなた専用のマイ肌カルテを作ります。<br>理想のお肌に向けて、一緒に整えていきましょう。</p>
+    <div id="mkWrap" hidden>
+      <a class="mkbtn" id="mkGo" href="#" target="_blank" rel="noopener">マイ肌カルテを見る</a>
+      <p class="sub">できあがるまで1〜2分かかります。<br>マイ肌カルテはいつでもご覧いただけます。<br>公式LINEで「マイカルテ」と送ると、いつでもこのページのURLが届きます。</p>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var URL='https://script.google.com/macros/s/AKfycbyHoqfYiID1jEjSLQBVY25cQDnwjZwW3xjp0KWQdxMEom3uCghswPBgUX9DpbLTpOXcCw/exec';
+  var t=(location.search.match(/[?&]t=([0-9a-f]{20})/)||[])[1]||'';
+  function post(o){return fetch(URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(o)}).then(function(r){return r.json()})}
+  function $(id){return document.getElementById(id)}
+  function showMk(u){if(!/^https:\/\/belledouce\.github\.io\/mykarte\.html\?t=[0-9a-f]{24}$/.test(u||''))return;$('mkGo').href=u;$('mkWrap').hidden=false}
+  function bad(m){$('loading').hidden=true;$('bad').textContent=m;$('bad').hidden=false}
+  var demo=/[?&]demo=1/.test(location.search);
+  if(demo){$('hello').textContent='（見本）〇〇様';$('loading').hidden=true;$('f').hidden=false}
+  else if(!t){bad('このURLは無効です。サロンでお知らせください。');return}
+  else 
+  post({type:'skinsurvey_get',t:t}).then(function(r){
+    if(!r.ok){bad(r.msg||'読み込めませんでした。');return}
+    if(r.status==='回答済'){
+      if(r.mk){$('loading').hidden=true;$('done').hidden=false;$('doneSub').textContent='このアンケートはお答えいただいています。';showMk(r.mk);return}
+      bad('このアンケートはすでにお答えいただいています。ありがとうございました。');return}
+    $('hello').textContent=r.name+'様';
+    $('loading').hidden=true;$('f').hidden=false;
+  }).catch(function(){bad('読み込めませんでした。電波の良いところで開き直してください。')});
+
+  var moved={skin:false,care:false};
+  ['skin','care'].forEach(function(k){$(k).addEventListener('input',function(){moved[k]=true;$(k+'V').textContent=this.value})});
+  document.querySelectorAll('input[name=due]').forEach(function(r){r.addEventListener('change',function(){$('dateWrap').hidden=this.value!=='日付'})});
+  function checked(id){return Array.prototype.map.call(document.querySelectorAll('#'+id+' input:checked'),function(x){return x.value})}
+
+  $('f').addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var due=(document.querySelector('input[name=due]:checked')||{}).value||'';
+    var o={type:'skinsurvey_submit',t:t,goal:$('goal').value.trim(),due:due,dueDate:$('dueDate').value,
+      skin:moved.skin?Number($('skin').value):null,care:moved.care?Number($('care').value):null,
+      worry:checked('worry'),body:checked('bodyw'),req:checked('req'),factor:checked('factor'),todo:$('todo').value.trim(),note:$('note').value.trim()};
+    var miss=[];
+    if(!o.goal)miss.push('Q2');if(!due||(due==='日付'&&!o.dueDate))miss.push('Q3');
+    if(o.skin===null)miss.push('Q4');if(o.care===null)miss.push('Q5');if(!o.todo)miss.push('Q7');
+    if(miss.length){$('err').textContent=miss.join('・')+' にお答えください（点数はつまみを動かしてください）';return}
+    $('send').disabled=true;$('err').textContent='';
+    if(demo){$('f').hidden=true;$('done').hidden=false;window.scrollTo(0,0);return}
+    post(o).then(function(r){
+      if(!r.ok){$('err').textContent=r.msg||'送信できませんでした。';$('send').disabled=false;return}
+      $('f').hidden=true;$('done').hidden=false;showMk(r.mk);window.scrollTo(0,0);
+    }).catch(function(){$('err').textContent='送信できませんでした。電波の良いところでもう一度お試しください。';$('send').disabled=false});
+  });
+})();
+</script>
+</body>
+</html>
