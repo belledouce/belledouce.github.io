@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Belle douce ｜ 中目黒の肌質改善エステサロン</title>
+<meta name="description" content="東京・中目黒の完全予約制プライベートエステサロン Belle douce（ベルドゥース）。リアボーテによる肌質改善で、あなた本来の美しさを引き出します。" />
+<meta property="og:title" content="Belle douce ｜ 中目黒の肌質改善エステサロン" />
+<meta property="og:description" content="中目黒の完全予約制プライベートエステサロン。リアボーテによる肌質改善で、あなた本来の美しさへ。" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:image" content="assets/hero.jpg" />
+
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+JP:wght@200;300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet" />
+
+<style>
+:root{
+  --ivory:#faf4f1;         /* ブラッシュがかったアイボリー */
+  --ivory-2:#f5e8e3;
+  --pinkbeige:#f1ddd5;     /* ピンクベージュ */
+  --pinkbeige-2:#f7eae5;
+  --blush:#f3e0da;         /* くすみピンク（淡） */
+  --dustypink:#cf9c8f;     /* くすみピンク（アクセント） */
+  --dustypink-soft:#e4c5bc;
+  --greige:#ecdcd5;        /* ピンク寄りグレージュ */
+  --brown:#8a6a64;         /* くすみモーヴブラウン（フッター等・黒は使わない） */
+  --ink:#5b4843;           /* 本文＝あたたかいモーヴブラウン（真っ黒にしない） */
+  --ink-soft:#8a7670;
+  --gold:#c2a879;          /* シャンパンゴールド */
+  --gold-deep:#a98c5f;
+  --line:#eddcd5;
+  --shadow:rgba(120,84,78,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Noto Sans JP",-apple-system,sans-serif;
+  color:var(--ink);background:var(--ivory);
+  line-height:1.9;font-weight:300;letter-spacing:.04em;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+.serif{font-family:"Noto Serif JP",serif}
+.display{font-family:"Cormorant Garamond",serif}
+.wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+section{position:relative}
+.eyebrow{font-family:"Cormorant Garamond",serif;font-size:15px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold-deep);display:block;margin-bottom:18px}
+h2.title{font-family:"Noto Serif JP",serif;font-weight:400;font-size:clamp(26px,4vw,42px);line-height:1.5;letter-spacing:.08em;margin-bottom:8px}
+
+/* ---- scroll progress ---- */
+#progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--gold),var(--gold-deep));z-index:200}
+
+/* ---- nav ---- */
+header{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px 34px;transition:.5s ease}
+header.scrolled{background:rgba(248,244,239,.88);backdrop-filter:blur(12px);padding:14px 34px;box-shadow:0 1px 0 var(--line)}
+.brand{font-family:"Cormorant Garamond",serif;font-size:24px;letter-spacing:.22em;color:var(--ink);text-decoration:none}
+.brand small{display:block;font-family:"Noto Sans JP";font-size:9px;letter-spacing:.5em;color:var(--gold-deep);margin-top:2px;font-weight:400}
+nav{display:flex;gap:30px;align-items:center}
+nav a{color:var(--ink);text-decoration:none;font-size:12px;letter-spacing:.2em;position:relative}
+nav a:not(.book)::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:1px;background:var(--gold-deep);transition:.3s}
+nav a:not(.book):hover::after{width:100%}
+nav a.book{border:1px solid var(--gold);color:var(--gold-deep);padding:9px 20px;border-radius:40px;transition:.3s}
+nav a.book:hover{background:var(--gold);color:#fff}
+.menu-btn{display:none}
+
+/* ---- hero ---- */
+.hero{min-height:100vh;display:flex;align-items:center;overflow:hidden;position:relative}
+.hero-bg{position:absolute;inset:-6% -6% -6% -6%;background:url('assets/hero.jpg') center/cover no-repeat;animation:kenburns 22s ease-in-out infinite alternate;z-index:-2}
+.hero-scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(250,244,241,.95) 0%,rgba(243,224,218,.78) 42%,rgba(207,156,143,.28) 100%);z-index:-1}
+@keyframes kenburns{0%{transform:scale(1) translate(0,0)}100%{transform:scale(1.12) translate(-2%,-1%)}}
+.hero-inner{max-width:1160px;margin:0 auto;padding:120px 28px 60px;width:100%}
+.hero .lead{font-family:"Cormorant Garamond",serif;letter-spacing:.5em;color:var(--gold-deep);font-size:14px;text-transform:uppercase}
+.hero h1{font-family:"Noto Serif JP",serif;font-weight:200;font-size:clamp(34px,6.2vw,70px);line-height:1.35;letter-spacing:.06em;margin:24px 0 26px}
+.hero h1 .em{color:var(--gold-deep)}
+.hero p.sub{max-width:520px;color:var(--ink-soft);font-size:15px}
+.hero .cta{display:flex;gap:16px;margin-top:42px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 34px;border-radius:44px;font-size:13px;letter-spacing:.18em;text-decoration:none;transition:.35s ease}
+.btn-primary{background:var(--ink);color:var(--ivory)}
+.btn-primary:hover{background:var(--gold-deep);transform:translateY(-2px)}
+.btn-ghost{border:1px solid var(--ink);color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--ivory)}
+.hero-meta{position:absolute;right:34px;bottom:40px;text-align:right;font-family:"Cormorant Garamond",serif;color:var(--ink-soft);font-size:13px;letter-spacing:.25em;line-height:2}
+.scroll-hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);writing-mode:vertical-rl;font-family:"Cormorant Garamond",serif;letter-spacing:.3em;font-size:11px;color:var(--gold-deep)}
+.scroll-hint::after{content:"";display:block;width:1px;height:46px;background:linear-gradient(var(--gold-deep),transparent);margin:12px auto 0;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.7)}50%{opacity:1;transform:scaleY(1)}}
+
+/* ---- concept ---- */
+.concept{padding:130px 0}
+.concept .grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.concept .visual{aspect-ratio:4/5;border-radius:4px;position:relative;overflow:hidden;box-shadow:0 30px 60px -30px var(--shadow)}
+.concept .visual img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease}
+.concept .visual:hover img{transform:scale(1.05)}
+.concept .text{position:sticky;top:120px}
+.concept p{color:var(--ink-soft);margin-bottom:20px;font-size:15px}
+.sign{font-family:"Noto Serif JP",serif;font-weight:400;font-size:19px;letter-spacing:.08em;color:var(--gold-deep);margin-top:16px}
+
+/* ---- parallax band ---- */
+.band{height:70vh;min-height:440px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center}
+.band .bg{position:absolute;inset:-15% 0;background-size:cover;background-position:center;z-index:-2;will-change:transform}
+.band::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(247,234,229,.62),rgba(207,156,143,.5));z-index:-1}
+.band .quote{color:var(--ink);max-width:760px;padding:0 28px}
+.band .quote p{font-family:"Noto Serif JP",serif;font-weight:300;font-size:clamp(22px,3.4vw,36px);line-height:1.9;letter-spacing:.1em}
+.band .quote span{display:block;margin-top:22px;font-family:"Cormorant Garamond",serif;font-style:italic;letter-spacing:.2em;color:var(--gold-deep);font-size:16px}
+
+/* ---- menu ---- */
+.menu{padding:120px 0;background:linear-gradient(180deg,var(--ivory) 0,var(--ivory-2) 100%)}
+.menu .head{text-align:center;margin-bottom:60px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{position:relative;border-radius:8px;overflow:hidden;min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;isolation:isolate}
+.card .cimg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;transition:transform 1s ease}
+.card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(74,60,50,.02) 25%,rgba(74,60,50,.62) 100%);transition:.4s}
+.card:hover .cimg{transform:scale(1.08)}
+.card:hover::after{background:linear-gradient(180deg,rgba(74,60,50,.12) 15%,rgba(74,60,50,.72) 100%)}
+.card .body{padding:30px 28px;position:relative}
+.card .no{font-family:"Cormorant Garamond",serif;font-size:14px;letter-spacing:.3em;color:var(--gold)}
+.card h3{font-family:"Noto Serif JP",serif;font-weight:400;font-size:21px;margin:10px 0 10px;letter-spacing:.06em}
+.card p{font-size:13px;color:rgba(255,255,255,.86);line-height:1.9;max-height:0;opacity:0;overflow:hidden;transition:.5s ease}
+.card:hover p{max-height:120px;opacity:1;margin-top:2px}
+.card .en{font-family:"Cormorant Garamond",serif;font-style:italic;color:var(--gold);font-size:13px;margin-top:12px;display:block}
+.menu-note{text-align:center;margin-top:46px;color:var(--ink-soft);font-size:13px}
+
+
+/* ---- price (メニュー・料金) ---- */
+.price{padding:120px 0;background:linear-gradient(180deg,var(--ivory-2),var(--pinkbeige-2))}
+.price .head{text-align:center;margin-bottom:18px}
+.price-intro{text-align:center;color:var(--ink-soft);font-size:14px;margin:0 auto 50px;max-width:620px}
+.plists{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:980px;margin:0 auto}
+.plist{background:rgba(255,255,255,.6);border:1px solid var(--line);border-radius:12px;padding:38px 34px 30px;position:relative}
+.plist::before{content:"";position:absolute;inset:7px;border:1px solid rgba(194,168,121,.35);border-radius:8px;pointer-events:none}
+.plist h3{font-family:"Noto Serif JP",serif;font-weight:400;font-size:18px;letter-spacing:.1em;text-align:center;margin-bottom:4px}
+.plist .pen{display:block;text-align:center;font-family:"Cormorant Garamond",serif;font-style:italic;color:var(--gold-deep);font-size:14px;letter-spacing:.15em;margin-bottom:22px}
+.pitem{display:flex;align-items:baseline;gap:10px;padding:13px 0;border-bottom:1px dotted rgba(169,140,95,.45)}
+.pitem:last-child{border-bottom:none}
+.pname{font-family:"Noto Serif JP",serif;font-weight:400;font-size:15px;letter-spacing:.05em;color:var(--ink)}
+.pname small{display:block;font-family:"Noto Sans JP";font-weight:300;font-size:12px;color:var(--ink-soft);letter-spacing:.02em;margin-top:3px;line-height:1.7}
+.pdots{flex:1}
+.pval{font-family:"Cormorant Garamond",serif;font-size:19px;letter-spacing:.06em;color:var(--gold-deep);white-space:nowrap}
+.pval span{font-family:"Noto Sans JP";font-size:11px;color:var(--ink-soft);margin-left:2px}
+.pitem.first{background:rgba(241,221,213,.45);border-radius:8px;padding:14px 12px;border-bottom:none;margin-bottom:6px}
+.price-notes{max-width:980px;margin:34px auto 0;color:var(--ink-soft);font-size:12.5px;line-height:2;text-align:center}
+
+/* ---- access ---- */
+.access{max-width:720px;margin:60px auto 0;text-align:center;background:rgba(255,255,255,.55);border:1px solid var(--line);border-radius:12px;padding:40px 28px}
+.access .eyebrow{margin-bottom:10px}
+.access .station{font-family:"Noto Serif JP",serif;font-weight:400;font-size:clamp(20px,3vw,26px);letter-spacing:.1em;color:var(--ink);margin:6px 0 4px}
+.access .station b{font-weight:500;color:var(--gold-deep)}
+.access .lines{font-size:12.5px;color:var(--ink-soft)}
+.access .private{display:inline-block;margin-top:20px;font-size:13.5px;color:var(--ink);border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:12px 18px;line-height:1.9}
+
+/* ---- owner ---- */
+.owner{padding:120px 0;text-align:center;background:var(--ivory)}
+.owner .head{margin-bottom:34px}
+.owner-body{max-width:640px;margin:0 auto}
+.oname{font-family:"Noto Serif JP",serif;font-weight:400;font-size:24px;letter-spacing:.08em}
+.oname span{font-family:"Cormorant Garamond",serif;font-style:italic;color:var(--gold-deep);font-size:18px;margin-left:10px}
+.orole{color:var(--gold-deep);font-size:13px;letter-spacing:.15em;margin:8px 0 30px}
+.obio{color:var(--ink-soft);font-size:14.5px;margin-bottom:18px;line-height:2}
+.ach{list-style:none;margin:34px auto 0;text-align:left;max-width:440px}
+.ach li{position:relative;padding-left:24px;margin:11px 0;font-size:13.5px;color:var(--ink)}
+.ach li::before{content:"◆";position:absolute;left:0;top:4px;color:var(--gold);font-size:9px}
+
+/* ---- first visit ---- */
+.firstvisit{padding:120px 0;background:linear-gradient(180deg,var(--ivory),var(--pinkbeige-2))}
+.firstvisit .head{text-align:center;margin-bottom:18px}
+.fv-intro{text-align:center;color:var(--ink-soft);font-size:14.5px;max-width:620px;margin:0 auto 24px}
+.fv-time{text-align:center;margin:0 0 14px}
+.fv-time b{display:inline-block;font-family:"Noto Serif JP",serif;font-weight:400;letter-spacing:.1em;color:var(--gold-deep);font-size:14px;border:1px solid var(--gold);border-radius:40px;padding:9px 24px;margin:5px 6px}
+.fv-note{text-align:center;color:var(--ink-soft);font-size:12.5px;line-height:1.9;margin:0 0 52px}
+.flow{display:flex;align-items:stretch;justify-content:center;gap:10px}
+.fstep{flex:1;max-width:230px;text-align:center;padding:32px 20px;background:rgba(255,255,255,.55);border:1px solid var(--line);border-radius:12px;display:flex;flex-direction:column;align-items:center}
+.fnum{display:inline-flex;align-items:center;justify-content:center;width:54px;height:54px;border-radius:50%;border:1px solid var(--gold);color:var(--gold-deep);font-family:"Cormorant Garamond",serif;font-style:italic;font-size:23px;margin-bottom:16px}
+.fstep h3{font-family:"Noto Serif JP",serif;font-weight:400;font-size:16px;margin-bottom:10px;letter-spacing:.05em}
+.fstep p{font-size:12.5px;color:var(--ink-soft);line-height:1.85}
+.farrow{flex:0 0 auto;align-self:center;color:var(--gold);font-size:26px;font-family:"Cormorant Garamond",serif}
+
+/* ---- gallery ---- */
+.gallery{padding:120px 0}
+.gallery .head{text-align:center;margin-bottom:56px}
+.grid-g{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:320px;gap:16px}
+.gitem{overflow:hidden;border-radius:6px;position:relative}
+.gitem img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s ease,filter .6s}
+.gitem:hover img{transform:scale(1.06)}
+.gitem::after{content:"";position:absolute;inset:0;background:rgba(169,140,102,0);transition:.5s}
+.gitem:hover::after{background:rgba(169,140,102,.10)}
+
+/* ---- strip ---- */
+.strip{padding:110px 0;text-align:center;background:linear-gradient(180deg,var(--ivory-2),var(--ivory))}
+.strip .big{font-family:"Noto Serif JP",serif;font-weight:200;font-size:clamp(22px,3.4vw,34px);line-height:1.9;letter-spacing:.1em}
+.strip .big em{color:var(--gold-deep);font-style:normal}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:70px}
+.pillar .num{font-family:"Cormorant Garamond",serif;font-size:44px;color:var(--gold);font-style:italic}
+.pillar h4{font-family:"Noto Serif JP",serif;font-weight:400;font-size:17px;margin:10px 0 8px;letter-spacing:.08em}
+.pillar p{font-size:13px;color:var(--ink-soft)}
+
+/* ---- info ---- */
+.info{padding:120px 0;background:var(--blush);color:var(--ink)}
+.info .eyebrow{color:var(--gold-deep)}
+.info .grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.info h2.title{color:var(--ink)}
+.rows{margin-top:10px}
+.row{display:flex;gap:24px;padding:18px 0;border-bottom:1px solid rgba(111,93,80,.18)}
+.row .k{width:110px;flex:none;font-family:"Cormorant Garamond",serif;letter-spacing:.2em;color:var(--gold-deep);font-size:14px}
+.row .v{color:var(--ink);font-size:14.5px;font-weight:300}
+.info .photo{border-radius:6px;overflow:hidden;aspect-ratio:4/5}
+.info .photo img{width:100%;height:100%;object-fit:cover}
+
+/* ---- company ---- */
+.company{padding:110px 0;background:var(--ivory)}
+.company .head{text-align:center;margin-bottom:44px}
+.company .rows{max-width:660px;margin:0 auto}
+.company .row .k{width:120px}
+
+/* ---- promo (初回特典) ---- */
+.promo{background:var(--pinkbeige);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.promo-in{display:flex;align-items:center;justify-content:space-between;gap:30px;padding:26px 28px;flex-wrap:wrap}
+.promo-label{font-family:"Cormorant Garamond",serif;font-style:italic;letter-spacing:.2em;color:var(--gold-deep);font-size:14px;display:block;margin-bottom:4px}
+.promo-txt p{font-family:"Noto Serif JP",serif;font-weight:300;font-size:18px;letter-spacing:.06em;color:var(--ink)}
+.promo-txt b{font-weight:500;color:var(--gold-deep)}
+.promo-sub{display:block;font-family:"Noto Sans JP";font-weight:300;font-size:12.5px;color:var(--ink-soft);margin-top:6px;letter-spacing:.02em}
+
+/* ---- voice (お客様の声) ---- */
+.voice{padding:120px 0;background:var(--ivory)}
+.voice .head{text-align:center;margin-bottom:56px}
+.voices{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.vitem{position:relative;background:rgba(255,255,255,.6);border:1px solid var(--line);border-radius:10px;padding:44px 28px 30px;font-family:"Noto Serif JP",serif;font-weight:300;font-size:15px;line-height:1.95;color:var(--ink);margin:0}
+.vitem::before{content:"“";position:absolute;top:14px;left:22px;font-family:"Cormorant Garamond",serif;font-size:48px;color:var(--gold);opacity:.6;line-height:1}
+.vitem cite{display:block;margin-top:18px;font-family:"Noto Sans JP";font-style:normal;font-size:12px;letter-spacing:.1em;color:var(--gold-deep)}
+.voice-note{text-align:center;margin-top:40px;color:var(--ink-soft);font-size:12px}
+
+/* ---- instagram ---- */
+.insta{padding:110px 0;text-align:center;background:linear-gradient(180deg,var(--ivory),var(--pinkbeige-2))}
+
+/* ---- faq ---- */
+.faq{padding:120px 0;background:var(--pinkbeige-2)}
+.faq .head{text-align:center;margin-bottom:50px}
+.faq-list{max-width:720px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--line);padding:24px 4px}
+.faq-q{font-family:"Noto Serif JP",serif;font-weight:400;font-size:16px;color:var(--ink);display:flex;gap:14px;align-items:baseline}
+.faq-q::before{content:"Q";font-family:"Cormorant Garamond",serif;font-style:italic;color:var(--gold-deep);font-size:19px}
+.faq-a{color:var(--ink-soft);font-size:13.5px;margin-top:10px;padding-left:30px;line-height:1.95}
+
+/* ---- contact ---- */
+.contact{padding:130px 0;text-align:center;background:linear-gradient(180deg,var(--pinkbeige-2),var(--ivory))}
+.contact h2{font-family:"Noto Serif JP",serif;font-weight:200;font-size:clamp(24px,4vw,42px);letter-spacing:.1em;margin:14px 0 18px;line-height:1.6}
+.contact p{color:var(--ink-soft);max-width:520px;margin:0 auto 40px;font-size:14.5px}
+.contact .cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-line{background:#06c755;color:#fff}
+.btn-line:hover{filter:brightness(.95);transform:translateY(-2px)}
+.btn-ig{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff}
+.btn-ig:hover{transform:translateY(-2px)}
+
+/* ---- footer ---- */
+footer{background:var(--brown);color:#e8ddd3;padding:60px 0 40px;text-align:center}
+footer .brand-f{font-family:"Cormorant Garamond",serif;font-size:30px;letter-spacing:.3em;color:#fbf6f1}
+footer .brand-f small{display:block;font-family:"Noto Sans JP";font-size:9px;letter-spacing:.5em;color:var(--gold);margin-top:6px}
+footer nav{justify-content:center;margin:26px 0}
+footer nav a{color:#e8ddd3;font-size:12px}
+footer .copy{font-size:11px;letter-spacing:.15em;color:#c3b6a9;margin-top:24px}
+
+.gitem,.concept .visual,.info .photo{position:relative}
+
+/* ---- reveal ---- */
+.reveal{opacity:0;transform:translateY(34px);transition:1s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}.d4{transition-delay:.48s}
+
+/* ---- responsive ---- */
+@media(max-width:860px){
+  header{padding:16px 22px}
+  .hero-scrim{background:linear-gradient(180deg,rgba(248,244,239,.92) 0%,rgba(244,232,226,.8) 55%,rgba(238,221,213,.55) 100%)}
+  nav{position:fixed;inset:0 0 0 auto;width:74%;max-width:320px;background:var(--ivory);flex-direction:column;justify-content:center;gap:26px;transform:translateX(100%);transition:.5s ease;box-shadow:-20px 0 60px -30px var(--shadow)}
+  nav.open{transform:none}
+  nav a{font-size:15px}
+  .menu-btn{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;z-index:110}
+  .menu-btn span{width:26px;height:1.5px;background:var(--ink);transition:.3s}
+  .menu-btn.on span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+  .menu-btn.on span:nth-child(2){opacity:0}
+  .menu-btn.on span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+  .concept .grid,.info .grid{grid-template-columns:1fr;gap:44px}
+  .concept .text{position:static}
+  .cards,.pillars,.plists{grid-template-columns:1fr}
+  .flow{flex-direction:column;align-items:stretch}
+  .fstep{max-width:none;width:100%}
+  .farrow{transform:rotate(90deg);margin:2px 0}
+  .voices{grid-template-columns:1fr}
+  .promo-in{flex-direction:column;text-align:center}
+  .grid-g{grid-template-columns:repeat(2,1fr);grid-auto-rows:220px}
+  .hero-meta{display:none}
+}
+/* ===== 小さいスマホ（〜520px）向けの詰め ===== */
+@media(max-width:520px){
+  .wrap{padding:0 20px}
+  header{padding:13px 18px}
+  .brand{font-size:21px}
+  /* 各セクションの縦余白を詰めてスクロールを軽く */
+  .promo,.concept,.owner,.menu,.price,.firstvisit,.gallery,.voice,.info,.company,.faq,.insta{padding:64px 0}
+  .plist{padding:30px 18px 22px}
+  .pval{font-size:17px}
+  .pval span{display:none}
+  .pname{font-size:14.5px}
+  .access{padding:32px 18px}
+  .strip{padding:80px 0}
+  .contact{padding:56px 0 40px}
+  /* ヒーロー見出しをスマホで読みやすく */
+  .hero h1{font-size:clamp(30px,8.4vw,40px);line-height:1.4}
+  .hero p.sub{font-size:14px}
+  .hero .cta{gap:12px}
+  .hero .cta .btn{width:100%;justify-content:center}
+  /* ギャラリーは高さを抑える */
+  .grid-g{grid-auto-rows:160px;gap:10px}
+  /* 見出し下の余白を軽く */
+  .gallery .head{margin-bottom:36px}
+  /* ボタンや余白の微調整 */
+  .btn{padding:14px 26px}
+}
+/* PCで整えた改行はスマホでは解除し、自然に折り返す */
+@media(max-width:640px){
+  .pcbr{display:none}
+}
+/* 動きを減らす設定の端末以外は、ふわっと演出を確実に表示 */
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1 !important;transform:none !important;transition:none}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<header id="hdr">
+  <a href="#top" class="brand" data-cursor>Belle douce<small>NAKAMEGURO</small></a>
+  <button class="menu-btn" id="mbtn" aria-label="menu"><span></span><span></span><span></span></button>
+  <nav id="nav">
+    <a href="#concept" data-cursor>Concept</a>
+    <a href="#owner" data-cursor>Owner</a>
+    <a href="#first" data-cursor>First Visit</a>
+    <a href="#menu" data-cursor>Menu</a>
+    <a href="#price" data-cursor>Price</a>
+    <a href="#info" data-cursor>Salon</a>
+    <a href="blog/index.html" data-cursor>Journal</a>
+    <a href="reserve.html" class="book" data-cursor>ご予約</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-scrim"></div>
+  <div class="hero-inner">
+    <span class="lead reveal">Private Skincare Salon</span>
+    <h1 class="reveal d1">肌を変えるのではなく、<br class="pcbr"><span class="em">肌を育てる。</span></h1>
+    <p class="sub reveal d2">東京・中目黒の完全予約制プライベートサロン。<br class="pcbr">大人の女性のための、上質な肌質改善。今日のケアが、未来のあなたをつくります。</p>
+    <div class="cta reveal d3">
+      <a href="reserve.html" class="btn btn-primary" data-cursor>ご予約・お問い合わせ</a>
+      <a href="#menu" class="btn btn-ghost" data-cursor>メニューを見る</a>
+    </div>
+  </div>
+  <div class="hero-meta">Est. Nakameguro, Tokyo<br class="pcbr">By Appointment Only</div>
+  <div class="scroll-hint">SCROLL</div>
+</section>
+
+<!-- PROMO -->
+<section class="promo">
+  <div class="wrap promo-in">
+    <div class="promo-txt">
+      <span class="promo-label">First Trial</span>
+      <p><b>初回体験</b>　約150分　<b>¥11,000〜</b><span class="promo-sub">まずは肌質診断から。あなたの肌にいま必要なケアをご提案します。</span></p>
+    </div>
+    <a href="reserve.html" class="btn btn-primary">初回のご予約はこちら</a>
+  </div>
+</section>
+
+<!-- CONCEPT -->
+<section class="concept" id="concept">
+  <div class="wrap grid">
+    <div class="visual reveal"><img src="assets/conceptgown.jpg" alt="Belle douce" /></div>
+    <div class="text">
+      <span class="eyebrow reveal">Concept</span>
+      <h2 class="title reveal d1">肌を“育てる”という、<br class="pcbr">考え方。</h2>
+      <p class="reveal d2">Belle douce は、大人の女性のための上質な肌質改善サロン。<br class="pcbr">その場かぎりの変化ではなく、肌そのものをすこやかに育てることを大切にしています。</p>
+      <p class="reveal d2">流行を追うのではなく、その方の肌がもつ力を見極めて、必要なものだけを。<br class="pcbr">カウンセリングからアフターケアまで、オーナー自らが一貫して担当いたします。</p>
+      <p class="sign reveal d3">今日のケアが、未来のあなたをつくる。</p>
+    </div>
+  </div>
+</section>
+
+<!-- OWNER -->
+<section class="owner" id="owner">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Owner</span>
+      <h2 class="title">オーナー紹介</h2>
+    </div>
+    <div class="owner-body reveal d1">
+      <p class="oname">三枝 由佳　<span>Yuka Saegusa</span></p>
+      <p class="orole">Belle douce オーナー・エステティシャン</p>
+      <p class="obio">2015年よりエステティシャンとして経験を重ね、<br class="pcbr">中目黒のプライベートサロン Belle douce を、<br class="pcbr">カウンセリングから施術・アフターケアまで一人で担当。<br class="pcbr">リアボーテを軸に、肌を“育てる”肌質改善を専門としています。</p>
+      <p class="obio">「今日のケアが、未来のあなたをつくる」を信条に、<br class="pcbr">おひとりずつと丁寧に向き合い、<br class="pcbr">その方の肌が本来もつ力を引き出すお手伝いをしています。</p>
+      <ul class="ach">
+        <li>2015年よりエステティシャンとして活動</li>
+        <li>前職のエステサロンにて、複数の表彰を受賞</li>
+        <li>独立・起業後、リアボーテ導入サロンとして全国表彰を受賞</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- BAND 1 -->
+<section class="band">
+  <div class="bg" data-parallax style="background-image:url('assets/hero.jpg')"></div>
+  <div class="quote reveal">
+    <p>肌を変えるのではなく、育てる。<br class="pcbr">積み重ねが、未来の肌をつくります。</p>
+    <span>Belle douce ・ Nakameguro</span>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Menu</span>
+      <h2 class="title">主なメニュー</h2>
+    </div>
+    <div class="cards">
+      <div class="card reveal"><div class="cimg" style="background-image:url('assets/skin.jpg')"></div><div class="body"><span class="no">01</span><h3>肌質改善</h3><p>リアボーテを軸に、その方の肌がもつ力を見極めて。ハーブやタラソなどを肌状態に合わせて組み立て、根本から整う肌を育てます。</p><span class="en">Skin Improvement</span></div></div>
+      <div class="card reveal d1"><div class="cimg" style="background-image:url('assets/bridal.jpg')"></div><div class="body"><span class="no">02</span><h3>ブライダル</h3><p>人生でいちばん美しい一日のために。挙式に向けて、フェイスから背中・デコルテまで計画的にととのえる特別プランです。</p><span class="en">Bridal Care</span></div></div>
+      <div class="card reveal d2"><div class="cimg" style="background-image:url('assets/homecare.jpg')"></div><div class="body"><span class="no">03</span><h3>ホームケア提案</h3><p>サロンでの変化をご自宅でも。リアボーテのアイテムで、おひとりの肌に寄り添う毎日のケアをご提案します。</p><span class="en">Home Care</span></div></div>
+      <div class="card reveal"><div class="cimg" style="background-image:url('assets/diagnosis.jpg')"></div><div class="body"><span class="no">04</span><h3>肌質診断</h3><p>丁寧なカウンセリングと肌チェックで、今の肌状態と本当に必要なケアを見極め。あなただけのプランをご提案します。</p><span class="en">Skin Diagnosis</span></div></div>
+      <div class="card reveal d1"><div class="cimg" style="background-image:url('assets/mind.jpg')"></div><div class="body"><span class="no">05</span><h3>マインドセッション</h3><p>肌と心は、つながっています。呼吸を整え、自分と向き合う静かな時間で、内側から美しさを育てます。</p><span class="en">Mind Session</span></div></div>
+      <div class="card reveal d2"><div class="cimg" style="background-image:url('assets/consult.jpg')"></div><div class="body"><span class="no">06</span><h3>サロンコンサル</h3><p>これからサロンを始めたい方へ。ひとり運営の経験に基づく、開業・技術・集客のご相談を承ります。</p><span class="en">Salon Consulting</span></div></div>
+    </div>
+    <p class="menu-note">※ 施術内容は、カウンセリングで<br class="pcbr">ご希望と肌状態を伺いながらご提案いたします。<br><a href="#price" style="color:var(--gold-deep)">料金はこちら</a></p>
+  </div>
+</section>
+
+<!-- PRICE -->
+<section class="price" id="price">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Price</span>
+      <h2 class="title">メニュー・料金</h2>
+    </div>
+    <p class="price-intro reveal d1">表示価格はすべて税込の正規料金です。<br class="pcbr">肌状態を拝見したうえで、その日に最適なトリートメントをご提案いたします。</p>
+    <div class="plists">
+      <div class="plist reveal">
+        <h3>フェイシャルトリートメント</h3><span class="pen">Facial Treatment</span>
+        <div class="pitem first"><div class="pname">初回体験<small>カウンセリング・肌質診断・トリートメント・ホームケアアドバイス（約150分）</small></div><span class="pdots"></span><div class="pval">¥11,000〜<span>（税込）</span></div></div>
+        <div class="pitem"><div class="pname">レスト</div><span class="pdots"></span><div class="pval">¥19,800<span>（税込）</span></div></div>
+        <div class="pitem"><div class="pname">マーメイドセルトリートメント</div><span class="pdots"></span><div class="pval">¥19,800<span>（税込）</span></div></div>
+        <div class="pitem"><div class="pname">タラソセル</div><span class="pdots"></span><div class="pval">¥26,400<span>（税込）</span></div></div>
+        <div class="pitem"><div class="pname">グランタラソ</div><span class="pdots"></span><div class="pval">¥29,700<span>（税込）</span></div></div>
+        <div class="pitem"><div class="pname">ハーブ</div><span class="pdots"></span><div class="pval">¥33,000<span>（税込）</span></div></div>
+        <div class="pitem"><div class="pname">グランハーブ</div><span class="pdots"></span><div class="pval">¥36,300<span>（税込）</span></div></div>
+      </div>
+      <div class="plist reveal d1">
+        <h3>オプション</h3><span class="pen">Option Menu</span>
+        <div class="pitem"><div class="pname">エレクトロクレンジング<small>微弱な電流で、肌のざらつきをつるんとなめらかに</small></div><span class="pdots"></span><div class="pval">¥2,200<span>（税込）</span></div></div>
+        <div class="pitem"><div class="pname">マーメイドセラム<small>エステの効果をぐっと高める、ブースター美容液</small></div><span class="pdots"></span><div class="pval">¥2,200<span>（税込）</span></div></div>
+        <div class="pitem"><div class="pname">エキスパートウォッシュパック<small>炭酸を合わせた洗顔パックで、むくみとくすみをすっきりオフ</small></div><span class="pdots"></span><div class="pval">¥1,100<span>（税込）</span></div></div>
+        <div class="pitem"><div class="pname">プラセンタセル追加<small>ワンランク上のうるおいを求める方へ。プラセンタで深く保湿</small></div><span class="pdots"></span><div class="pval">¥1,100<span>（税込）</span></div></div>
+        <div class="pitem"><div class="pname">ヴィーナス追加<small>高濃度ハイドロキノン配合。上質な透明感ケアに</small></div><span class="pdots"></span><div class="pval">¥1,100<span>（税込）</span></div></div>
+        <div class="pitem"><div class="pname">インフィニット追加<small>塗るだけでハリを与え、ふっくらとした肌へ</small></div><span class="pdots"></span><div class="pval">¥1,100<span>（税込）</span></div></div>
+        <div class="pitem"><div class="pname">エンパイア追加<small>鎮静の王様。ゆらぎやすい肌をすばやく落ち着かせたい方に</small></div><span class="pdots"></span><div class="pval">¥1,100<span>（税込）</span></div></div>
+        <div class="pitem"><div class="pname">プレミアムパック<small>固まる炭酸パックで肌を磨き、うるおいで満たす</small></div><span class="pdots"></span><div class="pval">¥1,100<span>（税込）</span></div></div>
+        <div class="pitem"><div class="pname">毛穴エクストラクション</div><span class="pdots"></span><div class="pval">¥3,300<span>（税込）</span></div></div>
+        <div class="pitem"><div class="pname">背中（20分）</div><span class="pdots"></span><div class="pval">¥4,400<span>（税込）</span></div></div>
+        <div class="pitem"><div class="pname">背中（30分）</div><span class="pdots"></span><div class="pval">¥5,980<span>（税込）</span></div></div>
+      </div>
+    </div>
+    <p class="price-notes reveal d2">※ オプションは各トリートメントに追加いただけます。<br class="pcbr">※ 回数券コース・物販の料金は、カウンセリングにてご案内いたします。</p>
+
+    <div class="access reveal" id="access">
+      <span class="eyebrow">Access</span>
+      <p class="station">「中目黒」駅より <b>徒歩2分</b></p>
+      <p class="lines">東急東横線・東京メトロ日比谷線</p>
+      <p class="private">プライベートサロンのため、詳しい場所は<br class="pcbr">ご予約いただいた方にのみご案内しております。</p>
+    </div>
+  </div>
+</section>
+
+<!-- FIRST VISIT -->
+<section class="firstvisit" id="first">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">First Visit</span>
+      <h2 class="title">初めての方へ</h2>
+    </div>
+    <p class="fv-intro reveal d1">初回は、あなたの肌をゆっくり知ることから。<br class="pcbr">4つのステップで、いまの肌に本当に必要なケアをご提案します。</p>
+    <p class="fv-time reveal d1"><b>所要時間　約150分</b><b>初回体験　¥11,000〜</b></p>
+    <p class="fv-note reveal d1">※ ご希望に応じてオプションを追加いただけます（その場合は追加料金）。<br class="pcbr">コース・物販の料金は、カウンセリングにてご案内いたします。</p>
+    <div class="flow reveal d1">
+      <div class="fstep"><span class="fnum">01</span><h3>ヒアリング</h3><p>お悩み・ご希望・生活習慣まで丁寧にお伺いします。</p></div>
+      <span class="farrow">→</span>
+      <div class="fstep"><span class="fnum">02</span><h3>肌質診断</h3><p>スコープで肌状態をチェックし、必要なケアを見極めます。</p></div>
+      <span class="farrow">→</span>
+      <div class="fstep"><span class="fnum">03</span><h3>トリートメント</h3><p>診断をもとに、その日の肌に最適な施術を。</p></div>
+      <span class="farrow">→</span>
+      <div class="fstep"><span class="fnum">04</span><h3>自宅ケアアドバイス</h3><p>変化を保つおうちケアを、おひとりに合わせて。</p></div>
+    </div>
+    <div style="text-align:center;margin-top:52px" class="reveal d2">
+      <a href="reserve.html" class="btn btn-primary">初回のご予約はこちら</a>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND -->
+<section class="concept" id="brand">
+  <div class="wrap grid">
+    <div class="text">
+      <span class="eyebrow reveal">Brand</span>
+      <h2 class="title reveal d1">肌を育てる、<br class="pcbr">リアボーテ。</h2>
+      <p class="reveal d2">Belle douce が主に取り扱うのは、サロン専売の高機能スキンケアブランド「リアボーテ」。<br class="pcbr">植物幹細胞やヒト幹細胞由来のエキスなど、贅沢な整肌成分を惜しみなく配合したブランドです。</p>
+      <p class="reveal d2">サロンでのトリートメントと、ご自宅でのホームケア。<br class="pcbr">その両輪で肌本来の力を引き出し、続けるほどにゆらがない肌を育てていきます。</p>
+      <p class="sign reveal d3">正規取扱サロン ／ ReL'A BEAUTE</p>
+    </div>
+    <div class="visual reveal"><img src="assets/homecare.jpg" alt="リアボーテ グランスキン" /></div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<section class="strip">
+  <div class="wrap">
+    <p class="big reveal">結果を急がず、<em>肌の土台</em>から。<br class="pcbr">「また来たい」より、<em>「ずっと通いたい」</em>サロンへ。</p>
+    <div class="pillars">
+      <div class="pillar reveal"><div class="num">01</div><h4>完全予約制・貸切</h4><p>他のお客様と顔を合わせない、おひとりだけの静かな空間。</p></div>
+      <div class="pillar reveal d1"><div class="num">02</div><h4>オーナー一貫担当</h4><p>カウンセリングから施術・アフターまで、担当は変わりません。</p></div>
+      <div class="pillar reveal d2"><div class="num">03</div><h4>肌質改善に特化</h4><p>その場だけでなく、続けるほどに整う肌を目指します。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- VOICE -->
+<section class="voice" id="voice">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Voice</span>
+      <h2 class="title">お客様の声</h2>
+    </div>
+    <div class="voices">
+      <blockquote class="vitem reveal">施術のあと、肌がふわっとやわらかくなるのを毎回実感しています。通うたびに肌が元気になっていくのが嬉しいです。<cite>40代 ・ フェイシャル</cite></blockquote>
+      <blockquote class="vitem reveal d1">続けるうちに、肌の白さと透明感が出てきました。丁寧に肌を見てくれるので、安心してお任せできます。<cite>30代 ・ 肌質改善コース</cite></blockquote>
+      <blockquote class="vitem reveal d2">気になっていた赤みが少しずつ落ち着いてきました。おうちでのケアまで教えてもらえるのが心強いです。<cite>30代 ・ 敏感肌のケア</cite></blockquote>
+    </div>
+    <p class="voice-note">※ 掲載はお客様の許可を得たものです。効果・経過には個人差があります。</p>
+  </div>
+</section>
+
+<!-- INFO -->
+<section class="info" id="info">
+  <div class="wrap grid">
+    <div>
+      <span class="eyebrow reveal">Salon Information</span>
+      <h2 class="title reveal d1">サロン情報</h2>
+      <div class="rows reveal d2">
+        <div class="row"><div class="k">Salon</div><div class="v">Belle douce（ベルドゥース）</div></div>
+        <div class="row"><div class="k">Area</div><div class="v">東京都目黒区・中目黒<span style="opacity:.6">（詳しい場所はご予約いただいた方にご案内しております）</span></div></div>
+        <div class="row"><div class="k">Access</div><div class="v">東急東横線・東京メトロ日比谷線「中目黒」駅より徒歩2分</div></div>
+        <div class="row"><div class="k">Open</div><div class="v">11:00 − 21:00</div></div>
+        <div class="row"><div class="k">Closed</div><div class="v">不定休</div></div>
+        <div class="row"><div class="k">Style</div><div class="v">完全予約制・プライベートサロン</div></div>
+        <div class="row"><div class="k">Company</div><div class="v">合同会社 Belle douce</div></div>
+      </div>
+    </div>
+    <div class="photo reveal d2"><img src="assets/diagnosis.jpg" alt="Belle douce 肌質診断" /></div>
+  </div>
+</section>
+
+<!-- COMPANY -->
+<section class="company" id="company">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Company</span>
+      <h2 class="title">会社概要</h2>
+    </div>
+    <div class="rows reveal d1">
+      <div class="row"><div class="k">商号</div><div class="v">合同会社 Belle douce</div></div>
+      <div class="row"><div class="k">代表</div><div class="v">代表社員　三枝 由佳</div></div>
+      <div class="row"><div class="k">設立</div><div class="v">2025年2月</div></div>
+      <div class="row"><div class="k">所在地</div><div class="v">東京都目黒区・中目黒<span style="opacity:.6">（詳しい場所はご予約いただいた方にご案内しております）</span></div></div>
+      <div class="row"><div class="k">事業内容</div><div class="v">エステティックサロンの経営、化粧品の販売、サロンコンサルティング</div></div>
+      <div class="row"><div class="k">お問い合わせ</div><div class="v">公式LINE ／ Instagram（@belledouce_fa）</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">FAQ</span>
+      <h2 class="title">よくあるご質問</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal"><div class="faq-q">ご予約はどうすればいいですか？</div><div class="faq-a">公式LINEから承っております。<br class="pcbr">友だち追加後、ご希望の日時と肌のお悩みをお送りください。<br class="pcbr">おひとりずつ丁寧にご案内いたします。</div></div>
+      <div class="faq-item reveal"><div class="faq-q">お電話での予約はできますか？</div><div class="faq-a">恐れ入りますが、お電話でのご予約・お問い合わせは承っておりません。<br class="pcbr">すべて公式LINEにて承っております。</div></div>
+      <div class="faq-item reveal"><div class="faq-q">はじめてでも予約できますか？</div><div class="faq-a">当サロンは、ご紹介制とさせていただいております。<br class="pcbr">新規のお客様は、ご紹介者さまを通じてお問い合わせください。</div></div>
+      <div class="faq-item reveal"><div class="faq-q">男性も利用できますか？</div><div class="faq-a">はい、男性のお客様もご利用いただけます。<br class="pcbr">お気軽にご相談ください。</div></div>
+      <div class="faq-item reveal"><div class="faq-q">初回はどのくらい時間がかかりますか？</div><div class="faq-a">カウンセリング・肌質診断・トリートメント・ホームケアのアドバイスまで、<br class="pcbr">約150分いただいております。</div></div>
+      <div class="faq-item reveal"><div class="faq-q">初回体験の料金は？</div><div class="faq-a">初回体験は ¥11,000〜 でご案内しております。<br class="pcbr">ご希望に応じてオプションの追加も可能です（その場合は追加料金）。</div></div>
+      <div class="faq-item reveal"><div class="faq-q">支払い方法は？</div><div class="faq-a">現金・銀行振込・各種クレジットカードがご利用いただけます。<br class="pcbr">現金・お振込の場合は、優待価格でご案内しております。<br class="pcbr">（回数券コースのお支払いは、現金でのお振込をお願いしております）</div></div>
+      <div class="faq-item reveal"><div class="faq-q">当日の持ち物は必要ですか？</div><div class="faq-a">特にご用意いただくものはございません。<br class="pcbr">お気軽にお越しください。</div></div>
+      <div class="faq-item reveal"><div class="faq-q">予約の変更・キャンセルは？</div><div class="faq-a">ご予約の変更・キャンセルは、<br class="pcbr">前日までに公式LINEよりご連絡いただけますと幸いです。</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section class="insta">
+  <div class="wrap">
+    <span class="eyebrow reveal">Instagram</span>
+    <h2 class="title reveal d1">最新の様子は Instagram で</h2>
+    <p class="reveal d2" style="color:var(--ink-soft);max-width:540px;margin:14px auto 32px;font-size:14.5px">日々のケアやお客様の肌の変化、サロンの空気を発信しています。<br class="pcbr">ぜひフォローして、Belle douce の世界をのぞいてみてください。</p>
+    <a href="https://www.instagram.com/belledouce_fa" target="_blank" rel="noopener" class="btn btn-ig reveal d3" style="display:inline-flex">＠belledouce_fa をフォロー</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <span class="eyebrow reveal">Reservation</span>
+    <h2 class="reveal d1">ご予約・お問い合わせ</h2>
+    <p class="reveal d2">ご予約・ご相談は公式LINEが便利です。<br class="pcbr">肌のお悩みやご希望を、お気軽にお聞かせください。</p>
+    <div class="cta reveal d3">
+      <a href="reserve.html" class="btn btn-line" data-cursor>公式LINEでご予約</a>
+      <a href="#" class="btn btn-ig" id="igBtn" target="_blank" rel="noopener" data-cursor>Instagram</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand-f">Belle douce<small>NAKAMEGURO ・ TOKYO</small></div>
+    <nav>
+      <a href="#concept">Concept</a><a href="#menu">Menu</a><a href="#price">Price</a><a href="#voice">Voice</a><a href="blog/index.html">Journal</a><a href="#info">Salon</a><a href="reserve.html">Reservation</a>
+    </nav>
+    <nav style="margin-top:-8px">
+      <a href="terms.html">ご契約時の大切なご案内</a><a href="privacy.html">プライバシーポリシー</a><a href="tokushoho.html">特定商取引法に基づく表記</a>
+    </nav>
+    <div class="copy">© <span id="yr"></span> 合同会社 Belle douce. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+const hdr=document.getElementById('hdr'),prog=document.getElementById('progress');
+addEventListener('scroll',()=>{
+  hdr.classList.toggle('scrolled',scrollY>40);
+  const h=document.documentElement.scrollHeight-innerHeight;
+  prog.style.width=(scrollY/h*100)+'%';
+},{passive:true});
+
+// mobile menu
+const mbtn=document.getElementById('mbtn'),nav=document.getElementById('nav');
+mbtn.addEventListener('click',()=>{mbtn.classList.toggle('on');nav.classList.toggle('open')});
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mbtn.classList.remove('on');nav.classList.remove('open')}));
+
+// reveal
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:0.08,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+}else{
+  document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
+}
+
+// parallax (hero bg + bands)
+const bands=[...document.querySelectorAll('[data-parallax]')];
+const heroBg=document.getElementById('heroBg');
+addEventListener('scroll',()=>{
+  const y=scrollY;
+  if(heroBg&&y<innerHeight) heroBg.style.transform='translateY('+(y*0.25)+'px)';
+  bands.forEach(b=>{
+    const r=b.parentElement.getBoundingClientRect();
+    const off=(r.top+r.height/2-innerHeight/2);
+    b.style.transform='translateY('+(off*-0.12)+'px)';
+  });
+},{passive:true});
+
+document.getElementById('yr').textContent=new Date().getFullYear();
+const IG_URL="https://www.instagram.com/belledouce_fa";
+document.getElementById('igBtn').href=IG_URL;
+</script>
+</body>
+</html>
