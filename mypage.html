@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>マイページ ｜ Belle douce</title>
+<meta name="robots" content="noindex, nofollow" />
+<meta name="referrer" content="no-referrer" />
+<meta name="theme-color" content="#f6eee9" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&display=swap" rel="stylesheet" />
+<style>
+/* Belle douce マイページ：招待状と宝石箱のような一枚（2026-10-17 由佳さん「上品で大人可愛く可憐、でも開いた方が感動するデザインに」） */
+:root{
+  --bg:#f6eee9;--bg2:#fbf6f2;--paper:#fffdfb;--ink:#4a3833;--muted:#8f7b74;--soft:#b9a49c;
+  --rose:#c9938f;--rose-deep:#a8706d;--rose-mist:#f3e1dc;--blush:#ecc9c1;
+  --gold:#b8955a;--gold-hi:#e6cf9c;--gold-lo:#9b7a44;--line:rgba(184,149,90,.32);--hair:rgba(74,56,51,.09);
+  --glass:rgba(255,253,251,.9);--shadow:0 18px 40px -22px rgba(120,80,70,.45),0 2px 6px -2px rgba(120,80,70,.12);
+  --orb1:#f2cfc6;--orb2:#f4e3c7;--orb3:#e9d3e0;
+  --f-latin:"Cormorant Garamond","Times New Roman",serif;
+  --f-display:"Hiragino Mincho ProN","Hiragino Mincho Pro","Yu Mincho","Noto Serif CJK JP","Noto Serif JP",serif;   /* 日本語はスマホ内蔵の明朝（読み込みなし＝軽い） */
+  --f-body:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans CJK JP",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#231b1a;--bg2:#2b2120;--paper:#322725;--ink:#f3e6df;--muted:#c2ada5;--soft:#8f7a72;
+  --rose:#dca7a2;--rose-deep:#e8b8b2;--rose-mist:#3d2e2c;--blush:#5a403c;
+  --gold:#d9bb82;--gold-hi:#f1dcae;--gold-lo:#b8955a;--line:rgba(217,187,130,.3);--hair:rgba(243,230,223,.1);
+  --glass:rgba(50,39,37,.92);--shadow:0 18px 40px -22px rgba(0,0,0,.7),0 2px 6px -2px rgba(0,0,0,.4);
+  --orb1:#4a302d;--orb2:#4a3d2a;--orb3:#3e2d3a;color-scheme:dark}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.8;-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden}
+/* 背景：ゆっくり漂うやわらかな光の玉＋紙の質感 */
+.sky{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:radial-gradient(120% 80% at 50% -10%,var(--bg2),var(--bg) 60%)}
+.orb{position:absolute;border-radius:50%;opacity:.8}   /* ぼかし・動きは端末に重いので、にじんだ色の丸を置くだけに */
+.orb.a{width:62vw;height:62vw;max-width:420px;max-height:420px;background:radial-gradient(circle,var(--orb1) 0,transparent 70%);top:-12%;left:-18%}
+.orb.b{width:54vw;height:54vw;max-width:380px;max-height:380px;background:radial-gradient(circle,var(--orb2) 0,transparent 70%);top:28%;right:-22%;animation-delay:-7s}
+.orb.c{width:50vw;height:50vw;max-width:340px;max-height:340px;background:radial-gradient(circle,var(--orb3) 0,transparent 70%);bottom:-10%;left:10%;animation-delay:-13s}
+
+.grain{display:none;position:absolute;inset:0;opacity:.35;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .55 0 0 0 0 .42 0 0 0 0 .38 0 0 0 .08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+@media (prefers-color-scheme: dark){.grain{mix-blend-mode:screen;opacity:.18}}
+.wrap{position:relative;z-index:1;max-width:520px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:calc(18px + env(safe-area-inset-top,0px)) calc(40px + env(safe-area-inset-bottom,0px));display:grid;gap:22px}
+/* 入場アニメーション */
+.rise{opacity:0;transform:translateY(14px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+.ready .rise{animation:none;opacity:1;transform:none}
+@keyframes rise{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.orb,.rise,.sparkle,.pearl.on::after,.shine::after{animation:none!important}.rise{opacity:1;transform:none}}
+
+/* ブランド */
+.brand{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--gold);font-family:var(--f-latin);font-size:13px;letter-spacing:.42em;padding-top:4px}
+.brand::before,.brand::after{content:"";height:1px;width:42px;background:linear-gradient(90deg,transparent,var(--gold))}
+.brand::after{transform:scaleX(-1)}
+
+/* ご挨拶：アーチ窓 */
+.arch{position:relative;margin:4px auto 0;width:min(100%,360px);padding:64px 22px 30px;text-align:center;border-radius:180px 180px 26px 26px;background:linear-gradient(180deg,var(--glass),rgba(255,255,255,0) 120%);box-shadow:var(--shadow);border:1px solid var(--line);}
+.arch::before{content:"";position:absolute;inset:7px;border-radius:174px 174px 21px 21px;border:1px solid var(--line);pointer-events:none}
+.mono{width:54px;height:54px;margin:0 auto 10px;display:block}
+.hello{font-family:var(--f-latin);font-style:italic;font-size:21px;color:var(--rose-deep);letter-spacing:.02em}
+.who{font-family:var(--f-display);font-weight:600;font-size:30px;letter-spacing:.08em;margin:2px 0 6px;text-wrap:balance}
+.who small{font-size:16px;margin-left:4px;letter-spacing:.1em}
+.today{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-latin);font-size:15px;color:var(--muted);letter-spacing:.14em}
+.today i{width:4px;height:4px;border-radius:50%;background:var(--gold);display:inline-block}
+.season{font-family:var(--f-display);font-size:13px;color:var(--muted);margin-top:10px;line-height:1.9}
+.sparkle{position:absolute;width:14px;height:14px;color:var(--gold-hi);animation:twinkle 3.6s ease-in-out infinite}
+.sparkle.s1{top:30px;left:18%}.sparkle.s2{top:64px;right:16%;width:10px;height:10px;animation-delay:-1.4s}.sparkle.s3{bottom:22px;left:12%;width:9px;height:9px;animation-delay:-2.3s}
+@keyframes twinkle{0%,100%{opacity:.25;transform:scale(.7) rotate(0)}50%{opacity:1;transform:scale(1) rotate(25deg)}}
+
+/* 見出し */
+.sh{display:flex;align-items:baseline;gap:10px;margin:0 2px 10px}
+.sh .en{font-family:var(--f-latin);font-style:italic;font-size:22px;color:var(--rose-deep);line-height:1}
+.sh .ja{font-size:11.5px;letter-spacing:.24em;color:var(--muted)}
+.sh::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent);align-self:center}
+
+/* ご予約：招待状チケット */
+.ticket{position:relative;display:grid;grid-template-columns:1fr auto;border-radius:22px;background:var(--paper);box-shadow:var(--shadow);overflow:hidden}
+.ticket::before{content:"";position:absolute;inset:0;border-radius:22px;padding:1.2px;background:linear-gradient(135deg,var(--gold-hi),var(--gold-lo) 40%,var(--gold-hi) 70%,var(--gold-lo));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.t-main{padding:20px 18px 18px 22px;min-width:0}
+.t-label{font-size:11px;letter-spacing:.28em;color:var(--gold)}
+.t-date{display:flex;align-items:baseline;gap:8px;margin-top:4px;font-family:var(--f-latin);color:var(--ink)}
+.t-date b{font-weight:500;font-size:46px;line-height:1;letter-spacing:.02em}
+.t-date span{font-size:17px;font-style:italic;color:var(--rose-deep)}
+.t-time{font-family:var(--f-latin);font-size:18px;letter-spacing:.12em;color:var(--muted);margin-top:4px}
+.t-act{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.t-side{position:relative;width:104px;display:grid;place-items:center;text-align:center;background:linear-gradient(160deg,var(--rose-mist),transparent);border-left:1.5px dashed var(--line)}
+.t-side::before,.t-side::after{content:"";position:absolute;left:-10px;width:20px;height:20px;border-radius:50%;background:var(--bg)}
+.t-side::before{top:-10px}.t-side::after{bottom:-10px}
+.cd small{display:block;font-size:11px;letter-spacing:.2em;color:var(--muted)}
+.cd b{display:block;font-family:var(--f-latin);font-weight:500;font-size:42px;line-height:1.05;color:var(--rose-deep)}
+.cd em{font-style:normal;font-size:12px;color:var(--muted)}
+.empty-t{padding:22px;text-align:center;font-family:var(--f-display);font-size:15px}
+.empty-t p{margin:0 0 12px;color:var(--muted);font-size:13px;font-family:var(--f-body)}
+
+/* ボタン */
+.btn{appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;font:inherit;font-size:13px;letter-spacing:.06em;text-decoration:none;border-radius:999px;padding:8px 16px;transition:transform .2s,box-shadow .2s}
+.btn:active{transform:scale(.97)}
+.btn.gold{color:#fffaf2;background:linear-gradient(135deg,var(--gold-hi),var(--gold) 45%,var(--gold-lo));box-shadow:0 6px 16px -8px rgba(155,122,68,.8)}
+.btn.ghost{color:var(--rose-deep);background:transparent;border:1px solid var(--line)}
+.btn:focus-visible,.tile:focus-visible,.slot:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+/* 回数券：真珠のネックレス */
+.pearlcard{border-radius:22px;background:var(--glass);border:1px solid var(--line);box-shadow:var(--shadow);padding:18px 18px 16px;}
+.necklace{position:relative;height:84px;margin:2px 4px 0}
+.necklace svg.str{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.pearl{position:absolute;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;background:radial-gradient(circle at 34% 30%,#fff 0 10%,rgba(255,255,255,.4) 22%,transparent 46%),radial-gradient(circle at 50% 60%,var(--paper),var(--rose-mist));border:1px solid var(--line);opacity:.8}
+.pearl.on{opacity:1;background:radial-gradient(circle at 34% 28%,#fff 0 12%,rgba(255,255,255,.55) 24%,transparent 48%),radial-gradient(circle at 60% 70%,var(--gold-lo),var(--gold-hi) 55%,#fff6e3);border-color:transparent;box-shadow:0 4px 10px -4px rgba(155,122,68,.8)}
+.pearl.on::after{content:"";position:absolute;inset:0;border-radius:50%;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.75) 50%,transparent 65%);background-size:250% 100%;animation:glint 4.5s ease-in-out infinite}
+@keyframes glint{0%,60%{background-position:120% 0}100%{background-position:-120% 0}}
+.pearl.now{box-shadow:0 0 0 4px var(--rose-mist),0 0 0 5px var(--rose)}
+.pc-txt{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap;margin-top:6px}
+.pc-txt .big{font-family:var(--f-display);font-size:15px}
+.pc-txt .big b{font-family:var(--f-latin);font-size:30px;font-weight:500;color:var(--rose-deep);margin:0 2px}
+.pc-txt .ex{font-size:12px;color:var(--muted);letter-spacing:.06em}
+
+/* メニュー：タイル */
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:118px;padding:16px;border-radius:20px;text-decoration:none;color:var(--ink);background:var(--paper);box-shadow:var(--shadow);overflow:hidden;isolation:isolate;transition:transform .25s}
+.tile:active{transform:scale(.975)}
+.tile::before{content:"";position:absolute;inset:0;border-radius:20px;border:1px solid var(--hair);pointer-events:none}
+.tile .ic{position:absolute;top:14px;right:14px;width:34px;height:34px;color:var(--gold)}
+.tile .en{font-family:var(--f-latin);font-style:italic;font-size:15px;color:var(--rose-deep);line-height:1.1}
+.tile .ja{font-family:var(--f-display);font-weight:600;font-size:16px;letter-spacing:.06em}
+.tile .sub{font-size:11.5px;color:var(--muted);line-height:1.6;margin-top:2px}
+.tile.hero{grid-column:1 / -1;min-height:150px;color:#fffaf6;background:linear-gradient(135deg,#d4a39d 0%,#c08a86 45%,#a77a6e 100%)}
+.tile.hero .en{color:#fff1e6;font-size:18px}.tile.hero .ja{font-size:21px}.tile.hero .sub{color:rgba(255,245,238,.88)}
+.tile.hero .ic{width:84px;height:84px;top:12px;right:10px;color:rgba(255,242,228,.9)}
+.tile.hero::after{content:"";position:absolute;inset:-40% -20% auto auto;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,236,214,.55),transparent 65%);z-index:-1}
+.shine::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.28) 48%,transparent 62%);background-size:260% 100%;animation:sweep 6s ease-in-out infinite;pointer-events:none}
+@keyframes sweep{0%,55%{background-position:130% 0}100%{background-position:-130% 0}}
+@media (prefers-color-scheme: dark){.tile.hero{background:linear-gradient(135deg,#8c5f5a,#6e4a46 55%,#5a3d39)}}
+.tile.dis{opacity:.55;pointer-events:none}
+
+/* 空き状況：小さな日付カード */
+.slots{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 12px;margin:0 -2px;scrollbar-width:none}
+.slots::-webkit-scrollbar{display:none}
+.slot{flex:0 0 auto;scroll-snap-align:start;width:86px;padding:12px 6px 10px;border-radius:16px;text-align:center;text-decoration:none;color:var(--ink);background:var(--paper);border:1px solid var(--line);box-shadow:0 8px 18px -14px rgba(120,80,70,.6)}
+.slot .m{font-size:10.5px;letter-spacing:.2em;color:var(--gold)}
+.slot .d{display:block;font-family:var(--f-latin);font-size:30px;font-weight:500;line-height:1.1}
+.slot .w{font-size:11px;color:var(--rose-deep)}
+.slot .h{display:block;margin-top:4px;font-family:var(--f-latin);font-size:15px;letter-spacing:.08em;color:var(--muted)}
+.slot.best{background:linear-gradient(180deg,var(--rose-mist),var(--paper))}
+.hint{font-size:12px;color:var(--muted);margin:0 2px}
+.noslot{font-size:13px;color:var(--muted);padding:14px;border:1px dashed var(--line);border-radius:16px;text-align:center}
+
+/* ご本人確認 */
+.verify{border-radius:22px;padding:20px;text-align:center;background:var(--paper);box-shadow:var(--shadow);border:1px solid var(--line)}
+.verify h3{font-family:var(--f-display);font-weight:600;margin:0 0 6px;font-size:17px}
+.verify p{margin:0 0 14px;font-size:13px;color:var(--muted)}
+
+/* 読み込み中 */
+.skel{border-radius:20px;background:linear-gradient(100deg,var(--paper) 30%,var(--rose-mist) 50%,var(--paper) 70%);background-size:300% 100%;animation:sk 1.4s linear infinite;box-shadow:var(--shadow)}
+@keyframes sk{to{background-position:-150% 0}}
+.loading-note{font-size:12px;color:var(--muted);text-align:center;letter-spacing:.1em}
+
+/* 結び */
+.closing{text-align:center;padding:8px 10px 0}
+.closing p{font-family:var(--f-display);font-size:13.5px;line-height:2;color:var(--muted);margin:0}
+.sign{display:block;margin-top:8px;font-family:var(--f-latin);font-style:italic;font-size:20px;color:var(--rose-deep)}
+.foot{display:flex;justify-content:center;gap:18px;margin-top:6px}
+.foot a{font-size:12px;color:var(--muted);text-decoration:none;letter-spacing:.1em}
+.demo{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;text-align:center;font-size:11px;letter-spacing:.14em;color:var(--paper);background:var(--rose-deep);border-radius:999px;padding:3px 12px;justify-self:center}
+.err{padding:22px;text-align:center;font-size:14px;color:var(--muted)}
+.petal{position:absolute;top:-6%;width:12px;height:16px;border-radius:80% 0 80% 0;background:linear-gradient(135deg,#f6d7d1,#e9b7ae);opacity:0;animation:fall linear infinite}
+@media (prefers-color-scheme: dark){.petal{background:linear-gradient(135deg,#8a5e58,#6c4945)}}
+@keyframes fall{0%{opacity:0;transform:translate3d(0,0,0) rotate(0)}10%{opacity:.7}90%{opacity:.5}100%{opacity:0;transform:translate3d(60px,110vh,0) rotate(540deg)}}
+@media (prefers-reduced-motion: reduce){.petal{display:none}}
+.tile.hero .lace{position:absolute;left:0;right:0;bottom:-1px;height:14px;background:radial-gradient(circle at 8px -2px,transparent 7px,rgba(255,244,236,.55) 7.5px,rgba(255,244,236,.55) 8.5px,transparent 9px) 0 0/16px 14px repeat-x;opacity:.8}
+.tile.hero .wm{position:absolute;right:-6px;bottom:-26px;font-family:var(--f-latin);font-style:italic;font-size:120px;line-height:1;color:rgba(255,240,230,.13);pointer-events:none}
+.tile.hero .go{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:12px;letter-spacing:.14em;color:#fff6ee}
+.tile.hero .go i{display:inline-block;width:22px;height:1px;background:currentColor;position:relative}
+.tile.hero .go i::after{content:"";position:absolute;right:0;top:-3px;width:6px;height:6px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)}
+.charm{position:absolute;width:16px;height:22px;margin-left:-8px;color:var(--gold)}
+.nextlab{position:absolute;margin-left:-20px;width:40px;text-align:center;font-family:var(--f-latin);font-size:11px;letter-spacing:.18em;color:var(--rose-deep)}
+.slot{position:relative}
+.slot .tag{position:absolute;top:-8px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:9.5px;letter-spacing:.12em;color:#fffaf2;background:linear-gradient(135deg,var(--gold-hi),var(--gold-lo));border-radius:999px;padding:1px 8px}
+.slot.more{display:grid;place-items:center;background:transparent;border-style:dashed;color:var(--rose-deep);font-family:var(--f-latin);font-style:italic;font-size:15px}
+.slots{padding-top:12px}
+.season{text-wrap:balance}
+.wrap{grid-template-columns:minmax(0,1fr)}.wrap>*,.tiles>*,.t-main{min-width:0}.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+</style>
+</head>
+<body>
+<div class="sky" aria-hidden="true" id="sky"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div><div class="grain"></div></div>
+<main class="wrap" id="app">
+  <div class="brand rise">BELLE DOUCE</div>
+  <div class="skel rise" style="height:230px;border-radius:180px 180px 26px 26px;width:min(100%,360px);margin:0 auto"></div>
+  <div class="skel rise" style="height:150px;animation-delay:.1s"></div>
+  <div class="tiles"><div class="skel" style="height:150px;grid-column:1/-1"></div><div class="skel" style="height:118px"></div><div class="skel" style="height:118px"></div></div>
+  <p class="loading-note">あなたのページを準備しています…</p>
+</main>
+
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+<script>
+(function(){
+  var LIFF_ID='2012065103-s25QfmbD';   // LINEログイン「Belle douce マイページ」のLIFF（2026-10-17）
+  var API='https://script.google.com/macros/s/AKfycbyHoqfYiID1jEjSLQBVY25cQDnwjZwW3xjp0KWQdxMEom3uCghswPBgUX9DpbLTpOXcCw/exec';
+  var OA='@186wlrti';
+  var Q=new URLSearchParams(location.search), DEMO=Q.get('demo')==='1';
+  var app=document.getElementById('app'), W=['日','月','火','水','木','金','土'], WE=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  function pd(iso){var m=/^(\d{4})-(\d{2})-(\d{2})(?:T(\d{2}):(\d{2}))?/.exec(String(iso||''));return m?new Date(+m[1],+m[2]-1,+m[3],+(m[4]||0),+(m[5]||0)):null}
+  function day0(d){return new Date(d.getFullYear(),d.getMonth(),d.getDate())}
+  function hm(d){return d.getHours()+':'+('0'+d.getMinutes()).slice(-2)}
+  function oa(text){return 'https://line.me/R/oaMessage/'+encodeURIComponent(OA)+'/'+(text?'?'+encodeURIComponent(text):'')}
+  function store(k,v){try{if(v===undefined)return JSON.parse(localStorage.getItem(k)||'null');localStorage.setItem(k,JSON.stringify(v))}catch(e){return null}}
+
+  // 線画アイコン（金の細線）
+  var IC={
+    mono:'<svg class="mono" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true" style="color:var(--gold)"><circle cx="32" cy="32" r="30"/><circle cx="32" cy="32" r="26.5" stroke-dasharray="1 3"/><text x="32" y="40" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic" font-size="24" fill="currentColor" stroke="none">Bd</text></svg>',
+    spark:'<svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 0c.6 5.2 3.4 8.4 10 10-6.6 1.6-9.4 4.8-10 10-.6-5.2-3.4-8.4-10-10C6.6 8.4 9.4 5.2 10 0z"/></svg>',
+    karte:'<svg viewBox="0 0 84 84" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true"><ellipse cx="42" cy="36" rx="20" ry="26"/><ellipse cx="42" cy="36" rx="15.5" ry="21.5" stroke-dasharray="1.2 3"/><path d="M42 62v12M30 76h24"/><path d="M33 26c2-4 6-6 10-6" stroke-width="1.6"/><path d="M60 14l1.2 3.4 3.4 1.2-3.4 1.2L60 23.2l-1.2-3.4-3.4-1.2 3.4-1.2zM66 30l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z" fill="currentColor" stroke="none"/></svg>',
+    note:'<svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true"><rect x="7" y="4" width="21" height="27" rx="3"/><path d="M11 4v27M15 11h9M15 16h9M15 21h6"/><path d="M27 23c3-1 4 3 1 4" /></svg>',
+    cal:'<svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="7" width="26" height="23" rx="4"/><path d="M4 14h26M11 4v6M23 4v6"/><circle cx="17" cy="22" r="3.2"/><path d="M17 17.5v1.2M17 25.3v1.2M12.5 22h1.2M20.3 22h1.2"/></svg>',
+    card:'<svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="8" width="28" height="19" rx="3.5"/><circle cx="10" cy="17.5" r="2.4"/><circle cx="17" cy="17.5" r="2.4"/><circle cx="24" cy="17.5" r="2.4" fill="currentColor"/></svg>',
+    map:'<svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true"><path d="M17 31s9-8.6 9-16a9 9 0 1 0-18 0c0 7.4 9 16 9 16z"/><circle cx="17" cy="15" r="3.4"/></svg>',
+    insta:'<svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><rect x="5" y="5" width="24" height="24" rx="7"/><circle cx="17" cy="17" r="5.5"/><circle cx="24.2" cy="9.8" r="1.1" fill="currentColor"/></svg>',
+    chat:'<svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true"><path d="M6 8h22a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H15l-6 5v-5H6a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2z"/><path d="M11 15h12M11 19h8"/></svg>'
+  };
+
+  function greet(){var h=new Date().getHours();return h<11?'Good morning,':h<17?'Good afternoon,':'Good evening,'}
+  function seasonLine(){var m=new Date().getMonth()+1;return ({1:'新しい年も、あなたの素肌がいちばんの味方になりますように。',2:'まだ寒い日が続きますね。乾燥から、そっと守ってあげてください。',3:'季節の変わり目は、お肌もゆらぎやすい時期です。',4:'新しい季節のはじまり。紫外線のケアも少しずつ。',5:'日差しが強くなってきました。日焼け止めを忘れずに。',6:'湿気の多い季節。さっぱりの中にもうるおいを。',7:'夏の日差しのあとは、たっぷりの保湿でいたわって。',8:'夏の疲れが出やすい頃。ゆっくり休んでくださいね。',9:'夏のダメージが表に出てくる季節です。',10:'空気が乾きはじめる頃。保湿をいつもより少し多めに。',11:'朝晩の冷え込みに、温かい飲み物でひと息を。',12:'今年もありがとうございました。暖房の乾燥にお気をつけて。'})[m]}
+
+  var RENDERED=false;
+  function render(D){
+    var now=new Date(), h='';
+    if(D.demo)h+='<div class="demo">'+(D.ownerView?'三枝さん用の見本です（お客様にはご本人の内容が出ます）':'見本のページです')+'</div>';
+    h+='<div class="brand rise">BELLE DOUCE</div>';
+    // ご挨拶
+    h+='<section class="arch rise" style="animation-delay:.05s">'+'<span class="sparkle s1">'+IC.spark+'</span><span class="sparkle s2">'+IC.spark+'</span><span class="sparkle s3">'+IC.spark+'</span>'
+      +'<div class="hello">'+greet()+'</div>'
+      +'<div class="who">'+(D.pending?'<span class="skel" style="display:inline-block;width:5em;height:1.1em;border-radius:8px;box-shadow:none"></span>':D.linked?esc(D.call||D.name)+'<small>さん</small>':'ようこそ')+'</div>'
+      +'<div class="today">'+(now.getMonth()+1)+'.'+now.getDate()+'<i></i>'+WE[now.getDay()]+'</div>'
+      +'<div class="season">'+esc(seasonLine())+'</div></section>';
+    if(D.pending){   // 読み込み中：お客様ごとの欄だけ仮の形を出し、ほかはすぐ使えるように
+      h+='<div class="skel" style="height:150px"></div><div class="skel" style="height:120px"></div>';
+    }else if(!D.linked){
+      h+='<section class="verify rise" style="animation-delay:.15s"><h3>はじめに、ご本人の確認をお願いします</h3><p>ご確認ができると、次回のご予約・回数券・マイ肌カルテがここにまとめて表示されます。</p><a class="btn gold" href="'+oa('予約確認')+'">LINEでご本人確認をする</a></section>';
+    }else{
+      // 次回のご予約
+      h+='<section class="rise" style="animation-delay:.15s"><div class="sh"><span class="en">Next Visit</span><span class="ja">次回のご予約</span></div>';
+      var nx=D.next&&pd(D.next.iso);
+      if(nx){
+        var left=Math.round((day0(nx)-day0(now))/86400000);
+        var gcal='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent('Belle douce')+'&dates='+fmtG(nx)+'/'+fmtG(pd(D.next.iso.slice(0,11)+(D.next.end||'')) || new Date(nx.getTime()+7200000))+'&details='+encodeURIComponent('中目黒 Belle douce');
+        h+='<div class="ticket"><div class="t-main"><div class="t-label">RESERVATION</div><div class="t-date"><b>'+(nx.getMonth()+1)+'/'+nx.getDate()+'</b><span>'+WE[nx.getDay()]+'.</span></div><div class="t-time">'+hm(nx)+(D.next.end?' – '+esc(D.next.end):'')+'</div>'
+          +'<div class="t-act"><a class="btn ghost" href="'+gcal+'" target="_blank" rel="noopener">カレンダーに入れる</a><a class="btn ghost" href="'+oa('ご予約の変更について')+'">変更のご相談</a></div></div>'
+          +'<div class="t-side"><div class="cd">'+(left<=0?'<small>TODAY</small><b>本日</b><em>お待ちしています</em>':'<small>あと</small><b>'+left+'</b><em>日</em>')+'</div></div></div>';
+      }else{
+        h+='<div class="ticket"><div class="t-main empty-t" style="grid-column:1/-1">次回のご予約はまだありません<p>下の空き状況から、ご都合のよいお時間をお選びください</p><a class="btn gold" href="#slots">空き状況を見る</a></div></div>';
+      }
+      h+='</section>';
+      // 回数券
+      if(D.course&&D.course.total){
+        var c=D.course,used=c.total-c.rem;
+        h+='<section class="rise" style="animation-delay:.22s"><div class="sh"><span class="en">Your Course</span><span class="ja">回数券</span></div><div class="pearlcard"><div class="necklace" id="neck" data-total="'+c.total+'" data-used="'+used+'"></div>'
+          +'<div class="pc-txt"><div class="big">'+c.total+'回コース　<b>'+used+'</b>回終了・残り<b>'+c.rem+'</b>回</div>'+(c.expiry?'<div class="ex">有効期限　'+c.expiry.replace(/-/g,'.')+'</div>':'')+'</div></div></section>';
+      }
+    }
+    // メニュー
+    h+='<section class="rise" style="animation-delay:.3s"><div class="sh"><span class="en">For You</span><span class="ja">メニュー</span></div><div class="tiles">';
+    h+=tile('hero shine',D.karte||'',IC.karte,'My Skin Karte','マイ肌カルテ',D.karte?'あなたのお肌の記録とこれからのロードマップ':D.pending?'読み込んでいます…':'ご本人確認のあとに表示されます',(D.karte?'<span class="go">ひらく<i></i></span>':'')+'<span class="lace"></span>');
+    h+=tile('',D.note||'',IC.note,'Beauty Note','きれいノート','食事・体重・お肌の調子');
+    h+=tile('',D.aki||'',IC.cal,'Availability','空き状況','ご予約できるお時間');
+    h+=tile('',D.card||'',IC.card,'Stamp Card','来店カード','スタンプと特典');
+    h+=tile('',oa(''),IC.chat,'Message','ご相談','トークでお気軽に');
+    h+=tile('',D.access||'',IC.map,'Access','アクセス','中目黒駅から');
+    h+=tile('',D.insta||'',IC.insta,'Instagram','インスタグラム','お知らせと症例');
+    h+='</div></section>';
+    // 空き状況
+    h+='<section class="rise" id="slots" style="animation-delay:.38s"><div class="sh"><span class="en">Open Times</span><span class="ja">ご予約できるお時間</span></div>';
+    var S=(D.slots||[]).map(pd).filter(Boolean);
+    if(D.pending&&!S.length){h+='<div class="skel" style="height:110px"></div>';}
+    else if(S.length){
+      var base=nx||null;
+      h+='<div class="slots">'+S.map(function(d){var best=base&&Math.round((day0(d)-day0(base))/86400000);var b=best>=21&&best<=29;
+        return '<a class="slot'+(b?' best':'')+'" href="'+oa((d.getMonth()+1)+'/'+d.getDate()+'（'+W[d.getDay()]+'）'+hm(d)+'〜 で予約をお願いします')+'">'+(b?'<span class="tag">おすすめ</span>':'')+'<span class="m">'+(d.getMonth()+1)+'月</span><span class="d">'+d.getDate()+'</span><span class="w">'+W[d.getDay()]+'曜日</span><span class="h">'+hm(d)+'</span></a>'}).join('')+(D.aki?'<a class="slot more" href="'+esc(D.aki)+'" target="_blank" rel="noopener">View all</a>':'')+'</div>'
+        +'<p class="hint">お時間をタップすると、ご予約のメッセージを作ってトークを開きます。送信すると、三枝からご連絡します。</p>';
+    }else h+='<div class="noslot">ただいま公開中の空き枠はありません。<br>ご希望の日時をトークでお知らせください。</div>';
+    h+='</section>';
+    // 結び
+    h+='<section class="closing rise" style="animation-delay:.45s"><p>今日のお手入れが、未来のあなたの素肌をつくります。<br>いつでも、お気軽にご相談くださいね。</p><span class="sign">Yuka Saegusa</span>'
+      +'<div class="foot"><a href="https://belledouce.github.io/" target="_blank" rel="noopener">ホームページ</a><a href="https://belledouce.github.io/blog/" target="_blank" rel="noopener">ブログ</a></div></section>';
+    app.innerHTML=h;
+    if(RENDERED)app.classList.add('ready'); RENDERED=true;   // 2回目以降（最新に差し替え）はふわっと出し直さない
+    drawNecklace();
+  }
+  function fmtG(d){function p(n){return ('0'+n).slice(-2)}return d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+'T'+p(d.getHours())+p(d.getMinutes())+'00'}
+  function tile(cls,href,ic,en,ja,sub,extra){
+    var ext=/^https?:/.test(href)&&href.indexOf('line.me/R/')<0;
+    return '<a class="tile '+cls+(href?'':' dis')+'" href="'+esc(href||'#')+'"'+(ext?' target="_blank" rel="noopener"':'')+'><span class="ic">'+ic+'</span><span class="en">'+en+'</span><span class="ja">'+ja+'</span><span class="sub">'+esc(sub)+'</span>'+(extra||'')+'</a>';
+  }
+  // 真珠を弧の上に並べる（済んだ回は金の真珠・次の回に輪）
+  function drawNecklace(){
+    var el=document.getElementById('neck'); if(!el)return;
+    var n=+el.dataset.total,u=+el.dataset.used,w=el.clientWidth,hh=el.clientHeight;
+    var pts=[],sag=hh-52,i,x0=13,x1=w-13;
+    for(i=0;i<n;i++){var t=n===1?.5:i/(n-1),x=x0+t*(x1-x0),y=12+sag*4*t*(1-t);pts.push([x,y]);}
+    var s='<svg class="str" viewBox="0 0 '+w+' '+hh+'" aria-hidden="true"><path d="M'+(x0-12)+' 9 Q'+(w/2)+' '+(12+2*sag)+' '+(x1+12)+' 9" fill="none" stroke="var(--gold)" stroke-width=".9" opacity=".6"/></svg>';
+    s+=pts.map(function(p,k){return '<span class="pearl'+(k<u?' on':'')+(k===u?' now':'')+'" style="left:'+p[0]+'px;top:'+p[1]+'px;animation-delay:'+(k*.12)+'s" title="'+(k+1)+'回目"></span>'}).join('');
+    if(u<n){var q=pts[u];s+='<span class="nextlab" style="left:'+q[0]+'px;top:'+(q[1]+18)+'px">NEXT</span>';}
+    else{var mid=pts[Math.floor((n-1)/2)];s+='<svg class="charm" viewBox="0 0 16 22" style="left:'+mid[0]+'px;top:'+(mid[1]+14)+'px" aria-hidden="true"><path d="M8 0v5" stroke="currentColor" stroke-width=".8"/><path d="M8 6c4 4 6 7 6 9.5A6 6 0 0 1 2 15.5C2 13 4 10 8 6z" fill="currentColor" opacity=".85"/></svg>';}
+    el.innerHTML=s; el.setAttribute('role','img'); el.setAttribute('aria-label',n+'回のうち'+u+'回終了');
+  }
+  (function(){var sky=document.getElementById('sky');if(!sky)return;for(var i=0;i<4;i++){var p=document.createElement('span');p.className='petal';p.style.left=(5+Math.random()*90)+'%';p.style.animationDuration=(14+Math.random()*12)+'s';p.style.animationDelay=(-Math.random()*20)+'s';sky.appendChild(p);}})();
+  window.addEventListener('resize',function(){clearTimeout(window._rz);window._rz=setTimeout(drawNecklace,150)});
+
+  function fail(msg){app.innerHTML='<div class="brand">BELLE DOUCE</div><div class="err">'+esc(msg)+'</div>';}
+  function post(body,tries){return fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)}).then(function(r){return r.text()}).then(function(tx){tx=String(tx||'').trim();if(tx.charAt(0)!=='{'){var i=tx.indexOf('{"ok"');if(i<0)throw 0;tx=tx.slice(i,tx.lastIndexOf('}')+1)}return JSON.parse(tx)}).catch(function(e){if(tries>1)return post(body,tries-1);throw e})}
+
+  if(DEMO){   // 見本は通信なしでその場で表示（由佳さんの名前で表示）
+    var f=function(d,t){var x=new Date(Date.now()+d*86400000);return x.getFullYear()+'-'+('0'+(x.getMonth()+1)).slice(-2)+'-'+('0'+x.getDate()).slice(-2)+'T'+t};
+    render({ok:true,demo:true,linked:Q.get('u')!=='0',name:'三枝 由佳',call:'由佳',next:Q.get('n')==='0'?null:{iso:f(9,'13:15'),end:'15:15'},course:{total:6,rem:2,expiry:f(120,'').slice(0,10)},
+      karte:'https://belledouce.github.io/mykarte.html?t=375a8678867559930e5b00d6',note:'https://belledouce.github.io/meal.html?demo=1',
+      slots:[f(2,'11:00'),f(3,'15:30'),f(5,'13:15'),f(6,'17:45'),f(8,'11:00'),f(12,'15:30'),f(30,'13:15'),f(31,'11:00')],
+      card:'https://u.lin.ee/mypFzR8',access:'https://belledouce.github.io/#access',insta:'https://www.instagram.com/belledouce_fa',aki:'https://belledouce.github.io/aki.html'});
+    return;
+  }
+  var STATIC={card:'https://u.lin.ee/mypFzR8',access:'https://belledouce.github.io/#access',insta:'https://www.instagram.com/belledouce_fa',aki:'https://belledouce.github.io/aki.html'};
+  // 開いた瞬間に表示：前回の内容（この端末に保存）があればそれを、無ければ形だけ出してすぐ操作できるようにする（2026-10-17 由佳さん「軽くしたい」）
+  var last=store('bd_portal_last');
+  function shell(){var o={ok:true,pending:true};for(var k in STATIC)o[k]=STATIC[k];return o}
+  render(last&&last.ok?last:shell());
+  if(!window.liff||!LIFF_ID){if(!last)fail('このページは公式LINEのメニューから開いてください。');return;}
+  liff.init({liffId:LIFF_ID}).then(function(){
+    if(!liff.isLoggedIn()){liff.login({redirectUri:location.href});return;}
+    var sub='';try{sub=(liff.getDecodedIDToken()||{}).sub||''}catch(e){}
+    if(last&&last._sub!==sub)render(shell());   // 別の方のLINEで開かれた時は、前の方の内容を出さない
+    return post({type:'portal_get',idToken:liff.getIDToken()},3).then(function(j){
+      if(!j||!j.ok){if(!last)fail((j&&j.msg)||'読み込めませんでした。');return;}
+      j._sub=sub; store('bd_portal_last',j); render(j);
+    });
+  }).catch(function(){if(!last)fail('読み込めませんでした。LINEから開き直してください。')});
+})();
+</script>
+</body>
+</html>
