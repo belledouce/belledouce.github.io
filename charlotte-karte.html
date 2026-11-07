@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>シャルロッテ 宝箱カルテ</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@1,500&display=swap">
+<style>
+:root{--bg:#f8ece8;--paper:#fffdfb;--ink:#4a3436;--mute:#8d7774;--line:#ead6d0;--rose:#b07a80;--gold:#b8996a;--chip:#f6e6e3}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN",sans-serif;font-size:15px;line-height:1.7}
+.wrap{max-width:560px;margin:0 auto;padding:24px 16px 60px}
+.hero{text-align:center;background:var(--paper);border:1px solid var(--gold);outline:3px double var(--gold);outline-offset:-8px;border-radius:4px;padding:28px 20px 22px}
+.hero .sc{font-family:"Pinyon Script",cursive;color:var(--rose);font-size:40px;line-height:1;margin:0}
+.hero h1{font-size:19px;margin:8px 0 6px;letter-spacing:.08em}
+.hero p{margin:0;color:var(--mute);font-size:13.5px}
+.demo{margin:12px 0 0;text-align:center;font-size:12px;color:var(--rose)}
+form{display:grid;gap:14px;margin-top:18px}
+fieldset{border:0;margin:0;background:var(--paper);border-radius:14px;padding:16px;border:1px solid var(--line)}
+legend{float:left;width:100%;padding:0;margin:0 0 8px;font-weight:700;font-size:15px}
+legend small{font-weight:400;color:var(--mute);font-size:12px;margin-left:6px}
+.req{font-size:11px;color:#fff;background:var(--rose);border-radius:999px;padding:0 7px;margin-left:6px;vertical-align:2px}
+.q{font-family:"Cormorant Garamond",serif;font-style:italic;color:var(--gold);font-size:15px;margin-right:6px}
+.opts{display:flex;flex-wrap:wrap;gap:8px;clear:both}
+.opts label{position:relative}
+.opts input{position:absolute;opacity:0;inset:0}
+.opts span{display:inline-block;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font-size:14px;cursor:pointer}
+.opts input:checked+span{background:var(--rose);border-color:var(--rose);color:#fff}
+.opts input:focus-visible+span{outline:2px solid var(--gold);outline-offset:2px}
+.col .opts span{display:flex;align-items:center;gap:8px}
+.dot{width:14px;height:14px;border-radius:50%;display:inline-block;border:1px solid rgba(0,0,0,.08)}
+input[type=text],textarea,select{width:100%;font:inherit;color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:9px 11px;background:#fff;clear:both}
+textarea{min-height:70px}
+.note{font-size:12px;color:var(--mute);margin:6px 0 0;clear:both}
+button{font:inherit;font-weight:700;letter-spacing:.1em;background:var(--rose);color:#fff;border:0;border-radius:999px;padding:14px;cursor:pointer}
+.done{display:none;text-align:center;background:var(--paper);border-radius:14px;padding:30px 18px;border:1px solid var(--gold)}
+.done .sc{font-family:"Pinyon Script",cursive;color:var(--rose);font-size:36px;margin:0}
+</style></head><body><div class="wrap">
+<div class="hero">
+  <p class="sc">Maison de Charlotte</p>
+  <h1>あなたのための 宝箱カルテ</h1>
+  <p>好きな色・モチーフ・いまの毎日を教えてください。<br>シャルロッテが、あなたにぴったりのアクセサリーで<br>宝箱をコーディネートします。</p>
+</div>
+<p class="demo" id="demo" hidden>※ これは見本です。送信してもどこにも届きません</p>
+<form id="f">
+<fieldset><legend><span class="q">01</span>お名前<span class="req">必須</span><small>ご注文時のお名前</small></legend><input type="text" id="nm" placeholder="例：佐藤 花子" required></fieldset>
+<fieldset><legend><span class="q">02</span>Instagramのお名前<small>わかれば</small></legend><input type="text" id="ig" placeholder="@"></fieldset>
+<fieldset class="col"><legend><span class="q">03</span>好きなアクセサリーの色<span class="req">必須</span></legend><div class="opts">
+<label><input type="radio" name="color" value="ゴールド" required><span><i class="dot" style="background:#d4b26a"></i>ゴールド</span></label>
+<label><input type="radio" name="color" value="シルバー"><span><i class="dot" style="background:#cfd2d6"></i>シルバー</span></label>
+<label><input type="radio" name="color" value="どちらも"><span>どちらも好き</span></label></div></fieldset>
+<fieldset class="col"><legend><span class="q">04</span>心ときめくカラー<small>いくつでも</small></legend><div class="opts">
+<label><input type="checkbox" name="tone" value="シャンパン・パール"><span><i class="dot" style="background:#efe2cf"></i>シャンパン・パール</span></label>
+<label><input type="checkbox" name="tone" value="ショコラ・ブラウン"><span><i class="dot" style="background:#7a5240"></i>ショコラ・ブラウン</span></label>
+<label><input type="checkbox" name="tone" value="ラベンダー"><span><i class="dot" style="background:#b9a3d4"></i>ラベンダー</span></label>
+<label><input type="checkbox" name="tone" value="ブルー"><span><i class="dot" style="background:#9cbbe0"></i>ブルー</span></label>
+<label><input type="checkbox" name="tone" value="ピンク"><span><i class="dot" style="background:#efb7c3"></i>ピンク</span></label>
+<label><input type="checkbox" name="tone" value="ホワイト"><span><i class="dot" style="background:#fff"></i>ホワイト</span></label></div></fieldset>
+<fieldset><legend><span class="q">05</span>好きなモチーフ<small>いくつでも</small></legend><div class="opts">
+<label><input type="checkbox" name="motif" value="リボン"><span>リボン</span></label><label><input type="checkbox" name="motif" value="ハート"><span>ハート</span></label><label><input type="checkbox" name="motif" value="パール"><span>パール</span></label><label><input type="checkbox" name="motif" value="お花"><span>お花</span></label><label><input type="checkbox" name="motif" value="クローバー"><span>クローバー</span></label><label><input type="checkbox" name="motif" value="星・月"><span>星・月</span></label><label><input type="checkbox" name="motif" value="蝶"><span>蝶</span></label><label><input type="checkbox" name="motif" value="王冠"><span>王冠</span></label><label><input type="checkbox" name="motif" value="ビジュー"><span>キラキラのビジュー</span></label><label><input type="checkbox" name="motif" value="天然石"><span>天然石</span></label></div></fieldset>
+<fieldset><legend><span class="q">06</span>雰囲気</legend><div class="opts">
+<label><input type="radio" name="taste" value="甘め・ガーリー"><span>甘め・ガーリー</span></label><label><input type="radio" name="taste" value="上品・エレガント"><span>上品・エレガント</span></label><label><input type="radio" name="taste" value="シンプル・華奢"><span>シンプル・華奢</span></label><label><input type="radio" name="taste" value="ヴィンテージ"><span>ヴィンテージ</span></label><label><input type="radio" name="taste" value="華やか・存在感"><span>華やか・存在感</span></label></div></fieldset>
+<fieldset><legend><span class="q">07</span>いちばん使うシーン</legend><div class="opts">
+<label><input type="checkbox" name="scene" value="お仕事"><span>お仕事</span></label><label><input type="checkbox" name="scene" value="学校"><span>学校</span></label><label><input type="checkbox" name="scene" value="子育て中"><span>子育て中</span></label><label><input type="checkbox" name="scene" value="お出かけ・デート"><span>お出かけ・デート</span></label><label><input type="checkbox" name="scene" value="特別な日"><span>特別な日</span></label></div>
+<p class="note">お仕事でつけられない物があれば、下の「つけられないもの」で教えてください</p></fieldset>
+<fieldset><legend><span class="q">08</span>つけられないアクセサリー<small>あれば</small></legend><div class="opts">
+<label><input type="checkbox" name="ng" value="ピアス"><span>ピアス（穴なし）</span></label><label><input type="checkbox" name="ng" value="リング"><span>リング</span></label><label><input type="checkbox" name="ng" value="ネックレス"><span>ネックレス</span></label><label><input type="checkbox" name="ng" value="ブレスレット"><span>ブレスレット</span></label></div></fieldset>
+<fieldset><legend><span class="q">09</span>金属アレルギー<span class="req">必須</span></legend><div class="opts">
+<label><input type="radio" name="allergy" value="なし" required><span>なし</span></label><label><input type="radio" name="allergy" value="あり"><span>あり</span></label><label><input type="radio" name="allergy" value="わからない"><span>わからない</span></label></div></fieldset>
+<fieldset><legend><span class="q">10</span>リングのサイズ</legend><select id="ring"><option value="">わからない</option><option>5号以下</option><option>6〜8号</option><option>9〜11号</option><option>12〜14号</option><option>15号以上</option></select><p class="note">調整できるリングを中心にお選びします</p></fieldset>
+<fieldset><legend><span class="q">11</span>髪の長さ<small>ヘアアクセを選ぶ目安に</small></legend><div class="opts">
+<label><input type="radio" name="hair" value="ショート"><span>ショート</span></label><label><input type="radio" name="hair" value="ボブ"><span>ボブ</span></label><label><input type="radio" name="hair" value="ミディアム"><span>ミディアム</span></label><label><input type="radio" name="hair" value="ロング"><span>ロング</span></label></div></fieldset>
+<fieldset><legend><span class="q">12</span>おまけの雑貨で嬉しいもの<small>いくつでも</small></legend><div class="opts">
+<label><input type="checkbox" name="zakka" value="ヘアアクセ"><span>ヘアアクセ</span></label><label><input type="checkbox" name="zakka" value="ポーチ"><span>ポーチ</span></label><label><input type="checkbox" name="zakka" value="バッグチャーム"><span>バッグチャーム</span></label><label><input type="checkbox" name="zakka" value="文房具"><span>文房具</span></label><label><input type="checkbox" name="zakka" value="ジュエリーケース"><span>ジュエリーケース</span></label><label><input type="checkbox" name="zakka" value="キャンドル・お花"><span>キャンドル・お花</span></label></div></fieldset>
+<fieldset><legend><span class="q">13</span>苦手なもの・入れてほしくないもの<small>あれば</small></legend><textarea id="nope" placeholder="例：ハートモチーフ、ヘアピン、キャンドル（香りが苦手）"></textarea></fieldset>
+<fieldset><legend><span class="q">14</span>シャルロッテへひとこと<small>自由に</small></legend><textarea id="msg" placeholder="例：持っていないブレスレットが欲しいです／パーソナルカラーはブルベ夏です"></textarea></fieldset>
+<button type="submit">宝箱カルテを送る</button>
+</form>
+<div class="done" id="done"><p class="sc">Merci</p><p>ありがとうございます。<br>次の宝箱から、いただいた好みでコーディネートします。<br>好みが変わったら、いつでもこのカルテを書き直せます。</p></div>
+</div>
+<script>
+var GAS='https://script.google.com/macros/s/AKfycbyHoqfYiID1jEjSLQBVY25cQDnwjZwW3xjp0KWQdxMEom3uCghswPBgUX9DpbLTpOXcCw/exec';
+var DEMO=/[?&]demo=1/.test(location.search);if(DEMO)document.getElementById('demo').hidden=false;
+function vals(n){return [].slice.call(document.querySelectorAll('input[name="'+n+'"]:checked')).map(function(x){return x.value})}
+function one(n){var v=vals(n);return v[0]||''}
+document.getElementById('f').addEventListener('submit',function(e){e.preventDefault();var b=e.target.querySelector('button');
+ var body={type:'charlotte_karte_submit',name:document.getElementById('nm').value,ig:document.getElementById('ig').value,color:one('color'),tone:vals('tone'),motif:vals('motif'),taste:one('taste'),scene:vals('scene'),ng:vals('ng'),allergy:one('allergy'),ring:document.getElementById('ring').value,hair:one('hair'),zakka:vals('zakka'),nope:document.getElementById('nope').value,msg:document.getElementById('msg').value};
+ function done(){e.target.style.display='none';document.getElementById('demo').hidden=true;document.getElementById('done').style.display='block';scrollTo(0,0)}
+ if(DEMO){done();return}
+ b.disabled=true;b.textContent='送信しています…';
+ fetch(GAS,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)}).then(function(r){return r.json()}).then(function(j){if(j&&j.ok)done();else{b.disabled=false;b.textContent='宝箱カルテを送る';alert((j&&j.msg)||'送信できませんでした。もう一度お試しください。')}}).catch(function(){b.disabled=false;b.textContent='宝箱カルテを送る';alert('送信できませんでした。電波の良い所でもう一度お試しください。')});
+});
+</script></body></html>
