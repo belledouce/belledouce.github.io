@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2027年の美肌メイキング計画 ｜ Belle douce</title>
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@500&family=Noto+Serif+JP:wght@300;400&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+:root{--ivory:#fbf6ee;--pinkbeige:#f7ecdc;--ink:#3f2f2a;--ink-soft:#7d6a5f;--gold:#d4b25c;--gold-deep:#a8822e;--line:#ecdfc6;--rose:#a8283f;--green:#1e5a42;--pine:#0f3b2c}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans JP",sans-serif;color:var(--ink);font-weight:300;line-height:1.9;letter-spacing:.03em;background:var(--ivory);-webkit-font-smoothing:antialiased}
+.wrap{max-width:520px;margin:0 auto;padding:32px 18px 60px}
+.brand{display:block;text-align:center;font-family:"Cormorant Garamond",serif;font-size:26px;letter-spacing:.24em;color:var(--ink);text-decoration:none}
+.brand small{display:block;font-size:9px;letter-spacing:.5em;color:var(--gold-deep);margin-top:4px}
+.eyebrow{display:block;text-align:center;font-family:"Cormorant Garamond",serif;font-size:12px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold-deep);margin:30px 0 6px}
+h1{text-align:center;font-family:"Noto Serif JP",serif;font-weight:300;font-size:22px;letter-spacing:.1em;margin-bottom:12px;text-wrap:balance}
+.intro{font-size:13.5px;color:var(--ink-soft);text-align:center;margin-bottom:22px}
+.dates{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.dates span{font-size:12px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:2px 12px}
+.dates b{font-weight:500;color:var(--rose)}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px 20px}
+.prog{display:flex;gap:5px;margin-bottom:18px}
+.prog i{flex:1;height:3px;border-radius:3px;background:var(--line)}
+.prog i.on{background:var(--rose)}
+.qn{font-family:"Cormorant Garamond",serif;color:var(--gold-deep);font-size:15px;letter-spacing:.14em}
+.qt{font-family:"Noto Serif JP",serif;font-weight:400;font-size:18px;line-height:1.7;margin:4px 0 6px}
+.hint{font-size:12.5px;color:var(--ink-soft);margin-bottom:18px}
+.yn{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.yn button{padding:16px 8px;font:inherit;font-size:16px;letter-spacing:.14em;border-radius:14px;cursor:pointer;border:1px solid var(--line)}
+.yes{background:var(--rose);color:#fff;border-color:var(--rose)!important}
+.no{background:var(--ivory);color:var(--ink)}
+.back{display:block;margin:16px auto 0;background:none;border:0;font:inherit;font-size:12.5px;color:var(--ink-soft);text-decoration:underline;cursor:pointer}
+.note{background:var(--pinkbeige);border-radius:14px;padding:14px 16px;font-size:13px;margin-bottom:18px}
+.note b{font-weight:500}
+.item{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 16px;margin:12px 0}
+.item h3{font-family:"Noto Serif JP",serif;font-weight:400;font-size:16px;line-height:1.6}
+.price{font-size:13px;color:var(--ink-soft)}
+.gift{font-size:12.5px;margin:6px 0 8px;padding-left:1.2em;text-indent:-1.2em}
+.odds{font-size:12px;color:var(--gold-deep);margin-bottom:10px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;border-top:1px dashed var(--line);padding-top:10px}
+.row label{font-size:12.5px;color:var(--ink-soft)}
+.step{display:flex;align-items:center;gap:6px}
+.step button{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--ivory);font-size:18px;line-height:1;color:var(--ink);cursor:pointer}
+.step output{min-width:2.4em;text-align:center;font-size:16px}
+.rec{margin-top:8px;display:flex;align-items:baseline;justify-content:space-between;gap:8px;background:var(--ivory);border-radius:10px;padding:8px 12px}
+.rec span{font-size:12.5px}
+.rec b{font-family:"Noto Serif JP",serif;font-weight:400;font-size:26px;color:var(--rose);line-height:1}
+.rec b small{font-size:13px;margin-left:2px}
+.more{margin-top:22px}
+.more summary{cursor:pointer;font-size:13px;color:var(--ink-soft);text-align:center;list-style:none}
+.more summary::-webkit-details-marker{display:none}
+.add{display:block;margin-top:8px;width:100%;padding:8px;font:inherit;font-size:13px;border:1px dashed var(--rose);background:#fff;color:var(--rose);border-radius:10px;cursor:pointer}
+.rm{background:none;border:0;font:inherit;font-size:12px;color:var(--ink-soft);text-decoration:underline;cursor:pointer}
+.cta{display:block;width:100%;margin-top:26px;padding:16px;font:inherit;font-size:15px;letter-spacing:.1em;color:#fff;background:#06c755;border:0;border-radius:40px;cursor:pointer;text-align:center;text-decoration:none}
+.small{font-size:11.5px;color:var(--ink-soft);margin-top:12px;line-height:1.8}
+.again{display:block;margin:18px auto 0;background:none;border:0;font:inherit;font-size:12.5px;color:var(--ink-soft);text-decoration:underline;cursor:pointer}
+.checks{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.opt{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;line-height:1.6;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--ivory);cursor:pointer}
+.opt input{width:20px;height:20px;flex:none;margin-top:2px;accent-color:var(--rose)}
+.opt small{display:block;color:var(--ink-soft);font-size:11.5px;line-height:1.6;margin-top:2px}
+.opt:has(input:checked){border-color:var(--rose);background:#fff}
+.go{display:block;width:100%;margin-top:22px;padding:15px;font:inherit;font-size:15px;letter-spacing:.12em;color:#fff;background:var(--gold-deep);border:0;border-radius:40px;cursor:pointer}
+.err{color:#b4574b;font-size:12.5px;text-align:center;margin-top:8px}
+.gh{font-family:"Noto Serif JP",serif;font-size:13px;color:var(--gold-deep);letter-spacing:.12em;margin:12px 0 -2px}
+.gh:first-child{margin-top:0}
+.why{list-style:none;margin:2px 0 8px;font-size:12.5px}
+.why li{position:relative;padding-left:1.1em}
+.why li::before{content:"♡";position:absolute;left:0;color:var(--rose);font-size:11px;top:1px}
+.note .sm{font-size:12px}
+.val{background:var(--ivory);border-radius:12px;padding:10px 12px;margin:10px 0}
+.vh{font-size:12.5px;font-weight:500;color:var(--ink)}
+.gl{list-style:none;font-size:12.5px;margin:2px 0 6px}
+.gl li{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.gv{color:var(--ink-soft);white-space:nowrap}
+.sv,.mo{font-size:12.5px;margin-top:4px}
+.sv b,.mo b{font-weight:500;color:var(--rose);font-size:14px}
+.sv small,.mo small{display:block;font-size:11.5px;color:var(--ink-soft);line-height:1.6}
+.copy{margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.copy pre{white-space:pre-wrap;font:inherit;font-size:13px;background:var(--ivory);border-radius:10px;padding:10px 12px;margin:6px 0 10px;user-select:all}
+.cbtn{display:block;width:100%;padding:11px;font:inherit;font-size:14px;color:var(--gold-deep);background:#fff;border:1px solid var(--gold);border-radius:30px;cursor:pointer}
+.nm{display:block;font-size:13px;margin:12px 0 4px}
+.nm input{display:block;width:100%;margin-top:4px;font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--ivory);color:var(--ink)}
+.budget{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.chip input{position:absolute;opacity:0}
+.chip span{display:inline-block;font-size:13px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:var(--ivory);cursor:pointer}
+.chip input:checked+span{background:var(--rose);border-color:var(--rose);color:#fff}
+.chip input:focus-visible+span{outline:2px solid var(--gold)}
+.tot{margin-top:20px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 16px;font-size:13px}
+.tot b{font-weight:500;color:var(--rose);font-size:15px}
+.warn{color:#b4574b;font-size:12.5px;margin-top:6px}
+.pick{background:#fff;border:1.5px solid var(--gold);border-radius:16px;padding:14px 16px;margin-bottom:6px}
+.pk-h{font-family:"Noto Serif JP",serif;font-size:15px;color:var(--gold-deep);margin-bottom:6px}
+.pick ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+.pick li b{display:block;font-weight:500;font-size:14px}
+.pick li span{font-size:12.5px;color:var(--ink-soft)}
+.item.star{border-color:var(--gold)}
+.badge{display:inline-block;font-family:"Noto Sans JP",sans-serif;font-size:10.5px;color:#fff;background:var(--gold-deep);border-radius:20px;padding:0 8px;margin-right:6px;vertical-align:2px}
+.plan{background:#fff;border:1.5px solid var(--rose);border-radius:16px;padding:14px 16px;margin-bottom:10px}
+.plan ul{list-style:none;font-size:13.5px;margin:4px 0}
+.plan li span{font-size:12px;color:var(--ink-soft)}
+.nt{display:block;font-size:11px;color:var(--ink-soft)}
+.hint{font-size:12.5px;color:var(--ink-soft);margin:2px 0 0}
+#req{display:block;width:100%;margin-top:4px;font:inherit;font-size:15px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--ivory);color:var(--ink)}
+/* ===== Christmas（2026-11-03 由佳さん「クリスマスっぽいカラーリングやキラキラでワクワク」） ===== */
+body{background:var(--ivory) radial-gradient(circle at 20% 10%,rgba(212,178,92,.10) 0 2px,transparent 3px) 0 0/38px 38px}
+.wrap{padding-top:0}
+.hero{position:relative;overflow:hidden;margin:0 -18px 22px;padding:34px 22px 30px;text-align:center;color:#f7ecd2;
+  background:radial-gradient(120% 90% at 50% 0%,#1f6a4d 0%,var(--pine) 60%,#0a2b20 100%);border-radius:0 0 28px 28px;box-shadow:0 10px 30px rgba(15,59,44,.25)}
+.hero .brand{color:#f7ecd2}.hero .brand small{color:var(--gold)}
+.script{font-family:"Great Vibes",cursive;font-size:34px;line-height:1.2;color:var(--gold);margin-top:14px;text-shadow:0 0 12px rgba(212,178,92,.55)}
+.hero .eyebrow{color:#e8d49a;margin:6px 0 8px}
+.hero h1{color:#fff;font-size:24px;line-height:1.55}
+.glit{background:linear-gradient(100deg,#b8862b 0%,#f6e3a1 25%,#c99a3a 45%,#fff3c4 60%,#b8862b 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:400;animation:shine 4.5s linear infinite}
+@keyframes shine{to{background-position:-250% 0}}
+.hero .intro{color:#efe3c8;margin:10px 0 4px}
+.garland{height:16px;margin-top:16px;background:radial-gradient(circle,#e5c46b 0 3px,transparent 4px) 0 50%/26px 16px repeat-x,radial-gradient(circle,#c8344c 0 3px,transparent 4px) 13px 50%/26px 16px repeat-x;opacity:.9}
+.sky{position:absolute;inset:0;pointer-events:none}
+.sky i{position:absolute;color:#fff6d0;font-style:normal;animation:tw 2.8s ease-in-out infinite;text-shadow:0 0 8px rgba(255,236,170,.9)}
+.sky b{position:absolute;top:-8px;width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.85);animation:snow linear infinite}
+@keyframes tw{0%,100%{opacity:.15;transform:scale(.6)}50%{opacity:1;transform:scale(1.15)}}
+@keyframes snow{to{transform:translate(18px,560px);opacity:0}}
+.dates span{border-color:var(--gold);background:#fffdf7}
+.dates b{color:var(--rose)}
+.card,.item,.copy,.tot{border-color:var(--line);box-shadow:0 4px 18px rgba(120,90,40,.08)}
+.card{position:relative;border-top:4px solid var(--rose)}
+.card::before{content:"✦";position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--rose);color:#ffe9a8;width:26px;height:26px;border-radius:50%;font-size:13px;line-height:26px;text-align:center}
+.qn{color:var(--green);letter-spacing:.24em}
+.gh{color:var(--green)}
+.go{background:linear-gradient(135deg,#b8323f,#7d1a2b);box-shadow:0 6px 16px rgba(168,40,63,.3);position:relative;overflow:hidden}
+.go::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,240,200,.45) 50%,transparent 70%);transform:translateX(-100%);animation:sweep 3.2s ease-in-out infinite}
+@keyframes sweep{60%,100%{transform:translateX(100%)}}
+.chip input:checked+span{background:var(--green);border-color:var(--green)}
+.opt input{accent-color:var(--green)}
+.opt:has(input:checked){border-color:var(--green);background:#f4faf6}
+.note{background:#fdf3e2;border:1px solid #f0dcb3}
+.pick{border-color:var(--gold);background:linear-gradient(180deg,#fffaf0,#fff)}
+.pk-h{color:var(--rose)}
+.plan{border-color:var(--green)}
+.badge{background:linear-gradient(135deg,#c99a3a,#a8822e)}
+.item.star{border-color:var(--gold);box-shadow:0 0 0 2px rgba(212,178,92,.25),0 6px 20px rgba(168,130,46,.15)}
+.rec b,.sv b,.mo b{color:var(--rose)}
+.why li::before{content:"✦";color:var(--gold-deep)}
+@media (prefers-reduced-motion:reduce){.glit,.go::after,.sky i,.sky b{animation:none}}
+.gd{list-style:none;flex-basis:100%;font-size:11.5px;color:var(--ink);margin:2px 0 4px;padding-left:2px}
+.gd li{display:block;position:relative;padding-left:1.1em;line-height:1.6}
+.gd li::before{content:"✦";position:absolute;left:0;color:var(--gold-deep);font-size:10px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="sky" id="sky" aria-hidden="true"></div>
+    <a class="brand" href="index.html">Belle douce<small>PRIVATE ESTHETIC SALON</small></a>
+    <p class="script">Merry Christmas</p>
+    <span class="eyebrow">✦ Christmas Coffret 2026 ✦</span>
+    <h1>2027年の<br><span class="glit">美肌メイキング計画</span></h1>
+    <p class="intro" id="intro">2027年、どんなお肌で過ごしたいか、<br>三枝と作戦を立てていきましょう。<br>チェックをつけるだけで、あなたに合うコフレと<br>買っておくと安心な箱数がわかります。</p>
+    <div class="garland" aria-hidden="true"></div>
+  </header>
+  <div class="dates"><span>締切 <b>11月8日（日）</b></span><span>当選のご連絡 11月17日以降</span><span>お渡し 11月下旬ごろ</span></div>
+
+  <section id="start" class="card">
+    <div class="qn">WELCOME</div>
+    <p class="qt">まずは、お名前を教えてください。</p>
+    <label class="nm">お名前（フルネーム）<input id="nm" type="text" autocomplete="name" placeholder="例：三枝 由佳"></label>
+    <p class="err" id="err0" hidden>お名前を入れてください。</p>
+    <button class="go" id="startbtn">はじめる</button>
+    <p class="small" id="loading" hidden style="text-align:center">カルテを確認しています…</p>
+  </section>
+
+  <section id="quiz" class="card" hidden>
+    <div class="qn">MY PLAN</div>
+    <p class="qt" id="quizq">あてはまるものに、チェックをつけてください。</p>
+    <p class="gh" id="planh">2027年の計画</p>
+    <p class="hint">コフレで、何ヶ月分のスキンケアをそろえておきたいですか？</p>
+    <div class="budget" id="months"></div>
+    <div class="checks" style="margin-top:10px">
+      <label class="opt"><input type="checkbox" id="s_cheri"><span>ゆらぎやすい季節（春・秋）だけシェリーにしたい</span></label>
+      <label class="opt"><input type="checkbox" id="s_claire"><span>乾燥する冬だけクレアにしたい</span></label>
+    </div>
+    <label class="nm">ご要望・計画（自由に）<textarea id="req" rows="3" placeholder="例：2027年は毛穴をなんとかしたい／肌を褒められる一年にしたい／三枝さんに相談したいことがある など"></textarea></label>
+    <div class="checks" id="checks"></div>
+    <p class="gh">ご予算（全部でいくらくらいまで）</p>
+    <div class="budget" id="budget"></div>
+    <button class="go" id="go">結果を見る</button>
+    <p class="small">ご入力の内容は、三枝がお客様のカルテで確認し、ご提案に使わせていただきます。</p>
+  </section>
+
+  <section id="result" hidden>
+    <div class="note"><b>今年のコフレはとても数が少なく、抽選です。</b><br>買っておきたい数だけ申し込むと外れてしまうことが多いので、当たりやすさに合わせて<b>多めの箱数</b>をおすすめしています。<br>お支払いは<b>当選した分だけ</b>です。<br>⚠️ただし、<b>申し込んだ箱数がすべて当選した場合は、当選した分すべてのお支払い</b>になります。届いてもよい数の範囲で申し込んでくださいね。<br><span class="sm">※おすすめの箱数は、<b>去年の抽選結果をもとにした予想</b>です。今年の当選をお約束するものではありません。</span></div>
+    <p class="note" id="prnote" hidden>🎁 プレゼントの分もほしい方は、「買っておくと安心な数」を1箱ずつ多くしています。＋−で変えられます。</p>
+    <div class="plan" id="plan" hidden></div>
+    <div class="pick" id="pick" hidden></div>
+    <div id="list"></div>
+    <details class="more"><summary>＋ ほかのセットも見る</summary><div id="others"></div></details>
+    <div class="tot" id="tot" hidden></div>
+    <a class="cta" id="cta" href="#" target="_blank" rel="noopener">この内容でLINEから申し込む</a>
+    <p class="small">ボタンを押すと、申し込む内容が入った状態でBelle douceの公式LINEが開きます。そのまま送信してください。<br>⚠️申し込んだ箱数がすべて当選した場合は、すべてお支払いいただきます。<br>おすすめの箱数は、去年の抽選結果をもとにした予想です。<br>価格はすべて税込です。抽選のため、ご希望に添えないことがあります。</p>
+    <div class="copy" id="copybox"><p class="vh">📋 注文のコピペ文</p><p class="small" style="margin-top:0">LINEが開かないときは、この文をそのままコピーして、Belle douceの公式LINEに貼り付けて送ってください。</p><pre id="otext"></pre><button class="cbtn" id="cbtn">コピーする</button><a class="cta" id="cta2" href="#" target="_blank" rel="noopener" style="margin-top:12px">LINEを開いて貼り付ける</a></div>
+    <button class="again" id="again">チェックをやり直す</button>
+  </section>
+</div>
+<script>
+(function(){
+  (function(){var sky=document.getElementById('sky'),h='';for(var i=0;i<16;i++){h+='<i style="left:'+(Math.random()*96)+'%;top:'+(Math.random()*90)+'%;font-size:'+(8+Math.random()*12)+'px;animation-delay:'+(Math.random()*2.8)+'s">✦</i>'}for(var j=0;j<18;j++){h+='<b style="left:'+(Math.random()*100)+'%;animation-duration:'+(6+Math.random()*7)+'s;animation-delay:'+(-Math.random()*10)+'s;opacity:'+(.4+Math.random()*.5)+';transform:scale('+(.5+Math.random())+')"></b>'}sky.innerHTML=h})();
+  var OA='@186wlrti';
+  // mult = ほしい数1箱に対しておすすめする申込み箱数（由佳さん指定 11/3）
+  // 金額＝Colors Beauty正式案内(11/2)・公式リーフレット・在庫管理DBの定価。月数＝サロンの目安（スキンケア1品 約2ヶ月）
+  // gifts.v=null は価格未発表。save=1箱あたりのお得額（null=言えない）。months=1箱で何ヶ月分（null=出さない）／mlabel=月数以外の言い方
+  var SETS={
+    claire:{name:'クレアスキン5点セット',price:'54,450円',items:'リムーバー・ウォッシュ・ローション・セラム・クリーム',gifts:[{n:'グランスキン エンパイア',v:17600}],save:17600,saveNote:'いつもの5品と同じ価格で、エンパイアがまるごとおまけ',months:2,mult:1,odds:'比較的当たりやすいセットです。'},
+    cheri:{name:'シェリースキン5点セット',price:'50,160円',items:'リムーバー・ウォッシュ・ローション・セラム・クリーム',gifts:[{n:'シェリースキン プロテクションクリーム',v:13750}],save:13750,saveNote:'定価13,750円のプロテクションクリームがおまけの分',months:2,mult:1,odds:'比較的当たりやすいセットです。'},
+    gran:{name:'グランスキン基礎セット',price:'49,500円',items:'グランスキン基礎3品',gifts:[{n:'グランスキンウォーター',v:9350}],save:9350,saveNote:'いつもの基礎3品と同じ価格で、ウォーターがまるごとおまけ',months:2,mult:2,odds:'数が少なく、2箱申し込んでやっと1箱当たるくらいです。'},
+    verite:{name:'グランスキン ヴェリテのパックセット',price:'19,800円',items:'ヴェリテ・ヴェリテP 各3枚',gifts:[{n:'M.Watanabe ザダーマエリートマスク3枚',v:8250}],save:2310,saveNote:'1枚ずつの価格で揃えるより',months:null,mlabel:'9日間の集中ケア（ヴェリテ→ヴェリテP→マスクを3日ずつ）',mult:2,odds:'数が少なく、2箱申し込んでやっと1箱当たるくらいです。'},
+    lotion:{name:'エキスパートローション2本セット',price:'18,700円',items:'エキスパートローション2本',gifts:[{n:'ボディ用クリーム「ディゾブレイク」80g（発売前・お顔には使えません）',v:null,d:['まだ発売されていない新作。今手に入るのはこのコフレだけの非売品です','人気のディゾシリーズから生まれた、リアボーテのボディ用クリーム','社長が「使って感想を教えて」と言うほどの自信作','気になるところに塗って軽くマッサージ。エキスパートローションと重ねても']}],save:null,saveNote:'ローション2本分の価格で、まだ買えない新作ディゾブレイクがおまけ',months:4,mult:2,odds:'当たるのは半分くらい。2箱申し込んで1箱が目安です。'},
+    style:{name:'エキスパートスタイル2個セット',price:'18,360円',items:'エキスパートスタイル2個',gifts:[{n:'健美菜タブレット90粒（限定品・再販予定なし）',v:null,d:['いつもの健美菜には入れられなかった素材を詰めた、非売品のタブレット','九州産の野菜17種＋アサイー・カムカム・モリンガなどスーパーフード8種＋ビタミンE・A','例年はミニサイズのおまけが、今年は90粒の大きいサイズ','スタイルやボンバーと交互に飲むのがおすすめの飲み方です']}],save:null,saveNote:'スタイル2個に、買えない限定タブレット90粒がおまけ',months:null,mult:3,odds:'3箱申し込んで1箱当たるくらいです。'},
+    mw:{name:'M.Watanabeセット',price:'68,200円',items:'化粧水・美容液・クリーム',gifts:[{n:'ザダーマヴェールリムーバー（クレンジング・初登場）',v:null},{n:'ザステムプログラムウォッシュ（洗顔・初登場）',v:null}],save:null,saveNote:'3品の価格で、初登場のクレンジング・洗顔がおまけ',months:2,mult:10,odds:'全国900箱のみ。抽選なので必ず当たるとは限りません。'}
+  };
+  function yen(n){return n.toLocaleString('ja-JP')+'円'}
+
+  var ORDER=['gran','cheri','claire','verite','lotion','style','mw'];
+  // チェック項目（由佳さん指示 11/3：悩み・予定・今のケアからマッチするセットへ）
+  // use=いま使っているライン／ln=ラインを選ぶ手がかり（点数）／add=おすすめに足すセット／r=結果に出す理由
+  var GROUPS=[
+    {h:'いまのスキンケア',items:[
+      {id:'u_gran',t:'いつも「グランスキン」を使っている',use:'gran'},
+      {id:'u_cheri',t:'いつも「シェリースキン」を使っている',use:'cheri'},
+      {id:'u_claire',t:'いつも「クレアスキン」を使っている',use:'claire'},
+      {id:'other',t:'他社のスキンケアを使っている／リアボーテはまだ使ったことがない',ln:{cheri:3},add:['verite'],r:'リアボーテを初めて使う方に、まず選ばれることが多いラインです',ra:{verite:'まずはパックで、リアボーテを試してみたい方にも'}}
+    ]},
+    {h:'これからの予定',items:[
+      {id:'event',t:'クリスマス・年末年始・結婚式・旅行など、大切な予定の前に自宅で特別なお手入れをしたい',add:['verite'],r:'予定の前に3日続けて使う、9枚のスペシャルパックです'},
+      {id:'gift',t:'自分へのご褒美に、今年だけの特別なものがほしい',add:['mw'],r:'全国900箱だけの、リアボーテの最高峰です'},
+      {id:'present',t:'家族や友人へのプレゼントの分もほしい',present:true}
+    ]},
+    {h:'お肌のこと',items:[
+      {id:'sens',t:'赤み・ゆらぎなど、肌が敏感に傾きやすい',ln:{cheri:3,gran:1},r:'敏感に傾きやすい肌、ゆらぎやすい時期のためのラインです'},
+      {id:'season',t:'冬の乾燥や季節の変わり目に、肌の調子をくずしやすい',ln:{cheri:2},r:'おまけのプロテクションクリームは、季節の変わり目のお守りに'},
+      {id:'dry',t:'乾燥・インナードライが気になる',ln:{claire:2,cheri:1},r:'たっぷりうるおいを届けて、もっちりした肌に'},
+      {id:'dull',t:'くすみ・ハリ不足など、年齢による変化が気になってきた',ln:{claire:2,gran:2},r:'くすみ・ハリ不足が気になる肌のためのラインです'},
+      {id:'acne',t:'ニキビ・吹き出物ができやすい',ln:{cheri:3,gran:1},r:'ニキビができやすい肌・皮脂が気になる肌にも選ばれているラインです'},
+      {id:'clog',t:'毛穴のつまり・黒ずみ・ザラつきが気になる',ln:{cheri:1},add:['lotion'],r:'泡で使う導入ローション。毛穴・ザラつきが気になる方に',ra:{cheri:'ゴワつき・肌の硬さが気になる肌にも選ばれているラインです'}},
+      {id:'open',t:'毛穴の開きが気になる',ln:{claire:1,gran:1},add:['lotion'],r:'泡で使う導入ローション。毛穴・ザラつきが気になる方に',ra:{claire:'ハリ不足など、年齢による変化が気になり始めた肌のためのラインです',gran:'シワ・たるみ・シミなど、年齢サインが気になる肌のための最上位ラインです'}},
+      {id:'wrinkle',t:'シワが気になる',ln:{gran:2,claire:1},add:['verite'],r:'シワ・たるみ・シミ・くすみが気になる方に選ばれている活性パック（ヴェリテP）入り',ra:{gran:'シワ・たるみ・シミなど、年齢サインが気になる肌のための最上位ラインです',claire:'ハリ不足など、年齢による変化が気になり始めた肌のためのラインです'}},
+      {id:'sag',t:'たるみが気になる',ln:{gran:2,claire:1},add:['verite'],r:'シワ・たるみ・シミ・くすみが気になる方に選ばれている活性パック（ヴェリテP）入り',ra:{gran:'シワ・たるみ・シミなど、年齢サインが気になる肌のための最上位ラインです',claire:'ハリ不足など、年齢による変化が気になり始めた肌のためのラインです'}},
+      {id:'spot',t:'シミ・そばかすが気になる',ln:{gran:2,claire:1},add:['verite'],r:'シワ・たるみ・シミ・くすみが気になる方に選ばれている活性パック（ヴェリテP）入り',ra:{gran:'シワ・たるみ・シミなど、年齢サインが気になる肌のための最上位ラインです',claire:'ハリ不足など、年齢による変化が気になり始めた肌のためのラインです'}},
+      {id:'up',t:'いつものスキンケアから、ひとつ上のケアにステップアップしたい',ln:{gran:3},step:true,r:'シェリー・クレアからのステップアップに選ばれる、最上位ラインです'}
+    ]},
+    {h:'フェイスライン・ボディ',items:[
+      {id:'face',t:'すっきりしたフェイスラインを目指したい',add:['lotion'],r:'お顔・頭皮・全身に使える導入ローション。マッサージのお供に'},
+      {id:'scalp',t:'頭皮や髪のハリ・コシも気になる',add:['lotion'],r:'お顔だけでなく、頭皮にも使える導入ローションです'},
+      {id:'body',t:'ボディのお手入れもしたい（脚・二の腕など）',add:['lotion'],r:'まだ発売前のボディ用クリーム「ディゾブレイク」が付いてきます'}
+    ]},
+    {h:'体の内側のこと',items:[
+      {id:'inner',t:'野菜不足など、毎日の食生活が気になる',add:['style'],r:'九州産の野菜17種とスーパーフード8種の健美菜タブレットが付いてきます'},
+      {id:'supp',t:'サプリを何種類も飲むのは大変。美容と健康をまとめて整えたい',add:['style'],r:'毎日のインナーケアをひとつにまとめられるセットです'},
+      {id:'shape',t:'体型維持を意識している',add:['style'],r:'体型維持を意識している方の、毎日の食生活のサポートに'}
+    ]}
+  ];
+  var LINES=['gran','cheri','claire'];
+  var BUDGETS=['〜3万円','〜5万円','〜10万円','〜20万円','20万円以上','特に決めていない'];
+  var BMAX={'〜3万円':30000,'〜5万円':50000,'〜10万円':100000,'〜20万円':200000};
+  var picked={}, want={}, reasons={};
+  var $=function(id){return document.getElementById(id)};
+  var MONTHS=[['2','お試しで1箱分（約2ヶ月）'],['6','半年分'],['12','1年分まるごと（2027年は買い足さずに過ごしたい）'],['0','決めていない']];
+  document.getElementById('months').innerHTML=MONTHS.map(function(m){return '<label class="chip"><input type="radio" name="pm" value="'+m[0]+'"><span>'+m[1]+'</span></label>'}).join('');
+  document.getElementById('budget').innerHTML=BUDGETS.map(function(b){return '<label class="chip"><input type="radio" name="bg" value="'+b+'"><span>'+b+'</span></label>'}).join('');
+  $('checks').innerHTML=GROUPS.map(function(g){return '<p class="gh">'+g.h+'</p>'+g.items.map(function(c){return '<label class="opt"><input type="checkbox" value="'+c.id+'"><span>'+c.t+'</span></label>'}).join('')}).join('');
+  function decide(ids){
+    var all={}; GROUPS.forEach(function(g){g.items.forEach(function(c){all[c.id]=c})});
+    var out={}, why={}, used=[], score={gran:0,cheri:0,claire:0};
+    function put(k,r){out[k]=true; if(r){(why[k]=why[k]||[]).indexOf(r)<0&&why[k].push(r)}}
+    ids.forEach(function(id){var c=all[id];
+      if(c.use){used.push(c.use); put(c.use,'いつものスキンケアの、コフレだけの特別処方です')}
+      if(c.ln) for(var k in c.ln) score[k]+=c.ln[k];
+      (c.add||[]).forEach(function(k){put(k,(c.ra&&c.ra[k])||c.r)});
+    });
+    var stepUp=ids.indexOf('up')>=0;
+    if(!used.length){ // 使っているラインがわからない時は、悩みの点数でラインを1つ選ぶ（同点はシェリー）
+      var best=null; ['cheri','claire','gran'].forEach(function(k){if(score[k]>0&&(!best||score[k]>score[best]))best=k});
+      if(best) ids.forEach(function(id){var c=all[id]; if(c.ln&&c.ln[best]) put(best,(c.ra&&c.ra[best])||c.r)});
+    } else {
+      ids.forEach(function(id){var c=all[id]; if(c.ln&&!c.step) used.forEach(function(k){if(c.ln[k]) put(k,(c.ra&&c.ra[k])||c.r)})});
+      if(stepUp&&used.indexOf('gran')<0) put('gran',all.up.r);
+    }
+    return {out:out,why:why};
+  }
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function valueHTML(s,w){
+    var g=s.gifts.map(function(x){return '<li>'+esc(x.n)+'<span class="gv">'+(x.v?'定価 '+yen(x.v)+(x.n.indexOf('3枚')>=0?'分':''):'非売品')+'</span>'+(x.d?'<ul class="gd">'+x.d.map(function(t){return '<li>'+esc(t)+'</li>'}).join('')+'</ul>':'')+'</li>'}).join('');
+    var h='<div class="val"><p class="vh">🎁 おまけ</p><ul class="gl">'+g+'</ul>';
+    if(s.save) h+='<p class="sv">💰 1箱 <b>'+yen(s.save)+'</b> お得'+(w>1?'（'+w+'箱で '+yen(s.save*w)+'）':'')+'<small>'+esc(s.saveNote)+'</small></p>';
+    else if(s.saveNote) h+='<p class="sv">💰 '+esc(s.saveNote)+'</p>';
+    if(s.months) h+='<p class="mo">📅 1箱で<b>約'+s.months+'ヶ月分</b>'+(w>1?'（'+w+'箱で<b>約'+(s.months*w)+'ヶ月分</b>）':'')+'<small>その間、'+esc(s.items)+'は買い足さなくて大丈夫です</small></p>';
+    else if(s.mlabel) h+='<p class="mo">📅 '+esc(s.mlabel)+'</p>';
+    return h+'</div>';
+  }
+  function itemHTML(k){
+    var s=SETS[k], w=want[k]||1;
+    return '<div class="item'+(STAR[k]?' star':'')+'"><h3>'+(STAR[k]?'<span class="badge">三枝のおすすめ</span>':'')+esc(s.name)+'</h3><div class="price">'+esc(s.price)+'（税込・1箱）　'+esc(s.items)+'</div>'+
+      ((reasons[k]||[]).length?'<ul class="why">'+reasons[k].map(function(r){return '<li>'+esc(r)+'</li>'}).join('')+'</ul>':'')+
+      '<div class="row"><label>買っておくと安心な数'+(NOTE[k]?'<small class="nt">'+esc(NOTE[k])+'</small>':'')+'</label><div class="step"><button data-k="'+k+'" data-d="-1" aria-label="減らす">−</button><output>'+w+'箱</output><button data-k="'+k+'" data-d="1" aria-label="増やす">＋</button></div></div>'+
+      valueHTML(s,w)+
+      '<p class="odds">'+esc(s.odds)+'</p>'+
+      '<div class="rec"><span>抽選を考えた申込み数</span><b>'+(w*s.mult)+'<small>箱</small></b></div>'+
+      '<button class="rm" data-rm="'+k+'">このセットを外す</button></div>';
+  }
+  function render(){
+    var keys=ORDER.filter(function(k){return picked[k]}); keys.sort(function(a,b){return (STAR[b]?1:0)-(STAR[a]?1:0)});
+    $('list').innerHTML=keys.length?keys.map(itemHTML).join(''):'<p class="small" style="text-align:center">おすすめのセットはありませんでした。下の「ほかのセットも見る」から選べます。</p>';
+    var rest=ORDER.filter(function(k){return !picked[k]});
+    $('others').innerHTML=rest.map(function(k){var s=SETS[k];return '<div class="item"><h3>'+esc(s.name)+'</h3><div class="price">'+esc(s.price)+'（税込・1箱）　'+esc(s.items)+'</div>'+valueHTML(s,1)+'<button class="add" data-add="'+k+'">＋ このセットも申し込む</button></div>'}).join('');
+    $('cta').hidden=!keys.length;
+    var lines=keys.map(function(k){return '・'+SETS[k].name+'　'+(want[k]*SETS[k].mult)+'箱'});
+    var text='【コフレ申込み】\n'+lines.join('\n')+(PLAN.label?'\n\n2027年の計画：'+PLAN.label+(PLAN.seas.length?'／'+PLAN.seas.join('・'):''):'')+(PLAN.req?'\nご要望：'+PLAN.req:'')+'\n\nお名前：'+$('nm').value.trim()+'\n※当選した分はすべてお支払いします';
+    var pl=keys.filter(function(k){return SETS[k].months}).map(function(k){return '<li>'+esc(SETS[k].name)+'　'+want[k]+'箱<span>（約'+(SETS[k].months*want[k])+'ヶ月分'+(NOTE[k]&&/季節|春|冬/.test(NOTE[k])?'・'+esc(NOTE[k].replace(/の約.*$/,'')):'')+'）</span></li>'}).join('');
+    $('plan').innerHTML=keys.length?'<p class="pk-h">'+esc(CALL||'あなた')+'の2027年の美肌メイキング計画</p>'+(PLAN.label?'<p class="small" style="margin-top:0">そろえたい期間：'+esc(PLAN.label)+(PLAN.seas.length?'／'+esc(PLAN.seas.join('・')):'')+'</p>':'')+(pl?'<ul>'+pl+'</ul>':'')+(PLAN.req?'<p class="small">ご要望：'+esc(PLAN.req)+'</p>':'')+'<p class="small">「買っておくと安心な数」は＋−で変えられます。抽選を考えた申込み数も一緒に変わります。</p>':'';
+    $('plan').hidden=!keys.length;
+    var t=totals(), over=BMAX[budget]&&t.a>BMAX[budget];
+    $('tot').innerHTML=keys.length?'<p>買っておくと安心な数がそろった場合 <b>'+yen(t.w)+'</b></p><p>申込み数がすべて当選した場合 <b>'+yen(t.a)+'</b></p>'+(budget?'<p class="small" style="margin-top:4px">ご予算：'+esc(budget)+'</p>':'')+(over?'<p class="warn">⚠️すべて当選すると、ご予算を超えます。ほしい数や外すセットを調整してください。</p>':''):'';
+    $('tot').hidden=!keys.length;
+    $('otext').textContent=text; $('copybox').hidden=!keys.length;
+    $('cta').href=$('cta2').href='https://line.me/R/oaMessage/'+encodeURIComponent(OA)+'/?'+encodeURIComponent(text);
+  }
+  function showResult(){ $('quiz').hidden=true; $('result').hidden=false; render(); window.scrollTo(0,0); }
+
+  var RID=(Date.now().toString(36)+Math.random().toString(36).slice(2)).slice(0,20), lastIds=[], budget='';
+  var GAS='https://script.google.com/macros/s/AKfycbyHoqfYiID1jEjSLQBVY25cQDnwjZwW3xjp0KWQdxMEom3uCghswPBgUX9DpbLTpOXcCw/exec';
+  function priceNum(k){return Number(SETS[k].price.replace(/[^0-9]/g,''))}
+  function totals(){var w=0,a=0;ORDER.forEach(function(k){if(picked[k]){w+=priceNum(k)*want[k];a+=priceNum(k)*want[k]*SETS[k].mult}});return {w:w,a:a}}
+  function send(final){
+    try{
+      var all={};GROUPS.forEach(function(g){g.items.forEach(function(c){all[c.id]=c.t})});
+      var t=totals();
+      var body={type:'coffret_submit',id:RID,name:$('nm').value.trim(),budget:budget,checks:(PLAN.label?['2027年の計画：'+PLAN.label]:[]).concat(PLAN.seas.map(function(x){return '季節：'+x})).concat(lastIds.map(function(i){return all[i]})).concat(PLAN.req?['ご要望：'+PLAN.req]:[]),
+        items:ORDER.filter(function(k){return picked[k]}).map(function(k){return {name:SETS[k].name,want:want[k],rec:want[k]*SETS[k].mult}}),wantTotal:t.w,allTotal:t.a,final:final||''};
+      fetch(GAS,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body),keepalive:true}).catch(function(){});
+    }catch(e){}
+  }
+  var PICK={name:'',picks:[]}, pickReq='', CALL='', AGE=0;
+  function personalize(){
+    var c=CALL||'あなた';
+    $('intro').innerHTML=esc(c)+'、2027年'+(AGE?'は'+AGE+'歳の年':'')+'。<br>どんなお肌で過ごしたいか、<br>三枝と作戦を立てていきましょう。<br>チェックをつけるだけで、'+esc(c)+'に合うコフレと<br>買っておくと安心な箱数がわかります。';
+    $('planh').textContent=c+'の2027年の計画';
+    $('quizq').textContent=c+'に、あてはまるものにチェックをつけてください。';
+    $('go').textContent=c+'の計画を見る';
+  }
+  $('startbtn').onclick=function(){
+    var n=$('nm').value.trim(); if(!n){$('err0').hidden=false;$('nm').focus();return}
+    $('err0').hidden=true; $('startbtn').disabled=true; $('loading').hidden=false;
+    var done=false, fin=function(r){ if(done) return; done=true;
+      PICK={name:n,picks:(r&&r.picks)||[]}; pickReq=n;
+      var parts=n.split(/[\s　]+/); CALL=(r&&r.call)||(parts.length>1?parts.pop()+'さん':''); AGE=(r&&r.age)||0;
+      personalize(); $('start').hidden=true; $('quiz').hidden=false; $('loading').hidden=true; $('startbtn').disabled=false; window.scrollTo(0,0); };
+    setTimeout(function(){fin(null)},15000);
+    fetch(GAS,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({type:'coffret_pick',name:n})}).then(function(r){return r.json()}).then(fin).catch(function(){fin(null)});
+  };
+  function loadPick(){
+    var n=$('nm').value.trim(); if(!n||n===pickReq) return; pickReq=n;
+    fetch(GAS,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({type:'coffret_pick',name:n})})
+      .then(function(r){return r.json()}).then(function(r){ if(pickReq!==n) return; PICK={name:n,picks:(r&&r.picks)||[]}; if(!$('result').hidden) applyPick(true); }).catch(function(){});
+  }
+  function applyPick(rerender){
+    var ps=PICK.picks.filter(function(p){return SETS[p.k]});
+    if(!ps.length||PICK.name!==$('nm').value.trim()){ $('pick').hidden=true; return; }
+    ps.forEach(function(p){ picked[p.k]=true; want[p.k]=want[p.k]||1; (reasons[p.k]=reasons[p.k]||[]); var t='★三枝より：'+p.c; if(reasons[p.k].indexOf(t)<0) reasons[p.k].unshift(t); STAR[p.k]=true; });
+    $('pick').innerHTML='<p class="pk-h">'+esc(CALL||'あなた')+'へ、三枝からの特におすすめ</p><ul>'+ps.map(function(p){return '<li><b>'+esc(SETS[p.k].name)+'</b><span>'+esc(p.c)+'</span></li>'}).join('')+'</ul><p class="small" style="margin-top:4px">これまでのお肌の様子やご要望をもとに選びました。下のおすすめにも入っています。</p>';
+    $('pick').hidden=false;
+    if(rerender) render();
+  }
+  var STAR={}, NOTE={}, PLAN={m:0,label:'',seas:[],req:''};
+  // 買っておくと安心な数＝来年の計画（何ヶ月分・季節の使い分け）から。スキンケア1箱＝約2ヶ月、エキスパートローション1箱(2本)＝約4ヶ月（サロンの目安）
+  function planCalc(pr){
+    var mv=document.querySelector('#months input:checked'), M=mv?Number(mv.value):0;
+    var sc=$('s_cheri').checked, sl=$('s_claire').checked;
+    PLAN={m:M,label:mv?mv.parentNode.textContent:'',seas:[],req:$('req').value.trim()};
+    NOTE={}; want={};
+    var lines=['gran','cheri','claire'], main=null;
+    lines.forEach(function(k){ if(!main&&picked[k]&&STAR[k]) main=k }); lines.forEach(function(k){ if(!main&&picked[k]&&!(k==='cheri'&&sc)&&!(k==='claire'&&sl)) main=k });
+    if(!main) lines.forEach(function(k){ if(!main&&picked[k]) main=k });
+    var seasM=0;
+    if(sc&&main!=='cheri'){ picked.cheri=true; (reasons.cheri=reasons.cheri||[]).push('春・秋のゆらぎやすい季節用に'); want.cheri=2; NOTE.cheri='春・秋の約4ヶ月分'; seasM+=4; PLAN.seas.push('春・秋はシェリー'); }
+    if(sl&&main!=='claire'){ picked.claire=true; (reasons.claire=reasons.claire||[]).push('乾燥する冬用に'); want.claire=2; NOTE.claire='冬の約4ヶ月分'; seasM+=4; PLAN.seas.push('冬はクレア'); }
+    for(var k in picked){
+      if(want[k]) continue;
+      if(k===main&&M>0){ var mm=Math.max(2,M-seasM); want[k]=Math.ceil(mm/2); NOTE[k]='いつものケアの約'+(want[k]*2)+'ヶ月分'; }
+      else if(k==='lotion'&&M>0){ want[k]=Math.ceil(M/4); NOTE[k]='約'+(want[k]*4)+'ヶ月分'; }
+      else want[k]=1;
+      if(pr) want[k]+=1;
+    }
+    if(pr) ['cheri','claire'].forEach(function(k){ if(NOTE[k]&&want[k]===2) want[k]=3; });
+  }
+  $('go').onclick=function(){
+    var ids=[].map.call(document.querySelectorAll('#checks input:checked'),function(i){return i.value});
+    var bg=document.querySelector('#budget input:checked'); budget=bg?bg.value:'';
+    lastIds=ids;
+    var d=decide(ids); picked=d.out; reasons=d.why;
+    var pr=ids.indexOf('present')>=0;
+    STAR={}; applyPick(false);
+    planCalc(pr);
+    $('prnote').hidden=!pr;
+    showResult(); send('');
+  };
+  $('cta').addEventListener('click',function(){send('line')}); $('cta2').addEventListener('click',function(){send('line')});
+  $('again').onclick=function(){picked={};want={};reasons={};[].forEach.call(document.querySelectorAll('#checks input'),function(i){i.checked=false});$('result').hidden=true;$('quiz').hidden=false;window.scrollTo(0,0)};
+  $('cbtn').onclick=function(){var t=$('otext').textContent,b=this;send('copy');function ok(){b.textContent='コピーしました';setTimeout(function(){b.textContent='コピーする'},1800)}
+    if(navigator.clipboard){navigator.clipboard.writeText(t).then(ok,function(){sel()})}else sel();
+    function sel(){var r=document.createRange();r.selectNodeContents($('otext'));var x=getSelection();x.removeAllRanges();x.addRange(r);try{document.execCommand('copy');ok()}catch(e){}}};
+  $('result').addEventListener('click',function(e){
+    var t=e.target, k;
+    if((k=t.getAttribute('data-k'))){ want[k]=Math.max(1,Math.min(5,(want[k]||1)+Number(t.getAttribute('data-d')))); render(); }
+    else if((k=t.getAttribute('data-rm'))){ delete picked[k]; render(); }
+    else if((k=t.getAttribute('data-add'))){ picked[k]=true; want[k]=want[k]||1; render(); }
+  });
+})();
+</script>
+</body>
+</html>

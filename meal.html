@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>きれいノート ｜ Belle douce</title>
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Noto+Serif+JP:wght@300;400&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+:root{--ivory:#faf4f1;--pinkbeige:#f1ddd5;--ink:#5b4843;--ink-soft:#8a7670;--gold:#c2a879;--gold-deep:#a98c5f;--line:#eddcd5;--rose:#c99a98}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Sans JP",sans-serif;color:var(--ink);font-weight:300;line-height:1.9;letter-spacing:.03em;background:var(--ivory);-webkit-font-smoothing:antialiased}
+.doc{max-width:600px;margin:0 auto;padding:40px 16px 80px}
+.brand{display:block;text-align:center;font-family:"Cormorant Garamond",serif;font-size:26px;letter-spacing:.24em;color:var(--ink);text-decoration:none}
+.brand small{display:block;font-size:9px;letter-spacing:.5em;color:var(--gold-deep);margin-top:4px}
+.eyebrow{display:block;text-align:center;font-family:"Cormorant Garamond",serif;font-size:12px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold-deep);margin:28px 0 6px}
+h1{text-align:center;font-family:"Noto Serif JP",serif;font-weight:300;font-size:22px;letter-spacing:.1em;margin-bottom:6px}
+.intro{font-size:13.5px;color:var(--ink-soft);text-align:center;margin-bottom:22px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 18px;margin:14px 0}
+.lbl{font-family:"Noto Serif JP",serif;font-weight:400;font-size:15px;margin:14px 0 6px}
+.lbl:first-child{margin-top:0}
+.pick{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:150px;border:1.5px dashed var(--gold);border-radius:14px;background:var(--ivory);cursor:pointer;text-align:center;font-size:14px;color:var(--gold-deep);padding:12px}
+.pick b{font-size:30px;font-weight:300;line-height:1}
+.pick:focus-within{outline:2px solid var(--gold);outline-offset:2px}
+.pick input{position:absolute;opacity:0;width:1px;height:1px}
+.previews{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}
+.previews img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{cursor:pointer}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips span{display:inline-block;font-size:14px;padding:6px 18px;border:1px solid var(--line);border-radius:999px;background:var(--ivory)}
+.chips input:checked+span{background:var(--rose);border-color:var(--rose);color:#fff}
+.chips input:focus-visible+span{outline:2px solid var(--gold)}
+input[type=date],textarea{width:100%;font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--ivory);color:var(--ink)}
+textarea{min-height:70px;resize:vertical}
+textarea:focus,input:focus{outline:2px solid var(--gold);outline-offset:1px}
+.send{display:block;width:100%;margin-top:20px;padding:15px;font:inherit;font-size:15px;letter-spacing:.12em;color:#fff;background:var(--gold-deep);border:0;border-radius:40px;cursor:pointer}
+.send:disabled{opacity:.45;cursor:default}
+.err{color:#b4574b;font-size:13px;margin-top:10px;text-align:center;min-height:1em}
+.ok{color:var(--gold-deep);font-size:13.5px;margin-top:10px;text-align:center;min-height:1em}
+.msg{text-align:center;padding:40px 10px;color:var(--ink)}
+.day{margin-top:22px}
+.day h2{font-family:"Noto Serif JP",serif;font-weight:400;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:4px;margin-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.item{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.item img{display:block;width:100%;aspect-ratio:1;object-fit:cover;background:var(--pinkbeige)}
+.item .tx{padding:6px 10px 8px;font-size:12.5px;line-height:1.6}
+.item .txt{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:100%;aspect-ratio:1;padding:14px;background:var(--pinkbeige);text-align:center;font-family:"Noto Serif JP",serif;font-size:14px;line-height:1.7;color:var(--ink);overflow:hidden;word-break:break-all}
+.item .txt small{font-family:inherit;font-size:10.5px;letter-spacing:.08em;color:var(--ink-soft)}
+.modes{display:flex;gap:8px;margin-bottom:10px}
+.modes button{flex:1;padding:9px 6px;font:inherit;font-size:13.5px;border:1px solid var(--line);border-radius:999px;background:var(--ivory);color:var(--ink);cursor:pointer}
+.modes button.on{background:var(--rose);border-color:var(--rose);color:#fff}
+.item .k{display:inline-block;font-size:11px;color:#fff;background:var(--rose);border-radius:999px;padding:0 9px;margin-right:4px}
+.item .del{display:block;margin-top:4px;background:none;border:0;font:inherit;font-size:11.5px;color:var(--ink-soft);text-decoration:underline;cursor:pointer;padding:0}
+.item .del.sure{color:#b4574b}
+.empty{text-align:center;font-size:13px;color:var(--ink-soft);margin-top:18px}
+.wcard h2{font-family:"Noto Serif JP",serif;font-weight:400;font-size:16px;margin-bottom:4px}
+.wsum{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--ink-soft)}
+.wsum b{font-family:"Noto Serif JP",serif;font-weight:400;font-size:30px;color:var(--ink);line-height:1.2}
+.wsum .diff{font-size:13px;color:var(--rose)}
+.range{display:flex;gap:6px;margin:10px 0 4px}
+.range button{font:inherit;font-size:12px;padding:3px 12px;border:1px solid var(--line);border-radius:999px;background:var(--ivory);color:var(--ink);cursor:pointer}
+.range button.on{background:var(--rose);border-color:var(--rose);color:#fff}
+#chart{width:100%;height:auto;display:block}
+.wrow{display:flex;gap:8px;align-items:center;margin-top:12px}
+.wrow input[type=date]{flex:1.3;min-width:0}
+.wrow input[type=number]{flex:1;min-width:0;font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--ivory);color:var(--ink)}
+.wrow .u{font-size:13px;color:var(--ink-soft)}
+.wrow .wbtn{flex:none;font:inherit;font-size:14px;letter-spacing:.08em;color:#fff;background:var(--gold-deep);border:0;border-radius:999px;padding:10px 16px;cursor:pointer}
+.wrow .wbtn:disabled{opacity:.45}
+.wlist{margin-top:10px;font-size:12.5px;color:var(--ink-soft)}
+.wlist div{display:flex;justify-content:space-between;border-top:1px dashed var(--line);padding:3px 0}
+.wlist button{background:none;border:0;font:inherit;font-size:11.5px;color:var(--ink-soft);text-decoration:underline;cursor:pointer}
+.wlist button.sure{color:#b4574b}
+.kcard{text-align:center}
+.kcard h2,.ecard h2{font-family:"Noto Serif JP",serif;font-weight:400;font-size:16px;margin-bottom:2px}
+.left{font-family:"Noto Serif JP",serif;font-size:13px;color:var(--ink-soft)}
+.left b{display:block;font-weight:400;font-size:42px;line-height:1.2;color:var(--rose);font-variant-numeric:tabular-nums}
+.left b.over{color:#b4574b}
+.bar{height:8px;border-radius:99px;background:var(--pinkbeige);overflow:hidden;margin:10px 0 6px}
+.bar i{display:block;height:100%;background:var(--rose);border-radius:99px}
+.kline{display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink-soft)}
+.gline{font-size:12.5px;color:var(--ink-soft);margin-top:10px;line-height:1.8}
+.warn{font-size:12px;color:#b4574b;margin-top:8px;line-height:1.7;text-align:left}
+.link{background:none;border:0;font:inherit;font-size:12.5px;color:var(--gold-deep);text-decoration:underline;cursor:pointer;margin-top:8px}
+.gform{text-align:left;margin-top:12px;border-top:1px solid var(--line);padding-top:12px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.g2 label,.gf>label{display:block;font-size:12.5px;color:var(--ink-soft)}
+.gform input[type=number],.gform input[type=date],.gform select,#kc{width:100%;font:inherit;font-size:16px;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:var(--ivory);color:var(--ink)}
+.gf{margin-top:10px}
+.gnote{font-size:11.5px;color:var(--ink-soft);margin-top:10px;line-height:1.7}
+.item .kc{display:inline-block;background:none;border:0;font:inherit;font-size:12px;color:var(--gold-deep);cursor:pointer;padding:0;margin-left:2px;text-decoration:underline}
+.kedit{display:flex;gap:4px;margin-top:4px}
+.kedit input{width:70px;font:inherit;font-size:14px;padding:3px 6px;border:1px solid var(--line);border-radius:8px}
+.kedit button{font:inherit;font-size:12px;border:0;border-radius:8px;background:var(--gold-deep);color:#fff;padding:2px 10px;cursor:pointer}
+.ev{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 14px 12px;margin-bottom:10px}
+.ev .top{display:flex;align-items:center;gap:12px}
+.ev .sc{flex:none;width:64px;height:64px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--pinkbeige);font-family:"Noto Serif JP",serif;line-height:1}
+.ev .sc b{font-size:24px;font-weight:400;color:var(--ink)}
+.ev .sc small{font-size:10px;color:var(--ink-soft);margin-top:2px}
+.ev .r{font-size:13px;line-height:1.75}
+.ev .adv{margin-top:8px;font-size:12.5px;line-height:1.75}
+.ev .adv p{margin-top:4px}
+.ev .adv span{display:inline-block;font-size:11px;color:#fff;border-radius:999px;padding:0 9px;margin-right:6px}
+.ev .adv .d span{background:var(--gold-deep)}
+.ev .adv .s span{background:var(--rose)}
+.ev .ai{font-size:10.5px;color:var(--ink-soft);margin-top:6px;text-align:right}
+.ev.wait{font-size:12.5px;color:var(--ink-soft);text-align:center}
+.ccard h2,.sumcard h2{font-family:"Noto Serif JP",serif;font-weight:400;font-size:16px;margin-bottom:6px}
+.crow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px dashed var(--line);font-size:13.5px}
+.crow:first-of-type{border-top:0}
+.crow .nm{flex:none;color:var(--ink)}
+.step{display:flex;align-items:center;gap:8px}
+.step button{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--ivory);font:inherit;font-size:18px;color:var(--ink);cursor:pointer;line-height:1}
+.step b{min-width:3.2em;text-align:center;font-weight:400;font-variant-numeric:tabular-nums}
+.crow .chips span{padding:4px 12px;font-size:13px}
+.faces{display:flex;gap:4px}
+.faces label{cursor:pointer}
+.faces input{position:absolute;opacity:0;pointer-events:none}
+.faces span{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--ivory);font-size:13px}
+.faces input:checked+span{background:var(--rose);border-color:var(--rose);color:#fff}
+.faces input:focus-visible+span{outline:2px solid var(--gold)}
+.chead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:4px}
+.chead input[type=date]{width:auto;font-size:14px;padding:4px 8px}
+.saved{font-size:11.5px;color:var(--gold-deep);text-align:right;min-height:1.2em}
+.sumgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.sumgrid div{background:var(--ivory);border-radius:12px;padding:10px 4px}
+.sumgrid b{display:block;font-family:"Noto Serif JP",serif;font-weight:400;font-size:22px;line-height:1.3;color:var(--ink)}
+.sumgrid small{font-size:11px;color:var(--ink-soft)}
+.sumnote{font-size:12.5px;color:var(--ink-soft);margin-top:10px;line-height:1.8}
+.cond{font-size:12px;color:var(--ink-soft);margin:-4px 0 8px}
+.slog{border-top:1px dashed var(--line);margin-top:10px;padding-top:10px}
+.slog h3{font-family:"Noto Serif JP",serif;font-weight:400;font-size:15px;margin:0 0 6px;color:var(--gold-deep)}
+.hwl{display:grid;gap:6px;margin-top:6px}
+.hwl label{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;line-height:1.6;background:var(--ivory);border-radius:10px;padding:8px 10px;cursor:pointer}
+.hwl input{margin-top:4px;accent-color:var(--rose)}
+.coedit{border:1px solid var(--gold);border-radius:12px;padding:10px 12px;margin-top:10px;display:grid;gap:6px}
+.coedit b{font-size:12.5px;color:var(--gold-deep);font-weight:400}
+.coedit[hidden],.slog[hidden]{display:none}
+.coedit input{font:inherit;font-size:14px;border:1px solid var(--line);border-radius:10px;padding:8px 10px;background:#fff;color:var(--ink);width:100%}
+.coedit button{justify-self:start;font:inherit;font-size:13px;border:0;border-radius:999px;background:var(--gold-deep);color:#fff;padding:6px 18px;cursor:pointer}
+.cmt{background:#fbf3ee;border-left:3px solid var(--gold);border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:13px;line-height:1.75;white-space:pre-wrap}
+.cmt .who{display:block;font-family:"Noto Serif JP",serif;font-size:12px;color:var(--gold-deep);margin-bottom:2px}
+.cedit textarea{min-height:60px;font-size:14px}
+.cedit button{margin-top:6px;font:inherit;font-size:13px;border:0;border-radius:999px;background:var(--gold-deep);color:#fff;padding:6px 18px;cursor:pointer}
+.ownerbar{background:var(--gold-deep);color:#fff;font-size:12px;text-align:center;border-radius:10px;padding:6px;margin-bottom:10px}
+.adm{width:100%;border-collapse:collapse;font-size:13px}
+.adm th{font-weight:400;font-size:11px;color:var(--ink-soft);text-align:left;padding:4px 6px;border-bottom:1px solid var(--line)}
+.adm td{padding:8px 6px;border-bottom:1px dashed var(--line);vertical-align:top}
+.adm a{color:var(--ink);text-decoration:underline}
+.adm .gap{font-size:12px}
+.adm .late{color:#b4574b}
+.adm small{color:var(--ink-soft)}
+.rcard h2{font-family:"Noto Serif JP",serif;font-weight:400;font-size:16px;margin-bottom:4px}
+.lvl{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-soft);margin-bottom:6px;flex-wrap:wrap}
+.dots{display:flex;gap:4px}
+.dots i{width:22px;height:6px;border-radius:99px;background:var(--pinkbeige)}
+.dots i.on{background:var(--gold-deep)}
+.rec{border-top:1px dashed var(--line);padding:10px 0 2px}
+.rec .tag{display:inline-block;font-size:11px;color:#fff;border-radius:999px;padding:0 10px;margin-bottom:4px}
+.rec .t1{background:var(--rose)}.rec .t2{background:var(--gold)}.rec .t3{background:var(--gold-deep)}
+.rec b{display:block;font-family:"Noto Serif JP",serif;font-weight:400;font-size:17px;line-height:1.5}
+.rec p{font-size:13px;line-height:1.75}
+.rec .how{font-size:12px;color:var(--ink-soft);margin-top:2px}
+.rmore{font-size:12px;color:var(--ink-soft);margin-top:10px;line-height:1.7;background:var(--ivory);border-radius:10px;padding:8px 10px}
+.rnote{font-size:11px;color:var(--ink-soft);margin-top:8px;line-height:1.7}
+.foot{font-size:11.5px;color:var(--ink-soft);text-align:center;margin-top:32px;line-height:1.8}
+</style>
+</head>
+<body>
+<div class="doc">
+  <a href="index.html" class="brand">Belle douce<small>NAKAMEGURO</small></a>
+  <span class="eyebrow">Meal Diary</span>
+  <h1>きれいノート</h1>
+  <p class="intro" id="hello">読み込んでいます…</p>
+
+  <p class="msg" id="bad" hidden></p>
+
+  <div id="admin" hidden>
+    <div class="ownerbar">由佳さん専用のページです（お客様には送らないでください）</div>
+    <div class="card"><table class="adm"><thead><tr><th>お客様</th><th>最後の記録</th><th>体重</th><th>点数(7日)</th></tr></thead><tbody id="admBody"></tbody></table></div>
+  </div>
+
+  <div id="main" hidden>
+    <div class="ownerbar" id="ownerbar" hidden>由佳さんとして見ています。日ごとに「三枝より」のひとことを書けます</div>
+    <section class="card kcard" aria-label="今日のカロリー">
+      <h2>今日の食べられるカロリー</h2>
+      <div id="kview"></div>
+      <button type="button" class="link" id="gopen">目標を設定する</button>
+      <form class="gform" id="gform" hidden>
+        <div class="g2">
+          <div><label for="gkg">目標体重（kg）</label><input type="number" id="gkg" inputmode="decimal" step="0.1" placeholder="50" /></div>
+          <div><label for="gby">いつまでに</label><input type="date" id="gby" /></div>
+          <div><label for="gh">身長（cm）</label><input type="number" id="gh" inputmode="decimal" placeholder="158" /></div>
+          <div><label for="gage">年齢</label><input type="number" id="gage" inputmode="numeric" placeholder="35" /></div>
+        </div>
+        <div class="gf"><label>性別</label>
+          <div class="chips"><label><input type="radio" name="gsex" value="女性" checked /><span>女性</span></label><label><input type="radio" name="gsex" value="男性" /><span>男性</span></label></div>
+        </div>
+        <div class="gf"><label for="gact">ふだんの動き</label>
+          <select id="gact">
+            <option value="1.2">ほとんど座っている</option>
+            <option value="1.375" selected>家事や立ち仕事でよく動く</option>
+            <option value="1.55">よく歩く・週3回くらい運動する</option>
+            <option value="1.725">ほぼ毎日しっかり運動する</option>
+          </select>
+        </div>
+        <button type="submit" class="send" id="gsave">この目標で計算する</button>
+        <p class="err" id="gerr" role="alert"></p>
+        <p class="gnote">体重・身長・年齢から1日に使うカロリーを出し、目標の日までに減らしたい分（1kg＝約7,200kcal）を毎日に割り振って計算します。体に負担が大きくならないよう、基礎代謝より少なくはしません。<br>カロリーは、写真に入れた数字か、なければAIのおおよその見積もりで数えます。</p>
+      </form>
+    </section>
+
+    <section class="card rcard" aria-label="あなたへのおすすめ" id="rcard" hidden>
+      <h2>あなたへのおすすめ</h2>
+      <div id="rview"></div>
+    </section>
+
+    <section class="card sumcard" aria-label="1週間のまとめ" id="sumcard" hidden>
+      <h2>この1週間のまとめ</h2>
+      <div class="sumgrid" id="sumgrid"></div>
+      <p class="sumnote" id="sumnote"></p>
+    </section>
+
+    <section class="card ccard" aria-label="からだとお肌">
+      <div class="chead"><h2>今日のからだとお肌</h2><input type="date" id="cd" aria-label="日付" /></div>
+      <div class="crow"><span class="nm">お水</span><div class="step"><button type="button" data-s="w" data-v="-1" aria-label="お水を減らす">−</button><b id="cw">−</b><button type="button" data-s="w" data-v="1" aria-label="お水を増やす">＋</button></div></div>
+      <div class="crow"><span class="nm">睡眠</span><div class="step"><button type="button" data-s="sl" data-v="-0.5" aria-label="睡眠を減らす">−</button><b id="csl">−</b><button type="button" data-s="sl" data-v="0.5" aria-label="睡眠を増やす">＋</button></div></div>
+      <div class="crow"><span class="nm">お通じ</span><div class="chips" id="cbw"><label><input type="radio" name="bw" value="あり" /><span>あり</span></label><label><input type="radio" name="bw" value="なし" /><span>なし</span></label></div></div>
+      <div class="crow"><span class="nm">からだ</span><div class="chips"><label><input type="checkbox" id="cpe" /><span>生理中</span></label><label><input type="checkbox" id="csw" /><span>むくみ</span></label></div></div>
+      <div class="crow"><span class="nm">お肌の調子</span><div class="faces" id="csk">
+        <label><input type="radio" name="sk" value="1" /><span>1</span></label><label><input type="radio" name="sk" value="2" /><span>2</span></label><label><input type="radio" name="sk" value="3" /><span>3</span></label><label><input type="radio" name="sk" value="4" /><span>4</span></label><label><input type="radio" name="sk" value="5" /><span>5</span></label>
+      </div></div>
+      <div class="slog" id="slog" hidden>
+        <h3>毎日の肌ログ</h3>
+        <div class="crow"><span class="nm" id="cnlab">気になる所</span><div class="faces">
+          <label><input type="radio" name="cn" value="1" /><span>1</span></label><label><input type="radio" name="cn" value="2" /><span>2</span></label><label><input type="radio" name="cn" value="3" /><span>3</span></label><label><input type="radio" name="cn" value="4" /><span>4</span></label><label><input type="radio" name="cn" value="5" /><span>5</span></label>
+        </div></div>
+        <p class="hint" style="font-size:11.5px;color:var(--ink-soft)">1＝気にならない 〜 5＝とても気になる</p>
+        <div class="crow"><span class="nm">スマホ</span><div class="step"><button type="button" data-s="ph" data-v="-0.5" aria-label="スマホの時間を減らす">−</button><b id="cph">−</b><button type="button" data-s="ph" data-v="0.5" aria-label="スマホの時間を増やす">＋</button></div></div>
+        <div class="crow"><span class="nm">習慣</span><div class="chips"><label><input type="checkbox" id="cba" /><span>湯船</span></label><label><input type="checkbox" id="cmv" /><span>運動</span></label></div></div>
+        <div class="hwl" id="hwl"></div>
+      </div>
+      <div class="coedit" id="coedit" hidden>
+        <b>肌ログの設定（由佳さんだけに見えています）</b>
+        <input type="text" id="coLab" maxlength="30" placeholder="気になる所（例：鼻の黒ずみ）" aria-label="気になる所" />
+        <input type="text" id="coH1" maxlength="60" placeholder="宿題1（例：スマホは目の高さで見る）" aria-label="宿題1" />
+        <input type="text" id="coH2" maxlength="60" placeholder="宿題2" aria-label="宿題2" />
+        <input type="text" id="coH3" maxlength="60" placeholder="宿題3" aria-label="宿題3" />
+        <button type="button" id="coSave">設定を保存</button><span class="saved" id="coSaved" role="status"></span>
+      </div>
+      <p class="hint" style="font-size:11.5px;color:var(--ink-soft)">お肌は 1＝いまいち 〜 5＝とても良い。押すと自動で保存されます。</p>
+      <p class="saved" id="csaved" role="status"></p>
+    </section>
+
+    <section class="card wcard" aria-label="体重">
+      <h2>体重のうつりかわり</h2>
+      <div class="wsum" id="wsum">まだ記録はありません</div>
+      <div class="range" id="range">
+        <button type="button" data-r="30">1か月</button><button type="button" data-r="90" class="on">3か月</button><button type="button" data-r="0">ぜんぶ</button>
+      </div>
+      <svg id="chart" viewBox="0 0 320 170" role="img" aria-label="体重のグラフ"></svg>
+      <div class="wrow">
+        <input type="date" id="wd" aria-label="測った日" />
+        <input type="number" id="kg" inputmode="decimal" step="0.1" min="25" max="200" placeholder="52.4" aria-label="体重" />
+        <span class="u">kg</span>
+        <button type="button" class="wbtn" id="wsend">記録</button>
+      </div>
+      <p class="err" id="werr" role="alert"></p>
+      <div class="wlist" id="wlist"></div>
+    </section>
+
+    <form class="card" id="f">
+      <div class="modes" id="modes"><button type="button" data-mode="photo" class="on">写真で記録</button><button type="button" data-mode="text">文字で記録</button></div>
+      <div id="photoBox">
+      <div class="lbl">写真</div>
+      <label class="pick" id="pickBox"><b>＋</b>写真を撮る・選ぶ<small>（何枚でも一度に選べます）</small><input type="file" id="file" accept="image/*" multiple /></label>
+      <div class="previews" id="pv"></div>
+      </div>
+      <div id="textBox" hidden>
+        <div class="lbl">食べたもの</div>
+        <textarea id="tx" maxlength="150" placeholder="例：鮭定食（ご飯少なめ）とお味噌汁"></textarea>
+        <p class="note" style="font-size:12px;color:var(--ink-soft);margin-top:6px">写真を撮り忘れたときは、文字だけでも記録できます🌸</p>
+      </div>
+
+      <div class="lbl">いつのお食事ですか</div>
+      <div class="chips" id="kinds">
+        <label><input type="radio" name="k" value="朝" /><span>朝</span></label>
+        <label><input type="radio" name="k" value="昼" /><span>昼</span></label>
+        <label><input type="radio" name="k" value="夜" /><span>夜</span></label>
+        <label><input type="radio" name="k" value="間食" /><span>間食</span></label>
+      </div>
+
+      <div class="lbl">食べた日</div>
+      <input type="date" id="d" />
+
+      <div class="lbl">だいたいのカロリー（わかれば・kcal）</div>
+      <input type="number" id="kc" inputmode="numeric" placeholder="例：650（空欄ならAIが見積もります）" />
+
+      <div class="lbl">ひとことメモ（なくても大丈夫です）</div>
+      <textarea id="m" maxlength="200" placeholder="例：外食でパスタ／お腹いっぱい食べた"></textarea>
+
+      <button type="submit" class="send" id="send" disabled>登録する</button>
+      <p class="err" id="err" role="alert"></p>
+      <p class="ok" id="okMsg" role="status"></p>
+    </form>
+
+    <div id="list"></div>
+    <p class="foot">ここに登録した写真は、あなたと三枝だけが見られます。<br>公式LINEで「食事」と送ると、いつでもこのページが開けます。</p>
+  </div>
+</div>
+<script>
+(function(){
+  var API='https://script.google.com/macros/s/AKfycbyHoqfYiID1jEjSLQBVY25cQDnwjZwW3xjp0KWQdxMEom3uCghswPBgUX9DpbLTpOXcCw/exec';
+  var t=(location.search.match(/[?&]t=([0-9a-f]{24})/)||[])[1]||'';
+  var demo=/[?&]demo=1/.test(location.search);
+  function $(id){return document.getElementById(id)}
+  function parseResp(s){try{return JSON.parse(s)}catch(e){var m=String(s).match(/\{"ok"[\s\S]*\}/);if(m){try{return JSON.parse(m[0])}catch(e2){}}throw e}}
+  function post(o,tries){tries=tries||2;return fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(o)}).then(function(r){return r.text()}).then(parseResp).catch(function(e){if(tries>1)return post(o,tries-1);throw e})}
+  function bad(m){$('hello').textContent='';$('bad').textContent=m;$('bad').hidden=false}
+  function pad(n){return(n<10?'0':'')+n}
+  function today(){var d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
+  function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  var W=['日','月','火','水','木','金','土'];
+  function dayLabel(s){var p=s.split('-');var d=new Date(+p[0],+p[1]-1,+p[2]);return (+p[1])+'月'+(+p[2])+'日（'+W[d.getDay()]+'）'}
+
+  // 時間帯で「朝/昼/夜/間食」を先に選んでおく
+  var h=new Date().getHours(),k0=h<10?'朝':h<15?'昼':h<17?'間食':'夜';
+  document.querySelector('input[name=k][value="'+k0+'"]').checked=true;
+  $('d').value=today();$('d').max=today();
+
+  var items=[];
+  function render(){
+    var by={},days=[];
+    items.forEach(function(x){if(!by[x.d]){by[x.d]=[];days.push(x.d)}by[x.d].push(x)});
+    Object.keys(cmts).concat(Object.keys(conds)).forEach(function(d){if(!by[d]&&(cmts[d]||owner&&false||condText(conds[d]))){by[d]=[];days.push(d)}});
+    days.sort().reverse();
+    var order={'朝':0,'昼':1,'間食':2,'夜':3};
+    var html=days.map(function(d){
+      var arr=by[d].slice().sort(function(a,b){return order[a.k]-order[b.k]});
+      return '<section class="day"><h2>'+dayLabel(d)+'</h2>'+(condText(conds[d])?'<p class="cond">'+condText(conds[d])+'</p>':'')+cmtHtml(d)+evHtml(d)+'<div class="grid">'+arr.map(function(x){
+        var pic=x.th?'<img alt="'+esc(x.k)+'のお食事" src="data:image/jpeg;base64,'+x.th+'" />':'<div class="txt"><small>文字で記録</small>'+esc(x.m)+'</div>';
+        return '<div class="item">'+pic+'<div class="tx"><span class="k">'+esc(x.k)+'</span><button type="button" class="kc" data-id="'+esc(x.id)+'">'+(x.kc?x.kc+' kcal':'kcalを入れる')+'</button><br>'+(x.th?esc(x.m):'')+'<button type="button" class="del" data-id="'+esc(x.id)+'">削除</button></div></div>';
+      }).join('')+'</div></section>';
+    }).join('');
+    $('list').innerHTML=html||'<p class="empty">まだ登録はありません。最初の1枚を登録してみましょう🍽</p>';
+    drawK();drawSum();
+  }
+  $('list').addEventListener('click',function(e){
+    var cb=e.target.closest('.csave');
+    if(cb){var d=cb.dataset.d,tx=cb.previousElementSibling.value.trim();cb.disabled=true;cb.textContent='保存中…';
+      post({type:'meal_cmt',t:t,o:o,d:d,text:tx}).then(function(r){if(r.ok){if(tx)cmts[d]=tx;else delete cmts[d];render()}else{cb.disabled=false;cb.textContent='保存できませんでした'}}).catch(function(){cb.disabled=false;cb.textContent='保存できませんでした'});
+      return}
+    var kb=e.target.closest('.kc');
+    if(kb){var it=items.filter(function(x){return x.id===kb.dataset.id})[0];if(!it)return;
+      var w=document.createElement('div');w.className='kedit';w.innerHTML='<input type="number" inputmode="numeric" aria-label="kcal" value="'+(it.kc||'')+'" /><button type="button">保存</button>';
+      kb.replaceWith(w);var inp=w.querySelector('input');inp.focus();
+      w.querySelector('button').onclick=function(){var v=Math.round(+inp.value)||0;
+        if(demo){it.kc=v;render();return}
+        this.disabled=true;post({type:'meal_kcal',t:t,id:it.id,kc:v}).then(function(r){if(r.ok)it.kc=r.kc;render()}).catch(function(){render()})};
+      return}
+    var b=e.target.closest('.del');if(!b)return;
+    if(!b.classList.contains('sure')){b.classList.add('sure');b.textContent='もう一度押すと削除します';return}
+    b.disabled=true;
+    if(demo){items=items.filter(function(x){return x.id!==b.dataset.id});render();return}
+    post({type:'meal_del',t:t,id:b.dataset.id}).then(function(r){if(r.ok){items=items.filter(function(x){return x.id!==b.dataset.id});render()}else{b.disabled=false;b.textContent='削除できませんでした'}}).catch(function(){b.disabled=false;b.textContent='削除できませんでした'});
+  });
+
+  // 写真を小さくする（送る用：長辺1280px／一覧用：長辺360px）
+  function shrink(file,max,q){return new Promise(function(ok,ng){
+    var u=URL.createObjectURL(file),img=new Image();
+    img.onload=function(){var s=Math.min(1,max/Math.max(img.width,img.height)),c=document.createElement('canvas');c.width=Math.round(img.width*s);c.height=Math.round(img.height*s);c.getContext('2d').drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(u);ok(c.toDataURL('image/jpeg',q).split(',')[1])};
+    img.onerror=function(){URL.revokeObjectURL(u);ng(new Error('img'))};img.src=u;
+  })}
+  // 送れる大きさに収まるまで、画質と大きさを少しずつ下げる（一覧用は45,000字・本体は2,500,000字まで）
+  function fit(file,max,q,limit,minMax){return shrink(file,max,q).then(function(b){
+    if(b.length<=limit||(max<=minMax&&q<=.35))return b;
+    return fit(file,q>.45?max:Math.round(max*.8),q>.45?q-.1:q,limit,minMax);
+  })}
+  // ===== 体重 =====
+  var weights=[],rangeDays=90;
+  function fmtMD(s){var p=s.split('-');return (+p[1])+'/'+(+p[2])}
+  function daysAgo(n){var d=new Date();d.setDate(d.getDate()-n);return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
+  function drawW(){
+    var sv=$('chart'),W=320,H=170,L=34,R=10,T=12,B=26;
+    var arr=rangeDays?weights.filter(function(x){return x.d>=daysAgo(rangeDays)}):weights.slice();
+    if(weights.length){
+      var a=weights[weights.length-1],f0=arr.length?arr[0]:a,df=Math.round((a.kg-f0.kg)*10)/10;
+      $('wsum').innerHTML='<span>最新（'+fmtMD(a.d)+'）</span><b>'+a.kg.toFixed(1)+'<small style="font-size:14px"> kg</small></b>'+(arr.length>1?'<span class="diff">この期間 '+(df>0?'+':df<0?'−':'±')+Math.abs(df).toFixed(1)+' kg</span>':'');
+    } else $('wsum').textContent='まだ記録はありません。下から入れてみましょう';
+    if(!arr.length){sv.innerHTML='<text x="160" y="90" text-anchor="middle" font-size="11" fill="#8a7670">'+(weights.length?'この期間の記録はありません':'記録するとここにグラフが出ます')+'</text>';return}
+    var t0=new Date(arr[0].d).getTime(),t1=new Date(arr[arr.length-1].d).getTime();if(t1===t0){t0-=86400000*3;t1+=86400000*3}
+    var mn=Infinity,mx=-Infinity;arr.forEach(function(x){mn=Math.min(mn,x.kg);mx=Math.max(mx,x.kg)});
+    mn=Math.floor(mn-1);mx=Math.ceil(mx+1);if(mx-mn<4){var c=(mx+mn)/2;mn=Math.floor(c-2);mx=mn+4}
+    function X(d){return L+(new Date(d).getTime()-t0)/(t1-t0)*(W-L-R)}
+    function Y(k){return T+(mx-k)/(mx-mn)*(H-T-B)}
+    var g='',st=Math.max(1,Math.round((mx-mn)/4));
+    for(var v=mn;v<=mx;v+=st){g+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(v)+'" y2="'+Y(v)+'" stroke="#eddcd5" stroke-width="1"/><text x="'+(L-5)+'" y="'+(Y(v)+3.5)+'" text-anchor="end" font-size="10" fill="#8a7670">'+v+'</text>'}
+    var lbl=[arr[0]];if(arr.length>2)lbl.push(arr[Math.floor(arr.length/2)]);if(arr.length>1)lbl.push(arr[arr.length-1]);
+    lbl.forEach(function(x,i){g+='<text x="'+X(x.d)+'" y="'+(H-8)+'" text-anchor="'+(i===0&&lbl.length>1?'start':i===lbl.length-1&&lbl.length>1?'end':'middle')+'" font-size="10" fill="#8a7670">'+fmtMD(x.d)+'</text>'});
+    var pts=arr.map(function(x){return X(x.d).toFixed(1)+','+Y(x.kg).toFixed(1)}).join(' ');
+    if(arr.length>1)g+='<polygon points="'+X(arr[0].d)+','+(H-B)+' '+pts+' '+X(arr[arr.length-1].d)+','+(H-B)+'" fill="#c99a98" opacity=".12"/><polyline points="'+pts+'" fill="none" stroke="#c99a98" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>';
+    arr.forEach(function(x,i){var last=i===arr.length-1;g+='<circle cx="'+X(x.d)+'" cy="'+Y(x.kg)+'" r="'+(last?4:2.6)+'" fill="'+(last?'#a98c5f':'#c99a98')+'" stroke="#fff" stroke-width="1.2"><title>'+fmtMD(x.d)+' '+x.kg+'kg</title></circle>'});
+    sv.innerHTML=g;
+  }
+  function listW(){
+    $('wlist').innerHTML=weights.slice(-5).reverse().map(function(x){return '<div><span>'+dayLabel(x.d)+'　'+x.kg.toFixed(1)+' kg</span><button type="button" data-d="'+esc(x.d)+'">削除</button></div>'}).join('');
+  }
+  function setW(w){weights=(w||[]).map(function(x){if(!/^\d{4}-\d{2}-\d{2}$/.test(x.d)){var q=new Date(x.d);if(!isNaN(q))x.d=q.getFullYear()+'-'+pad(q.getMonth()+1)+'-'+pad(q.getDate())}return {d:x.d,kg:Number(x.kg)}}).sort(function(a,b){return a.d<b.d?-1:1});drawW();listW();if(typeof drawK==='function')drawK()}
+  $('range').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;rangeDays=+b.dataset.r;[].forEach.call(this.children,function(c){c.classList.toggle('on',c===b)});drawW()});
+  $('wd').value=today();$('wd').max=today();
+  $('wsend').addEventListener('click',function(){
+    var kg=parseFloat(String($('kg').value).replace(/[０-９．]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-0xFEE0)}));
+    if(!(kg>=25&&kg<=200)){$('werr').textContent='体重は数字で入れてください（例：52.4）';return}
+    var d=$('wd').value||today();$('werr').textContent='';$('wsend').disabled=true;
+    if(demo){var o=weights.filter(function(x){return x.d!==d});o.push({d:d,kg:Math.round(kg*10)/10});setW(o);$('kg').value='';$('wsend').disabled=false;return}
+    post({type:'meal_wput',t:t,d:d,kg:kg}).then(function(r){$('wsend').disabled=false;if(!r.ok){$('werr').textContent=r.msg||'記録できませんでした';return}$('kg').value='';setW(r.weights)}).catch(function(){$('wsend').disabled=false;$('werr').textContent='記録できませんでした。電波の良いところでもう一度お試しください。'});
+  });
+  $('wlist').addEventListener('click',function(e){
+    var b=e.target.closest('button');if(!b)return;
+    if(!b.classList.contains('sure')){b.classList.add('sure');b.textContent='もう一度押すと削除';return}
+    b.disabled=true;
+    if(demo){setW(weights.filter(function(x){return x.d!==b.dataset.d}));return}
+    post({type:'meal_wdel',t:t,d:b.dataset.d}).then(function(r){if(r.ok)setW(r.weights)}).catch(function(){b.disabled=false});
+  });
+
+  // ===== あなたへのおすすめ（記録するほど精度が上がる）=====
+  function drawRec(r){
+    if(!r)return;$('rcard').hidden=false;
+    var dots='<span class="dots">'+[1,2,3,4].map(function(i){return '<i class="'+(i<=r.lv?'on':'')+'"></i>'}).join('')+'</span>';
+    var head='<div class="lvl">'+dots+'<span>精度 '+r.lv+'/4・記録 '+r.n+'日'+(r.next?'（あと'+r.next+'日で精度アップ）':'')+'</span></div>';
+    if(!r.lv){$('rview').innerHTML=head+'<p class="gline" style="text-align:left">あと'+r.next+'日記録すると、あなたに合うエステのメニューと毎日の飲み物のおすすめが出ます。写真・体重・からだのどれを記録しても1日に数えます。</p>';return}
+    if(!r.rec){$('rview').innerHTML=head+'<p class="gline" style="text-align:left">'+(r.wait?'おすすめは少し時間をおいてから出ます。':'おすすめを考えています…')+'</p>';return}
+    var x=r.rec;
+    $('rview').innerHTML=head
+      +'<div class="rec"><span class="tag t1">次回のエステ</span><b>'+esc(x.treat)+'</b><p>'+esc(x.treatWhy)+'</p></div>'
+      +(x.option?'<div class="rec"><span class="tag t2">オプション</span><b>'+esc(x.option)+'</b><p>'+esc(x.optionWhy)+'</p></div>':'')
+      +'<div class="rec"><span class="tag t3">毎日の飲み物</span><b>'+esc(x.drink)+'</b><p>'+esc(x.drinkWhy)+'</p>'+(x.drinkHow?'<p class="how">'+esc(x.drinkHow)+'</p>':'')+'</div>'
+      +(x.more?'<p class="rmore">もっとぴったりにするには：'+esc(x.more)+'</p>':'')
+      +'<p class="rnote">記録からAIが考えたおすすめです（'+fmtMD(toYmd(r.at))+'更新）。最終的には、ご来店時に三枝がお肌を拝見して一緒に決めます。</p>';
+  }
+  function loadRec(){$('rcard').hidden=false;$('rview').innerHTML='<p class="gline" style="text-align:left">おすすめを読み込んでいます…</p>';post({type:'meal_rec',t:t},1).then(function(r){if(r.ok)drawRec(r);else $('rcard').hidden=true}).catch(function(){$('rcard').hidden=true})}
+
+  // ===== からだとお肌・三枝より・1週間のまとめ =====
+  var o=(location.search.match(/[?&]o=([0-9a-f]{40})/)||[])[1]||'',owner=false,conds={},cmts={},coach=null;
+  function condText(c){if(!c)return '';var a=[];if(c.w!=null)a.push('お水 '+c.w+'杯');if(c.sl!=null)a.push('睡眠 '+c.sl+'時間');if(c.bw)a.push('お通じ'+c.bw);if(c.pe)a.push('生理中');if(c.sw)a.push('むくみ');if(c.sk!=null)a.push('お肌 '+c.sk+'/5');if(c.cn!=null)a.push((coach&&coach.lab||'気になる所')+' '+c.cn+'/5');if(c.ph!=null)a.push('スマホ '+c.ph+'時間');if(c.ba)a.push('湯船');if(c.mv)a.push('運動');if(coach&&c.hw&&c.hw.length)a.push('宿題 '+c.hw.length+'/'+hwList().length);return a.join('・')}
+  function hwList(){return coach?coach.hw.map(function(x,i){return {i:String(i+1),t:x}}).filter(function(x){return x.t}):[]}
+  function drawCoach(){
+    $('slog').hidden=!coach;$('coedit').hidden=!owner;
+    if(owner){$('coLab').value=coach&&coach.lab||'';[1,2,3].forEach(function(n){$('coH'+n).value=coach&&coach.hw[n-1]||''})}
+    if(!coach)return;
+    $('cnlab').textContent=(coach.lab||'気になる所');
+    var hw=hwList();$('hwl').innerHTML=hw.length?'<span class="nm" style="font-size:12.5px;color:var(--ink-soft)">今週の宿題（できたらチェック）</span>'+hw.map(function(x){return '<label><input type="checkbox" data-hw="'+x.i+'" /><span>'+esc(x.t)+'</span></label>'}).join(''):'';
+    [].forEach.call(document.querySelectorAll('#hwl input'),function(i){i.addEventListener('change',function(){var a=cur.hw.filter(function(x){return x!==i.dataset.hw});if(i.checked)a.push(i.dataset.hw);cur.hw=a.sort();saveCond()})});
+    showCond();
+  }
+  function cmtHtml(d){
+    if(owner)return '<div class="cedit"><textarea aria-label="三枝よりのひとこと" placeholder="三枝よりのひとこと（お客様に表示されます）">'+esc(cmts[d]||'')+'</textarea><button type="button" class="csave" data-d="'+esc(d)+'">ひとことを保存</button></div>';
+    return cmts[d]?'<div class="cmt"><span class="who">三枝より</span>'+esc(cmts[d])+'</div>':'';
+  }
+  var cur={w:null,sl:null,bw:'',pe:false,sw:false,sk:null,cn:null,ph:null,ba:false,mv:false,hw:[]},cTimer=null;
+  function showCond(){
+    var c=conds[$('cd').value]||{w:null,sl:null,bw:'',pe:false,sw:false,sk:null};cur={w:c.w,sl:c.sl,bw:c.bw||'',pe:!!c.pe,sw:!!c.sw,sk:c.sk,cn:c.cn==null?null:c.cn,ph:c.ph==null?null:c.ph,ba:!!c.ba,mv:!!c.mv,hw:(c.hw||[]).slice()};
+    $('cw').textContent=cur.w==null?'−':cur.w+' 杯';$('csl').textContent=cur.sl==null?'−':cur.sl+' 時間';
+    [].forEach.call(document.querySelectorAll('input[name=bw]'),function(i){i.checked=i.value===cur.bw});
+    $('cpe').checked=cur.pe;$('csw').checked=cur.sw;
+    [].forEach.call(document.querySelectorAll('input[name=sk]'),function(i){i.checked=+i.value===cur.sk});
+    [].forEach.call(document.querySelectorAll('input[name=cn]'),function(i){i.checked=+i.value===cur.cn});
+    $('cph').textContent=cur.ph==null?'−':cur.ph+' 時間';$('cba').checked=cur.ba;$('cmv').checked=cur.mv;
+    [].forEach.call(document.querySelectorAll('#hwl input'),function(i){i.checked=cur.hw.indexOf(i.dataset.hw)>=0});
+  }
+  function saveCond(){
+    var d=$('cd').value||today();conds[d]={w:cur.w,sl:cur.sl,bw:cur.bw,pe:cur.pe,sw:cur.sw,sk:cur.sk,cn:cur.cn,ph:cur.ph,ba:cur.ba,mv:cur.mv,hw:cur.hw.slice()};showCond();render();
+    $('csaved').textContent='保存しています…';clearTimeout(cTimer);
+    cTimer=setTimeout(function(){
+      if(demo){$('csaved').textContent='保存しました';return}
+      post({type:'meal_cond',t:t,d:d,c:conds[d]}).then(function(r){$('csaved').textContent=r.ok?'保存しました':'保存できませんでした'}).catch(function(){$('csaved').textContent='保存できませんでした。電波の良いところでもう一度押してください'});
+    },700);
+  }
+  $('cd').value=today();$('cd').max=today();$('cd').addEventListener('change',function(){$('csaved').textContent='';showCond()});
+  [].forEach.call(document.querySelectorAll('.step button'),function(b){b.addEventListener('click',function(){
+    var k=b.dataset.s,st=+b.dataset.v,v=cur[k];
+    if(v==null)v=k==='w'||k==='ph'?(st>0?1:0):(st>0?7:6.5);else v=Math.round((v+st)*2)/2;
+    v=Math.max(0,Math.min(k==='w'?20:k==='ph'?24:16,v));cur[k]=v;saveCond();
+  })});
+  [].forEach.call(document.querySelectorAll('input[name=bw]'),function(i){i.addEventListener('click',function(){cur.bw=cur.bw===i.value?'':i.value;saveCond()})});
+  $('cpe').addEventListener('change',function(){cur.pe=this.checked;saveCond()});
+  $('csw').addEventListener('change',function(){cur.sw=this.checked;saveCond()});
+  [].forEach.call(document.querySelectorAll('input[name=sk]'),function(i){i.addEventListener('change',function(){cur.sk=+i.value;saveCond()})});
+  [].forEach.call(document.querySelectorAll('input[name=cn]'),function(i){i.addEventListener('change',function(){cur.cn=+i.value;saveCond()})});
+  $('cba').addEventListener('change',function(){cur.ba=this.checked;saveCond()});
+  $('cmv').addEventListener('change',function(){cur.mv=this.checked;saveCond()});
+  $('coSave').addEventListener('click',function(){
+    var pl={type:'meal_coach',t:t,o:o,lab:$('coLab').value,hw:[$('coH1').value,$('coH2').value,$('coH3').value]};
+    $('coSaved').textContent='保存しています…';
+    if(demo){coach={lab:pl.lab,hw:pl.hw};drawCoach();render();$('coSaved').textContent='保存しました';return}
+    post(pl).then(function(r){if(r.ok){coach=r.coach;drawCoach();render();$('coSaved').textContent='保存しました'}else $('coSaved').textContent='保存できませんでした'}).catch(function(){$('coSaved').textContent='保存できませんでした'});
+  });
+
+  function drawSum(){
+    var from=daysAgo(6),td=today(),sc=[],best=null,wk=weights.filter(function(x){return x.d>=from}),before=weights.filter(function(x){return x.d<from});
+    Object.keys(evals).forEach(function(d){var e=evals[d];if(d>=from&&d<=td&&e&&e.s!=null&&!e.wait){sc.push(e.s);if(!best||e.s>best.s)best={d:d,s:e.s}}});
+    var cs=Object.keys(conds).filter(function(d){return d>=from&&d<=td}).map(function(d){return conds[d]});
+    var avg=function(a){return a.length?a.reduce(function(x,y){return x+y},0)/a.length:null};
+    var water=avg(cs.filter(function(c){return c.w!=null}).map(function(c){return c.w})),sleep=avg(cs.filter(function(c){return c.sl!=null}).map(function(c){return c.sl})),skin=avg(cs.filter(function(c){return c.sk!=null}).map(function(c){return c.sk}));
+    var base=before.length?before[before.length-1]:wk[0],lastW=wk.length?wk[wk.length-1]:null,dw=base&&lastW&&base!==lastW?Math.round((lastW.kg-base.kg)*10)/10:null;
+    var days=Object.keys(items.reduce(function(m,x){if(x.d>=from)m[x.d]=1;return m},{})).length;
+    if(!sc.length&&!wk.length&&!cs.length&&!days){$('sumcard').hidden=true;return}
+    $('sumcard').hidden=false;
+    var cell=function(v,l){return '<div><b>'+v+'</b><small>'+l+'</small></div>'};
+    $('sumgrid').innerHTML=cell(sc.length?Math.round(avg(sc)):'−','食事の平均点')+cell(dw==null?'−':(dw>0?'+':dw<0?'−':'±')+Math.abs(dw).toFixed(1),'体重の変化 kg')+cell(days+'日','写真を記録')
+      +cell(water==null?'−':water.toFixed(1),'お水 杯/日')+cell(sleep==null?'−':sleep.toFixed(1),'睡眠 時間/日')+cell(skin==null?'−':skin.toFixed(1),'お肌 /5')
+      +(coach?(function(){var cn=avg(cs.filter(function(c){return c.cn!=null}).map(function(c){return c.cn})),ph=avg(cs.filter(function(c){return c.ph!=null}).map(function(c){return c.ph})),hn=hwList().length,logged=cs.filter(function(c){return c.cn!=null||c.ph!=null||(c.hw&&c.hw.length)}).length,done=cs.reduce(function(m,c){return m+(c.hw?c.hw.length:0)},0);
+        return cell(cn==null?'−':cn.toFixed(1),(coach.lab||'気になる所')+' /5')+cell(ph==null?'−':ph.toFixed(1),'スマホ 時間/日')+cell(hn&&logged?Math.round(done/(hn*logged)*100)+'%':'−','宿題できた')})():'');
+    var n=[];if(best)n.push('いちばん良かった日は '+fmtMD(best.d)+'（'+best.s+'点）です。');
+    if(water!=null&&water<6)n.push('お水はあと少し、1日6〜8杯を目安にするとお肌のうるおいにもつながります。');
+    if(sleep!=null&&sleep<6)n.push('睡眠が短めです。眠る時間が増えると、食欲もお肌も整いやすくなります。');
+    if(dw!=null&&dw>0&&cs.some(function(c){return c.pe||c.sw}))n.push('生理中やむくみの日は体重が増えやすいので、気にしすぎなくて大丈夫です。');
+    $('sumnote').textContent=n.join('');
+  }
+
+  // ===== AIの食事チェック（1日ごと）=====
+  var evals={},evalBusy={};
+  function evHtml(d){
+    var e=evals[d];
+    if(evalBusy[d])return '<div class="ev wait">AIがこの日のお食事をチェックしています…</div>';
+    if(!e)return '';
+    if(e.wait)return '<div class="ev wait">お食事のチェックは、少し時間をおいて次に写真を登録した時に出ます。</div>';
+    return '<div class="ev"><div class="top"><div class="sc"><b>'+e.s+'</b><small>/ 100点</small></div><div class="r">'+esc(e.r)+'</div></div>'
+      +'<div class="adv">'+(e.dt?'<p class="d"><span>ダイエット</span>'+esc(e.dt)+'</p>':'')+(e.sk?'<p class="s"><span>お肌</span>'+esc(e.sk)+'</p>':'')+'</div>'
+      +(e.kc?'<p class="ai">この日の合計 約'+e.kc.toLocaleString()+' kcal（AIの見積もり）</p>':'<p class="ai">AIのチェックです</p>')+'</div>';
+  }
+  function runEval(d){
+    if(demo){evalBusy[d]=true;render();setTimeout(function(){evalBusy[d]=false;evals[d]={s:78,r:'たんぱく質と野菜がそろっていて、バランスの良い内容です。揚げ物が少し多めなのが惜しいところです。',dt:'夜はご飯を少なめにして、汁物や野菜から食べると満足感が続きます。',sk:'ビタミンCをとるために、デザートにキウイやいちごを足すとお肌のハリにつながります。',kc:1450};render()},1200);return}
+    evalBusy[d]=true;render();
+    post({type:'meal_eval',t:t,d:d},1).then(function(r){evalBusy[d]=false;if(r.ok){if(r.e)evals[d]=r.e;else if(r.wait)evals[d]={wait:true}}render()}).catch(function(){evalBusy[d]=false;render()});
+  }
+
+  // ===== 目標と今日の残りカロリー =====
+  var goal=null;
+  function daysBetween(a,b){return Math.round((new Date(b)-new Date(a))/86400000)}
+  function calcK(){
+    if(!goal||!weights.length)return null;
+    var w=weights[weights.length-1].kg,h=goal.h,age=goal.age;
+    var bmr=10*w+6.25*h-5*age+(goal.sex==='男性'?5:-161),tdee=bmr*goal.act;
+    var days=Math.max(1,daysBetween(today(),goal.by)),lose=Math.max(0,w-goal.kg);
+    var floor=Math.ceil(bmr/10)*10,budget=Math.round((tdee-lose*7200/days)/10)*10,low=false;
+    if(budget<floor){budget=floor;low=true}
+    return {w:w,bmr:Math.round(bmr),days:days,lose:Math.round(lose*10)/10,budget:budget,low:low,done:lose<=0,past:daysBetween(today(),goal.by)<0};
+  }
+  function eatenOn(d){
+    var mine=items.filter(function(x){return x.d===d}),man=mine.reduce(function(a,x){return a+(+x.kc||0)},0),e=evals[d];
+    if(mine.length&&mine.every(function(x){return +x.kc>0}))return {kc:man,ai:false};
+    if(e&&e.kc&&e.kc>man)return {kc:e.kc,ai:true};
+    return {kc:man,ai:false};
+  }
+  function drawK(){
+    var v=$('kview'),c=calcK(),td=today();
+    $('gopen').textContent=goal?'目標を変える':'目標を設定する';
+    if(!goal){v.innerHTML='<p class="gline">「いつまでに何kgにしたいか」を入れると、<br>毎日食べられるカロリーと、今日の残りが出ます。</p>';return}
+    if(!c){v.innerHTML='<p class="gline">下の「体重のうつりかわり」で、今の体重を記録してください。<br>記録すると、食べられるカロリーが出ます。</p>';return}
+    var ea=eatenOn(td),eaten=ea.kc,left=c.budget-eaten,pct=Math.min(100,Math.round(eaten/c.budget*100));
+    v.innerHTML='<div class="left">'+(left>=0?'今日あと':'今日は')+'<b class="'+(left<0?'over':'')+'">'+Math.abs(left).toLocaleString()+' kcal</b>'+(left>=0?'食べられます':'目安をこえています')+'</div>'
+      +'<div class="bar"><i style="width:'+pct+'%"></i></div>'
+      +'<div class="kline"><span>食べた '+eaten.toLocaleString()+' kcal'+(ea.ai?'（AI見積もり）':'')+'</span><span>1日の目安 '+c.budget.toLocaleString()+' kcal</span></div>'
+      +'<p class="gline">目標 '+goal.kg.toFixed(1)+' kg（'+fmtMD(goal.by)+'まで・あと'+c.days+'日）<br>'+(c.done?'目標の体重に届いています。このまま続けましょう':'今 '+c.w.toFixed(1)+' kg → あと '+c.lose.toFixed(1)+' kg')+'</p>'
+      +(c.past?'<p class="warn">目標の日を過ぎています。「目標を変える」から新しい日にちを入れてください。</p>':(c.low&&!c.done?'<p class="warn">このペースだと体への負担が大きいので、基礎代謝（'+c.bmr.toLocaleString()+' kcal）を目安にしています。期限を少し先にすると、無理なく続けられます。</p>':''));
+  }
+  function toYmd(v){if(/^\d{4}-\d{2}-\d{2}$/.test(v||''))return v;var q=new Date(v);return isNaN(q)?'':q.getFullYear()+'-'+pad(q.getMonth()+1)+'-'+pad(q.getDate())}
+  function setGoal(g){goal=g&&+g.kg?{kg:+g.kg,by:toYmd(g.by),h:+g.h,age:+g.age,sex:g.sex||'女性',act:+g.act||1.375}:null;drawK()}
+  $('gopen').addEventListener('click',function(){var f=$('gform');f.hidden=!f.hidden;if(!f.hidden&&goal){$('gkg').value=goal.kg;$('gby').value=goal.by;$('gh').value=goal.h;$('gage').value=goal.age;$('gact').value=String(goal.act);var r=document.querySelector('input[name=gsex][value="'+goal.sex+'"]');if(r)r.checked=true}});
+  $('gby').min=today();
+  $('gform').addEventListener('submit',function(e){
+    e.preventDefault();
+    var g={kg:parseFloat($('gkg').value),by:$('gby').value,h:parseFloat($('gh').value),age:parseInt($('gage').value,10),sex:document.querySelector('input[name=gsex]:checked').value,act:parseFloat($('gact').value)};
+    if(!(g.kg>=25&&g.kg<=200)){$('gerr').textContent='目標体重を数字で入れてください';return}
+    if(!g.by||g.by<=today()){$('gerr').textContent='「いつまでに」は明日以降の日を選んでください';return}
+    if(!(g.h>=120&&g.h<=220)){$('gerr').textContent='身長を数字で入れてください（例：158）';return}
+    if(!(g.age>=12&&g.age<=100)){$('gerr').textContent='年齢を数字で入れてください';return}
+    $('gerr').textContent='';
+    if(demo){setGoal(g);$('gform').hidden=true;return}
+    $('gsave').disabled=true;
+    post({type:'meal_gput',t:t,g:g}).then(function(r){$('gsave').disabled=false;if(!r.ok){$('gerr').textContent=r.msg||'保存できませんでした';return}setGoal(r.goal);$('gform').hidden=true}).catch(function(){$('gsave').disabled=false;$('gerr').textContent='保存できませんでした。電波の良いところでもう一度お試しください。'});
+  });
+
+  var files=[],mode='photo';
+  function canSend(){return mode==='text'?!!$('tx').value.trim():!!files.length}
+  $('modes').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;mode=b.dataset.mode;
+    Array.prototype.forEach.call(this.querySelectorAll('button'),function(x){x.classList.toggle('on',x===b)});
+    $('photoBox').hidden=mode!=='photo';$('textBox').hidden=mode!=='text';$('send').disabled=!canSend();$('err').textContent='';$('okMsg').textContent='';
+    if(mode==='text')$('tx').focus()});
+  $('tx').addEventListener('input',function(){$('send').disabled=!canSend()});
+  $('file').addEventListener('change',function(){
+    files=Array.prototype.slice.call(this.files||[]).slice(0,10);
+    $('pv').innerHTML='';files.forEach(function(f){var i=document.createElement('img');i.alt='選んだ写真';i.src=URL.createObjectURL(f);$('pv').appendChild(i)});
+    $('send').disabled=!canSend();$('err').textContent='';$('okMsg').textContent='';
+  });
+  $('f').addEventListener('submit',function(e){
+    e.preventDefault();if(!canSend())return;
+    var k=document.querySelector('input[name=k]:checked').value,d=$('d').value||today(),m=$('m').value.trim(),kc=Math.round(+$('kc').value)||0,first=true;
+    if(mode==='text'){   // 写真なし＝文字だけの記録
+      var tm=$('tx').value.trim()+(m?'（'+m+'）':'');
+      $('send').disabled=true;$('err').textContent='';$('okMsg').textContent='登録しています…';
+      (demo?Promise.resolve({ok:true,id:'demo'+Math.random().toString(16).slice(2)}):post({type:'meal_put',t:t,k:k,d:d,m:tm,kc:kc})).then(function(r){
+        if(!r.ok)throw new Error(r.msg||'送れませんでした');
+        items.unshift({id:r.id,d:d,k:k,m:tm.slice(0,200),th:'',kc:kc});render();
+        $('okMsg').textContent='登録しました。ありがとうございます🌸';$('tx').value='';$('m').value='';$('kc').value='';runEval(d);
+      }).catch(function(er){$('okMsg').textContent='';$('err').textContent=(er&&er.message?er.message:'登録できませんでした。')+' 電波の良いところでもう一度お試しください。';$('send').disabled=false});
+      return;
+    }
+    $('send').disabled=true;$('err').textContent='';var done=0,total=files.length;
+    $('okMsg').textContent='登録しています… 0/'+total;
+    var chain=Promise.resolve();
+    files.forEach(function(f){chain=chain.then(function(){var myKc=first?kc:0;first=false;
+      return Promise.all([fit(f,1280,.82,2500000,640),fit(f,320,.6,40000,160)]).then(function(b){
+        if(demo)return {ok:true,id:'demo'+Math.random().toString(16).slice(2),th:b[1],kc:myKc};
+        return post({type:'meal_put',t:t,k:k,d:d,m:m,kc:myKc,b64:b[0],th:b[1]}).then(function(r){r.th=b[1];r.kc=myKc;return r});
+      }).then(function(r){
+        if(!r.ok)throw new Error(r.msg||'送れませんでした');
+        items.unshift({id:r.id,d:d,k:k,m:m,th:r.th,kc:r.kc});done++;$('okMsg').textContent='登録しています… '+done+'/'+total;render();
+      });
+    })});
+    chain.then(function(){
+      $('okMsg').textContent='登録しました。ありがとうございます🌸';files=[];$('file').value='';$('pv').innerHTML='';$('m').value='';$('kc').value='';runEval(d);
+    }).catch(function(er){
+      $('okMsg').textContent='';$('err').textContent=(er&&er.message&&er.message!=='img'?er.message:'登録できなかった写真があります。')+' 電波の良いところでもう一度お試しください。';$('send').disabled=false;
+    });
+  });
+
+  var adminKey=(location.search.match(/[?&]admin=([0-9a-f]{40})/)||[])[1]||'';
+  if(adminKey){
+    $('hello').textContent='お客様のきれいノート一覧';
+    post({type:'meal_admin',k:adminKey}).then(function(r){
+      if(!r.ok){bad(r.msg||'開けませんでした。');return}
+      $('admBody').innerHTML=r.list.length?r.list.map(function(x){
+        var late=x.gap!=null&&x.gap>=3;
+        return '<tr><td><a href="'+esc(x.url)+'">'+esc(x.name)+'様</a><br><small>写真 '+x.photos+'枚</small></td>'
+          +'<td class="gap'+(late?' late':'')+'">'+(x.gap===0?'今日':x.gap+'日前')+'<br><small>'+fmtMD(x.last)+'</small></td>'
+          +'<td>'+(x.w1!=null?x.w1.toFixed(1)+'kg<br><small>'+(x.w0!=null&&x.w0!==x.w1?((x.w1-x.w0>0?'+':'−')+Math.abs(x.w1-x.w0).toFixed(1)+'kg'):'')+'</small>':'−')+'</td>'
+          +'<td>'+(x.avg7!=null?x.avg7+'点':'−')+(x.todayCmt?'<br><small>今日ひとこと済</small>':'')+'</td></tr>';
+      }).join(''):'<tr><td colspan="4">まだ記録しているお客様はいません</td></tr>';
+      $('admin').hidden=false;
+    }).catch(function(){bad('読み込めませんでした。開き直してください。')});
+    return;
+  }
+  if(demo){$('hello').textContent='（見本）由佳さんの毎日のお食事と体重を記録しましょう';var dw=[];[[84,56.2],[70,55.8],[56,55.9],[42,55.1],[28,54.6],[14,54.4],[3,53.9]].forEach(function(p){dw.push({d:daysAgo(p[0]),kg:p[1]})});setW(dw);setGoal({kg:50,by:daysAgo(-90),h:158,age:35,sex:'女性',act:1.375});items=[{id:'s1',d:today(),k:'朝',m:'ヨーグルトとバナナ',th:'',kc:280},{id:'s2',d:today(),k:'昼',m:'定食',th:'',kc:0}];drawRec({lv:2,n:9,next:5,at:today(),rec:{treat:'マーメイド',treatWhy:'今の記録からは、むくみの日が多く、お肌の調子も3〜4で少しゆらいでいます。まずはうるおいと土台を整えるマーメイドがおすすめです。',option:'エキスパートウォッシュパック',optionWhy:'むくみとくすみをすっきりさせたい時に選ばれています。',drink:'FitLine レストレイト',drinkWhy:'睡眠が平均6時間台と短めなので、夜の1杯で休む時間を整えるサポートに。',drinkHow:'寝る30分前に、お水に溶かして飲むと続けやすいです。',more:'お肌の調子を毎日つけていただくと、メニューの選び方がもっと正確になります。'}});coach={lab:'鼻の黒ずみ',hw:['スマホは目の高さで見る','水をコップ6杯','食事を抜かない']};drawCoach();conds[today()]={w:5,sl:6.5,bw:'あり',pe:false,sw:true,sk:4,cn:3,ph:3.5,ba:true,mv:false,hw:['1','3']};conds[daysAgo(1)]={w:7,sl:7,bw:'あり',pe:false,sw:false,sk:3,cn:4,ph:4,ba:false,mv:true,hw:['2']};cmts[today()]='お昼の定食、とても良い選び方です。夜は温かいお味噌汁をプラスしてみてくださいね。';showCond();evals[daysAgo(1)]={s:64,r:'見本の評価です。',dt:'',sk:'',kc:1600};evals[today()]={s:72,r:'朝はヨーグルトと果物で腸にやさしいスタートです。お昼は定食でバランスは良いものの、揚げ物で脂質が多めです。',dt:'夜は揚げ物を控えて、魚やお豆腐をメインにすると1日の脂質が整います。',sk:'夜に緑の野菜や海藻を足すと、ビタミンとミネラルでお肌の調子を保ちやすくなります。',kc:1050};$('main').hidden=false;render();return}
+  if(!t){bad('このURLは無効です。公式LINEで「食事」と送ってください。');return}
+  // 前回の内容をこの端末に覚えておき、開いた瞬間に表示→裏で最新を読み込んで差し替える（2026-10-15 由佳さん「ページが重い」）
+  var CK='kn_'+t+(o?'_o':''),shown=false;
+  function apply(r,cached){
+    if(!r.ok){bad(r.msg||'読み込めませんでした。');return}
+    $('hello').textContent=r.call+'の毎日のお食事と体重を記録しましょう';evals={};var ev=r.evals||{};Object.keys(ev).forEach(function(k){evals[toYmd(k)]=ev[k]});owner=!!r.owner;$('ownerbar').hidden=!owner;coach=r.coach||null;drawCoach();conds={};Object.keys(r.conds||{}).forEach(function(k){conds[toYmd(k)]=r.conds[k]});cmts={};Object.keys(r.cmts||{}).forEach(function(k){if(String(r.cmts[k]).trim())cmts[toYmd(k)]=r.cmts[k]});showCond();if(!cached)loadRec();setW(r.weights);setGoal(r.goal);
+    items=(r.items||[]).map(function(x){if(!/^\d{4}-\d{2}-\d{2}$/.test(x.d)){var q=new Date(x.d);if(!isNaN(q))x.d=q.getFullYear()+'-'+pad(q.getMonth()+1)+'-'+pad(q.getDate())}return x});render();$('main').hidden=false;
+  }
+  try{var c=JSON.parse(localStorage.getItem(CK)||'null');if(c&&c.ok){apply(c,true);shown=true}}catch(e){}
+  post({type:'meal_get',t:t,o:o}).then(function(r){
+    if(r.ok){try{localStorage.setItem(CK,JSON.stringify(r))}catch(e){try{localStorage.removeItem(CK)}catch(e2){}}}
+    if(!r.ok&&shown)return;
+    apply(r);
+  }).catch(function(){if(!shown)bad('読み込めませんでした。電波の良いところで開き直してください。')});
+})();
+</script>
+</body>
+</html>
